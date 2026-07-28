@@ -129,6 +129,34 @@ cases. The current Bun 1.3.2 macOS arm64 run produced:
 | 100 | 40 | 0/4 (0%) | n/a | n/a | 360.17 | 821.48 |
 | **Overall** | **8–40** | **5/20 (25%)** | **1.92** | **7.81** | **102.65** | **910.16** |
 
+### Production-shaped corpus
+
+`production-boundary-problems-v1` adds 20 deterministic random configurations
+of a fixed production-sized profile:
+
+- 80 reciprocally paired via ports;
+- 120 breakout ports across exactly 80 nets;
+- 12 VCC ports and 12 GND ports;
+- 18 two-port signal nets and 60 singleton signal nets.
+
+The two power nets each produce an 11-edge connection tree, while the 18
+two-port signal nets produce one route each. Singleton nets need no routing, so
+each sample has 40 route demands.
+
+Regenerate and benchmark this corpus with:
+
+```sh
+bun run generate:production-stress-dataset
+bun run benchmark:production-stress
+```
+
+On the same Bun 1.3.2 macOS arm64 environment, all 20 samples reached the
+configured total rip limit of 100:
+
+| Via ports | Breakout ports | Nets | Samples solved | Successful p50/p95 | Attempt p50/p95 |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 80 | 120 | 80 | 0/20 (0%) | n/a | 120.10/145.41 ms |
+
 The Cosmos fixture uses `GenericSolverDebugger`, showing pipeline stages,
 committed vector traces, via jumps, and the active A* frontier.
 
