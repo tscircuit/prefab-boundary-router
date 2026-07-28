@@ -1,0 +1,289 @@
+{
+  "datasetId": "random-boundary-problems-v2",
+  "datasetSeed": 20260728,
+  "generatedAt": "2026-07-28T22:51:22.802Z",
+  "runtime": {
+    "bun": "1.3.2",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "percentileMethod": "linear interpolation",
+  "overall": {
+    "caseCount": 20,
+    "solvedCount": 5,
+    "solvePercent": 25,
+    "attemptTimeP50Ms": 102.65,
+    "attemptTimeP95Ms": 910.16,
+    "solvedTimeP50Ms": 1.92,
+    "solvedTimeP95Ms": 7.81
+  },
+  "byViaCount": {
+    "20": {
+      "caseCount": 4,
+      "solvedCount": 3,
+      "solvePercent": 75,
+      "attemptTimeP50Ms": 1.4,
+      "attemptTimeP95Ms": 5.12,
+      "solvedTimeP50Ms": 0.88,
+      "solvedTimeP95Ms": 1.82
+    },
+    "40": {
+      "caseCount": 4,
+      "solvedCount": 2,
+      "solvePercent": 50,
+      "attemptTimeP50Ms": 11.49,
+      "attemptTimeP95Ms": 22.35,
+      "solvedTimeP50Ms": 6.41,
+      "solvedTimeP95Ms": 8.52
+    },
+    "60": {
+      "caseCount": 4,
+      "solvedCount": 0,
+      "solvePercent": 0,
+      "attemptTimeP50Ms": 102.65,
+      "attemptTimeP95Ms": 188.31,
+      "solvedTimeP50Ms": null,
+      "solvedTimeP95Ms": null
+    },
+    "80": {
+      "caseCount": 4,
+      "solvedCount": 0,
+      "solvePercent": 0,
+      "attemptTimeP50Ms": 217.69,
+      "attemptTimeP95Ms": 944.56,
+      "solvedTimeP50Ms": null,
+      "solvedTimeP95Ms": null
+    },
+    "100": {
+      "caseCount": 4,
+      "solvedCount": 0,
+      "solvePercent": 0,
+      "attemptTimeP50Ms": 360.17,
+      "attemptTimeP95Ms": 821.48,
+      "solvedTimeP50Ms": null,
+      "solvedTimeP95Ms": null
+    }
+  },
+  "results": [
+    {
+      "caseId": "random-v20-c1",
+      "viaCount": 20,
+      "breakoutPortCount": 8,
+      "netCount": 4,
+      "solved": true,
+      "durationMs": 0.88,
+      "ripCount": 0,
+      "expandedStateCount": 14,
+      "error": null
+    },
+    {
+      "caseId": "random-v20-c2",
+      "viaCount": 20,
+      "breakoutPortCount": 8,
+      "netCount": 4,
+      "solved": false,
+      "durationMs": 5.68,
+      "ripCount": 32,
+      "expandedStateCount": 465,
+      "error": "No route found for \"random-v20-c2-net-2:0:random-v20-c2-breakout-port-2->random-v20-c2-breakout-port-6\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "random-v20-c3",
+      "viaCount": 20,
+      "breakoutPortCount": 8,
+      "netCount": 4,
+      "solved": true,
+      "durationMs": 0.69,
+      "ripCount": 2,
+      "expandedStateCount": 33,
+      "error": null
+    },
+    {
+      "caseId": "random-v20-c4",
+      "viaCount": 20,
+      "breakoutPortCount": 8,
+      "netCount": 4,
+      "solved": true,
+      "durationMs": 1.92,
+      "ripCount": 16,
+      "expandedStateCount": 149,
+      "error": null
+    },
+    {
+      "caseId": "random-v40-c1",
+      "viaCount": 40,
+      "breakoutPortCount": 16,
+      "netCount": 8,
+      "solved": true,
+      "durationMs": 4.07,
+      "ripCount": 5,
+      "expandedStateCount": 111,
+      "error": null
+    },
+    {
+      "caseId": "random-v40-c2",
+      "viaCount": 40,
+      "breakoutPortCount": 16,
+      "netCount": 8,
+      "solved": false,
+      "durationMs": 23.79,
+      "ripCount": 50,
+      "expandedStateCount": 950,
+      "error": "No route found for \"random-v40-c2-net-5:0:random-v40-c2-breakout-port-10->random-v40-c2-breakout-port-2\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "random-v40-c3",
+      "viaCount": 40,
+      "breakoutPortCount": 16,
+      "netCount": 8,
+      "solved": false,
+      "durationMs": 14.22,
+      "ripCount": 30,
+      "expandedStateCount": 621,
+      "error": "No route found for \"random-v40-c3-net-5:0:random-v40-c3-breakout-port-12->random-v40-c3-breakout-port-4\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "random-v40-c4",
+      "viaCount": 40,
+      "breakoutPortCount": 16,
+      "netCount": 8,
+      "solved": true,
+      "durationMs": 8.75,
+      "ripCount": 14,
+      "expandedStateCount": 200,
+      "error": null
+    },
+    {
+      "caseId": "random-v60-c1",
+      "viaCount": 60,
+      "breakoutPortCount": 24,
+      "netCount": 12,
+      "solved": false,
+      "durationMs": 66.4,
+      "ripCount": 72,
+      "expandedStateCount": 1665,
+      "error": "No route found for \"random-v60-c1-net-7:0:random-v60-c1-breakout-port-14->random-v60-c1-breakout-port-9\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "random-v60-c2",
+      "viaCount": 60,
+      "breakoutPortCount": 24,
+      "netCount": 12,
+      "solved": false,
+      "durationMs": 129.16,
+      "ripCount": 51,
+      "expandedStateCount": 4257,
+      "error": "No route found for \"random-v60-c2-net-11:0:random-v60-c2-breakout-port-10->random-v60-c2-breakout-port-5\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "random-v60-c3",
+      "viaCount": 60,
+      "breakoutPortCount": 24,
+      "netCount": 12,
+      "solved": false,
+      "durationMs": 198.75,
+      "ripCount": 55,
+      "expandedStateCount": 6967,
+      "error": "No route found for \"random-v60-c3-net-11:0:random-v60-c3-breakout-port-12->random-v60-c3-breakout-port-20\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "random-v60-c4",
+      "viaCount": 60,
+      "breakoutPortCount": 24,
+      "netCount": 12,
+      "solved": false,
+      "durationMs": 76.14,
+      "ripCount": 83,
+      "expandedStateCount": 2314,
+      "error": "No route found for \"random-v60-c4-net-6:0:random-v60-c4-breakout-port-18->random-v60-c4-breakout-port-4\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "random-v80-c1",
+      "viaCount": 80,
+      "breakoutPortCount": 32,
+      "netCount": 16,
+      "solved": false,
+      "durationMs": 1066.24,
+      "ripCount": 68,
+      "expandedStateCount": 21051,
+      "error": "No route found for \"random-v80-c1-net-4:0:random-v80-c1-breakout-port-11->random-v80-c1-breakout-port-27\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "random-v80-c2",
+      "viaCount": 80,
+      "breakoutPortCount": 32,
+      "netCount": 16,
+      "solved": false,
+      "durationMs": 255.05,
+      "ripCount": 75,
+      "expandedStateCount": 5195,
+      "error": "No route found for \"random-v80-c2-net-15:0:random-v80-c2-breakout-port-13->random-v80-c2-breakout-port-27\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "random-v80-c3",
+      "viaCount": 80,
+      "breakoutPortCount": 32,
+      "netCount": 16,
+      "solved": false,
+      "durationMs": 173.7,
+      "ripCount": 99,
+      "expandedStateCount": 3315,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "random-v80-c4",
+      "viaCount": 80,
+      "breakoutPortCount": 32,
+      "netCount": 16,
+      "solved": false,
+      "durationMs": 180.33,
+      "ripCount": 100,
+      "expandedStateCount": 3581,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "random-v100-c1",
+      "viaCount": 100,
+      "breakoutPortCount": 40,
+      "netCount": 20,
+      "solved": false,
+      "durationMs": 365.47,
+      "ripCount": 100,
+      "expandedStateCount": 4572,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "random-v100-c2",
+      "viaCount": 100,
+      "breakoutPortCount": 40,
+      "netCount": 20,
+      "solved": false,
+      "durationMs": 293.81,
+      "ripCount": 100,
+      "expandedStateCount": 4324,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "random-v100-c3",
+      "viaCount": 100,
+      "breakoutPortCount": 40,
+      "netCount": 20,
+      "solved": false,
+      "durationMs": 354.87,
+      "ripCount": 100,
+      "expandedStateCount": 4965,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "random-v100-c4",
+      "viaCount": 100,
+      "breakoutPortCount": 40,
+      "netCount": 20,
+      "solved": false,
+      "durationMs": 901.95,
+      "ripCount": 91,
+      "expandedStateCount": 18647,
+      "error": "No route found for \"random-v100-c4-net-4:0:random-v100-c4-breakout-port-13->random-v100-c4-breakout-port-8\" with at most 4 ripped blockers"
+    }
+  ]
+}
