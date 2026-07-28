@@ -1,6 +1,6 @@
 {
   "name": "@tscircuit/prefab-boundary-router",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A* breakout-boundary router with paired via escapes and negotiated rip-up",
   "type": "module",
   "module": "lib/index.ts",
@@ -50,5 +50,7 @@
   "peerDependencies": {
     "typescript": "^5"
   },
-  "trustedDependencies": ["sharp"]
+  "trustedDependencies": [
+    "sharp"
+  ]
 }
