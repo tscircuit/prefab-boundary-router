@@ -100,6 +100,34 @@ bun run test
 bun run build
 ```
 
+## Stress benchmark
+
+The checked-in `random-boundary-problems-v1` dataset contains 20 deterministic
+random problems: four cases each with 20, 40, 60, 80, and 100 via ports. Every
+case has reciprocal random via pairings and two-terminal nets whose breakout
+ports are randomly assigned around the top, right, and bottom boundaries.
+
+Regenerate the dataset or run the benchmark with:
+
+```sh
+bun run generate:stress-dataset
+bun run benchmark:stress
+```
+
+The benchmark warms up once, measures each case once, and writes machine-readable
+and Markdown reports under `benchmarks/results`. Successful-solve percentiles
+only include solved cases; attempt percentiles include both solved and failed
+cases. The current Bun 1.3.2 macOS arm64 run produced:
+
+| Via ports | Solved | Solved p50 (ms) | Solved p95 (ms) | Attempt p50 (ms) | Attempt p95 (ms) |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 20 | 2/4 (50%) | 1.07 | 1.62 | 2.20 | 4.32 |
+| 40 | 4/4 (100%) | 1.62 | 2.15 | 1.62 | 2.15 |
+| 60 | 4/4 (100%) | 3.01 | 9.48 | 3.01 | 9.48 |
+| 80 | 4/4 (100%) | 3.13 | 13.39 | 3.13 | 13.39 |
+| 100 | 4/4 (100%) | 9.63 | 16.81 | 9.63 | 16.81 |
+| **Overall** | **18/20 (90%)** | **2.99** | **15.55** | **2.99** | **15.32** |
+
 The Cosmos fixture uses `GenericSolverDebugger`, showing pipeline stages,
 committed vector traces, via jumps, and the active A* frontier.
 

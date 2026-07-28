@@ -25,6 +25,8 @@
     "build": "bunx tsc --noEmit",
     "test": "bun run setup:test-deps && bun test",
     "setup:test-deps": "bun run --cwd node_modules/sharp install",
+    "generate:stress-dataset": "bun benchmarks/generate-stress-dataset.ts",
+    "benchmark:stress": "bun benchmarks/run-stress-benchmark.ts",
     "lint": "biome check .",
     "format": "biome format --write .",
     "format:check": "biome format .",

@@ -1,0 +1,269 @@
+{
+  "datasetId": "random-boundary-problems-v1",
+  "datasetSeed": 20260728,
+  "generatedAt": "2026-07-28T22:44:55.259Z",
+  "runtime": {
+    "bun": "1.3.2",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "percentileMethod": "linear interpolation",
+  "overall": {
+    "caseCount": 20,
+    "solvedCount": 18,
+    "solvePercent": 90,
+    "attemptTimeP50Ms": 2.99,
+    "attemptTimeP95Ms": 15.32,
+    "solvedTimeP50Ms": 2.99,
+    "solvedTimeP95Ms": 15.55
+  },
+  "byViaCount": {
+    "20": {
+      "caseCount": 4,
+      "solvedCount": 2,
+      "solvePercent": 50,
+      "attemptTimeP50Ms": 2.2,
+      "attemptTimeP95Ms": 4.32,
+      "solvedTimeP50Ms": 1.07,
+      "solvedTimeP95Ms": 1.62
+    },
+    "40": {
+      "caseCount": 4,
+      "solvedCount": 4,
+      "solvePercent": 100,
+      "attemptTimeP50Ms": 1.62,
+      "attemptTimeP95Ms": 2.15,
+      "solvedTimeP50Ms": 1.62,
+      "solvedTimeP95Ms": 2.15
+    },
+    "60": {
+      "caseCount": 4,
+      "solvedCount": 4,
+      "solvePercent": 100,
+      "attemptTimeP50Ms": 3.01,
+      "attemptTimeP95Ms": 9.48,
+      "solvedTimeP50Ms": 3.01,
+      "solvedTimeP95Ms": 9.48
+    },
+    "80": {
+      "caseCount": 4,
+      "solvedCount": 4,
+      "solvePercent": 100,
+      "attemptTimeP50Ms": 3.13,
+      "attemptTimeP95Ms": 13.39,
+      "solvedTimeP50Ms": 3.13,
+      "solvedTimeP95Ms": 13.39
+    },
+    "100": {
+      "caseCount": 4,
+      "solvedCount": 4,
+      "solvePercent": 100,
+      "attemptTimeP50Ms": 9.63,
+      "attemptTimeP95Ms": 16.81,
+      "solvedTimeP50Ms": 9.63,
+      "solvedTimeP95Ms": 16.81
+    }
+  },
+  "results": [
+    {
+      "caseId": "random-v20-c1",
+      "viaCount": 20,
+      "netCount": 5,
+      "solved": false,
+      "durationMs": 4.6,
+      "ripCount": 28,
+      "expandedStateCount": 344,
+      "error": "No route found for \"random-v20-c1-net-1:0:random-v20-c1-breakout-port-4->random-v20-c1-breakout-port-9\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "random-v20-c2",
+      "viaCount": 20,
+      "netCount": 4,
+      "solved": true,
+      "durationMs": 1.68,
+      "ripCount": 9,
+      "expandedStateCount": 135,
+      "error": null
+    },
+    {
+      "caseId": "random-v20-c3",
+      "viaCount": 20,
+      "netCount": 4,
+      "solved": true,
+      "durationMs": 0.46,
+      "ripCount": 0,
+      "expandedStateCount": 14,
+      "error": null
+    },
+    {
+      "caseId": "random-v20-c4",
+      "viaCount": 20,
+      "netCount": 5,
+      "solved": false,
+      "durationMs": 2.72,
+      "ripCount": 15,
+      "expandedStateCount": 170,
+      "error": "No route found for \"random-v20-c4-net-3:0:random-v20-c4-breakout-port-2->random-v20-c4-breakout-port-6\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "random-v40-c1",
+      "viaCount": 40,
+      "netCount": 4,
+      "solved": true,
+      "durationMs": 1.36,
+      "ripCount": 1,
+      "expandedStateCount": 35,
+      "error": null
+    },
+    {
+      "caseId": "random-v40-c2",
+      "viaCount": 40,
+      "netCount": 4,
+      "solved": true,
+      "durationMs": 1.58,
+      "ripCount": 1,
+      "expandedStateCount": 56,
+      "error": null
+    },
+    {
+      "caseId": "random-v40-c3",
+      "viaCount": 40,
+      "netCount": 6,
+      "solved": true,
+      "durationMs": 1.65,
+      "ripCount": 1,
+      "expandedStateCount": 45,
+      "error": null
+    },
+    {
+      "caseId": "random-v40-c4",
+      "viaCount": 40,
+      "netCount": 5,
+      "solved": true,
+      "durationMs": 2.24,
+      "ripCount": 1,
+      "expandedStateCount": 60,
+      "error": null
+    },
+    {
+      "caseId": "random-v60-c1",
+      "viaCount": 60,
+      "netCount": 5,
+      "solved": true,
+      "durationMs": 10.52,
+      "ripCount": 12,
+      "expandedStateCount": 353,
+      "error": null
+    },
+    {
+      "caseId": "random-v60-c2",
+      "viaCount": 60,
+      "netCount": 6,
+      "solved": true,
+      "durationMs": 3.57,
+      "ripCount": 2,
+      "expandedStateCount": 58,
+      "error": null
+    },
+    {
+      "caseId": "random-v60-c3",
+      "viaCount": 60,
+      "netCount": 6,
+      "solved": true,
+      "durationMs": 2.46,
+      "ripCount": 0,
+      "expandedStateCount": 48,
+      "error": null
+    },
+    {
+      "caseId": "random-v60-c4",
+      "viaCount": 60,
+      "netCount": 6,
+      "solved": true,
+      "durationMs": 1.83,
+      "ripCount": 0,
+      "expandedStateCount": 25,
+      "error": null
+    },
+    {
+      "caseId": "random-v80-c1",
+      "viaCount": 80,
+      "netCount": 6,
+      "solved": true,
+      "durationMs": 3.12,
+      "ripCount": 0,
+      "expandedStateCount": 28,
+      "error": null
+    },
+    {
+      "caseId": "random-v80-c2",
+      "viaCount": 80,
+      "netCount": 5,
+      "solved": true,
+      "durationMs": 2.86,
+      "ripCount": 0,
+      "expandedStateCount": 22,
+      "error": null
+    },
+    {
+      "caseId": "random-v80-c3",
+      "viaCount": 80,
+      "netCount": 6,
+      "solved": true,
+      "durationMs": 3.14,
+      "ripCount": 0,
+      "expandedStateCount": 33,
+      "error": null
+    },
+    {
+      "caseId": "random-v80-c4",
+      "viaCount": 80,
+      "netCount": 7,
+      "solved": true,
+      "durationMs": 15.2,
+      "ripCount": 9,
+      "expandedStateCount": 332,
+      "error": null
+    },
+    {
+      "caseId": "random-v100-c1",
+      "viaCount": 100,
+      "netCount": 9,
+      "solved": true,
+      "durationMs": 12.57,
+      "ripCount": 2,
+      "expandedStateCount": 138,
+      "error": null
+    },
+    {
+      "caseId": "random-v100-c2",
+      "viaCount": 100,
+      "netCount": 7,
+      "solved": true,
+      "durationMs": 5.73,
+      "ripCount": 0,
+      "expandedStateCount": 25,
+      "error": null
+    },
+    {
+      "caseId": "random-v100-c3",
+      "viaCount": 100,
+      "netCount": 9,
+      "solved": true,
+      "durationMs": 17.56,
+      "ripCount": 2,
+      "expandedStateCount": 127,
+      "error": null
+    },
+    {
+      "caseId": "random-v100-c4",
+      "viaCount": 100,
+      "netCount": 7,
+      "solved": true,
+      "durationMs": 6.69,
+      "ripCount": 1,
+      "expandedStateCount": 39,
+      "error": null
+    }
+  ]
+}

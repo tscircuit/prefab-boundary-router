@@ -20,5 +20,5 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true
   },
-  "include": ["lib", "tests", "fixtures", "vite.config.ts"]
+  "include": ["lib", "tests", "fixtures", "benchmarks", "vite.config.ts"]
 }
