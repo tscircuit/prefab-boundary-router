@@ -1,0 +1,253 @@
+{
+  "datasetId": "production-boundary-problems-v1",
+  "datasetSeed": 20260729,
+  "generatedAt": "2026-07-28T23:16:58.170Z",
+  "runtime": {
+    "bun": "1.3.2",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "percentileMethod": "linear interpolation",
+  "overall": {
+    "caseCount": 20,
+    "solvedCount": 0,
+    "solvePercent": 0,
+    "attemptTimeP50Ms": 120.1,
+    "attemptTimeP95Ms": 145.41,
+    "solvedTimeP50Ms": null,
+    "solvedTimeP95Ms": null
+  },
+  "byViaCount": {
+    "80": {
+      "caseCount": 20,
+      "solvedCount": 0,
+      "solvePercent": 0,
+      "attemptTimeP50Ms": 120.1,
+      "attemptTimeP95Ms": 145.41,
+      "solvedTimeP50Ms": null,
+      "solvedTimeP95Ms": null
+    }
+  },
+  "results": [
+    {
+      "caseId": "production-c01",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 111.54,
+      "ripCount": 100,
+      "expandedStateCount": 1453,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c02",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 128.56,
+      "ripCount": 98,
+      "expandedStateCount": 1536,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c03",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 104.98,
+      "ripCount": 100,
+      "expandedStateCount": 1564,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c04",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 116.93,
+      "ripCount": 100,
+      "expandedStateCount": 1519,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c05",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 93.27,
+      "ripCount": 99,
+      "expandedStateCount": 1218,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c06",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 127.9,
+      "ripCount": 100,
+      "expandedStateCount": 1522,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c07",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 144.75,
+      "ripCount": 100,
+      "expandedStateCount": 1734,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c08",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 94.67,
+      "ripCount": 100,
+      "expandedStateCount": 1389,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c09",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 144.14,
+      "ripCount": 100,
+      "expandedStateCount": 1779,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c10",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 118.6,
+      "ripCount": 100,
+      "expandedStateCount": 1440,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c11",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 140.01,
+      "ripCount": 100,
+      "expandedStateCount": 1555,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c12",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 124.29,
+      "ripCount": 100,
+      "expandedStateCount": 1458,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c13",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 136.78,
+      "ripCount": 100,
+      "expandedStateCount": 1536,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c14",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 106.29,
+      "ripCount": 100,
+      "expandedStateCount": 1273,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c15",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 120.29,
+      "ripCount": 98,
+      "expandedStateCount": 1631,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c16",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 157.89,
+      "ripCount": 97,
+      "expandedStateCount": 1973,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c17",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 114.62,
+      "ripCount": 100,
+      "expandedStateCount": 1434,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c18",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 111.9,
+      "ripCount": 100,
+      "expandedStateCount": 1444,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c19",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 121.98,
+      "ripCount": 100,
+      "expandedStateCount": 1527,
+      "error": "Total rip limit (100) reached"
+    },
+    {
+      "caseId": "production-c20",
+      "viaCount": 80,
+      "breakoutPortCount": 120,
+      "netCount": 80,
+      "solved": false,
+      "durationMs": 119.91,
+      "ripCount": 99,
+      "expandedStateCount": 1531,
+      "error": "Total rip limit (100) reached"
+    }
+  ]
+}

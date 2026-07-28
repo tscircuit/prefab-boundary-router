@@ -20,7 +20,7 @@ export interface StressProblemDataset {
   cases: StressProblemCase[]
 }
 
-class SeededRandom {
+export class SeededRandom {
   constructor(private state: number) {}
 
   next() {
@@ -45,7 +45,8 @@ class SeededRandom {
   }
 }
 
-const roundCoordinate = (value: number) => Math.round(value * 10_000) / 10_000
+export const roundCoordinate = (value: number) =>
+  Math.round(value * 10_000) / 10_000
 
 const getSideCounts = (count: number, random: SeededRandom) => {
   const counts = [
@@ -60,7 +61,7 @@ const getSideCounts = (count: number, random: SeededRandom) => {
   return counts
 }
 
-const createBoundaryPoints = (
+export const createBoundaryPoints = (
   bounds: RectBounds,
   count: number,
   random: SeededRandom,

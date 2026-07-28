@@ -27,6 +27,8 @@
     "setup:test-deps": "bun run --cwd node_modules/sharp install",
     "generate:stress-dataset": "bun benchmarks/generate-stress-dataset.ts",
     "benchmark:stress": "bun benchmarks/run-stress-benchmark.ts",
+    "generate:production-stress-dataset": "bun benchmarks/generate-production-stress-dataset.ts",
+    "benchmark:production-stress": "bun benchmarks/run-stress-benchmark.ts production",
     "lint": "biome check .",
     "format": "biome format --write .",
     "format:check": "biome format .",
