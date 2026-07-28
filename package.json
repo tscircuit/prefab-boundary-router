@@ -4,9 +4,23 @@
   "description": "A* breakout-boundary router with paired via escapes and negotiated rip-up",
   "type": "module",
   "module": "lib/index.ts",
+  "license": "MIT",
   "files": [
     "lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tscircuit/prefab-boundary-router.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/index.ts",
+      "types": "./lib/index.ts"
+    }
+  },
   "scripts": {
     "build": "bunx tsc --noEmit",
     "test": "bun test",

@@ -24,14 +24,14 @@ test("routes 8 breakout points through 20 paired via points", async () => {
 
   const viaPairs = getUniqueViaPairs(eightBreakoutTwentyViaProblem)
   const pairColors = viaPairs.map(([first, second]) =>
-    getViaPairColor(eightBreakoutTwentyViaProblem, first.id, second.id),
+    getViaPairColor(eightBreakoutTwentyViaProblem, first.portId, second.portId),
   )
   expect(new Set(pairColors).size).toBe(viaPairs.length)
   for (const [first, second] of viaPairs) {
     const parabola = getViaPairCurvePoints(
       eightBreakoutTwentyViaProblem,
-      first.id,
-      second.id,
+      first.portId,
+      second.portId,
     )
     expect(parabola.length).toBeGreaterThanOrEqual(17)
     for (let index = 1; index < parabola.length; index++) {

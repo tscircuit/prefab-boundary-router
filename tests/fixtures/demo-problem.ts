@@ -7,10 +7,20 @@ export const demoProblem: BoundaryRoutingProblem = {
     maxX: 10,
     maxY: 10,
     ports: [
-      { id: "via-left", pairedPortId: "via-right", x: 0, y: 5 },
-      { id: "via-right", pairedPortId: "via-left", x: 10, y: 5 },
-      { id: "via-top-left", pairedPortId: "via-top-right", x: 1, y: 0 },
-      { id: "via-top-right", pairedPortId: "via-top-left", x: 9, y: 0 },
+      { portId: "via-left", pairedPortId: "via-right", x: 0, y: 5 },
+      { portId: "via-right", pairedPortId: "via-left", x: 10, y: 5 },
+      {
+        portId: "via-top-left",
+        pairedPortId: "via-top-right",
+        x: 1,
+        y: 0,
+      },
+      {
+        portId: "via-top-right",
+        pairedPortId: "via-top-left",
+        x: 9,
+        y: 0,
+      },
     ],
   },
   breakoutBoundary: {
@@ -19,10 +29,10 @@ export const demoProblem: BoundaryRoutingProblem = {
     maxX: 8,
     maxY: 8,
     ports: [
-      { id: "a-left", netId: "A", x: 2, y: 4 },
-      { id: "a-right", netId: "A", x: 8, y: 4 },
-      { id: "b-left", netId: "B", x: 2, y: 6 },
-      { id: "b-right", netId: "B", x: 8, y: 6 },
+      { portId: "a-left", netId: "A", x: 2, y: 4 },
+      { portId: "a-right", netId: "A", x: 8, y: 4 },
+      { portId: "b-left", netId: "B", x: 2, y: 6 },
+      { portId: "b-right", netId: "B", x: 8, y: 6 },
     ],
   },
   options: {

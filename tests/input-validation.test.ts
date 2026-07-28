@@ -11,9 +11,9 @@ describe("input validation", () => {
         maxX: 10,
         maxY: 10,
         ports: [
-          { id: "v1", pairedPortId: "v2", x: 0, y: 5 },
-          { id: "v2", pairedPortId: "v3", x: 10, y: 5 },
-          { id: "v3", pairedPortId: "v2", x: 5, y: 10 },
+          { portId: "v1", pairedPortId: "v2", x: 0, y: 5 },
+          { portId: "v2", pairedPortId: "v3", x: 10, y: 5 },
+          { portId: "v3", pairedPortId: "v2", x: 5, y: 10 },
         ],
       },
       breakoutBoundary: {

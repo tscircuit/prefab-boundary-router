@@ -86,7 +86,7 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
   }
 
   get pendingRouteIds() {
-    return this.pending.map((demand) => demand.id)
+    return this.pending.map((demand) => demand.routeId)
   }
 
   override _step() {
@@ -123,7 +123,7 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
     const heuristic = this.computeUncongestedDistanceTo(demand.targetNode)
     if (!Number.isFinite(heuristic[demand.sourceNode])) {
       throw new Error(
-        `No vector path exists for route "${demand.id}" before considering congestion`,
+        `No vector path exists for route "${demand.routeId}" before considering congestion`,
       )
     }
     const open = new MinHeap<number>()
@@ -152,7 +152,7 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
     const searchNodeIndex = search.open.pop()
     if (searchNodeIndex === undefined) {
       this.failActiveSearch(
-        `No route found for "${search.demand.id}" with at most ${this.preparedProblem.options.maxBlockersPerSearch} ripped blockers`,
+        `No route found for "${search.demand.routeId}" with at most ${this.preparedProblem.options.maxBlockersPerSearch} ripped blockers`,
       )
       return
     }
@@ -171,7 +171,7 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
     }
     if (search.nodes.length >= this.preparedProblem.options.maxSearchStates) {
       this.failActiveSearch(
-        `A* state limit (${this.preparedProblem.options.maxSearchStates}) reached for "${search.demand.id}"`,
+        `A* state limit (${this.preparedProblem.options.maxSearchStates}) reached for "${search.demand.routeId}"`,
       )
       return
     }
@@ -378,7 +378,7 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
 
     const points = searchNodePath.map(({ graphNode }) => {
       const node = this.preparedProblem.nodes[graphNode]!
-      return { nodeId: node.id, kind: node.kind, x: node.x, y: node.y }
+      return { nodeId: node.nodeId, kind: node.kind, x: node.x, y: node.y }
     })
     const segments: RoutedSegment[] = []
     for (let index = 1; index < searchNodePath.length; index++) {
@@ -409,7 +409,7 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
       ),
     ]
     const route: RoutedConnection = {
-      routeId: search.demand.id,
+      routeId: search.demand.routeId,
       netId: search.demand.netId,
       sourcePortId: search.demand.sourcePortId,
       targetPortId: search.demand.targetPortId,
@@ -450,7 +450,7 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
     this.totalRipCount++
     const demand = this.preparedProblem.demandById.get(routeId)
     if (!demand) throw new Error(`Cannot requeue unknown route "${routeId}"`)
-    if (!this.pending.some((candidate) => candidate.id === routeId)) {
+    if (!this.pending.some((candidate) => candidate.routeId === routeId)) {
       this.pending.push(demand)
     }
   }
@@ -537,14 +537,14 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
   private updateStats() {
     this.stats = {
       ...this.getSolutionStats(),
-      activeRouteId: this.activeSearch?.demand.id ?? null,
+      activeRouteId: this.activeSearch?.demand.routeId ?? null,
       activeExpandedStateCount: this.activeSearch?.expanded ?? 0,
     }
   }
 
   override getOutput(): BoundaryRoutingSolution {
     const routes = this.preparedProblem.demands.flatMap((demand) => {
-      const route = this.committed.get(demand.id)
+      const route = this.committed.get(demand.routeId)
       return route ? [route] : []
     })
     return { routes, stats: this.getSolutionStats() }

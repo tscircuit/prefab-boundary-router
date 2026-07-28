@@ -13,6 +13,9 @@ boundaries:
 - trace segments from different nets may not intersect;
 - routes in the same net may merge.
 
+All identifier fields are role-prefixed: `portId`, `pairedPortId`, `netId`,
+`nodeId`, and `routeId`. The API does not expose a bare `id` property.
+
 ## Pipeline
 
 `BoundaryRoutingPipelineSolver` is a two-stage `BasePipelineSolver`:
@@ -41,6 +44,15 @@ congestion cost makes repeatedly contested vector paths more expensive on
 subsequent attempts. The per-search blocker count, per-route rip count, total
 rip count, and A* state count are all bounded.
 
+## Installation
+
+The package is published to GitHub Packages and can be installed through
+tscircuit's JSCDN without configuring npm authentication:
+
+```sh
+bun add -D https://jscdn.tscircuit.com/@tscircuit/prefab-boundary-router
+```
+
 ## Usage
 
 ```ts
@@ -56,8 +68,8 @@ const problem: BoundaryRoutingProblem = {
     maxX: 10,
     maxY: 10,
     ports: [
-      { id: "vl", pairedPortId: "vr", x: 0, y: 5 },
-      { id: "vr", pairedPortId: "vl", x: 10, y: 5 },
+      { portId: "vl", pairedPortId: "vr", x: 0, y: 5 },
+      { portId: "vr", pairedPortId: "vl", x: 10, y: 5 },
     ],
   },
   breakoutBoundary: {
@@ -66,8 +78,8 @@ const problem: BoundaryRoutingProblem = {
     maxX: 8,
     maxY: 8,
     ports: [
-      { id: "p1", netId: "signal", x: 2, y: 5 },
-      { id: "p2", netId: "signal", x: 8, y: 5 },
+      { portId: "p1", netId: "signal", x: 2, y: 5 },
+      { portId: "p2", netId: "signal", x: 8, y: 5 },
     ],
   },
   options: { viaJumpCost: 0.25 },

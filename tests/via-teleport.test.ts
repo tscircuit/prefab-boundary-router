@@ -12,8 +12,18 @@ describe("via-boundary teleportation", () => {
         maxX: 10,
         maxY: 10,
         ports: [
-          { id: "left-via", pairedPortId: "right-via", x: 0, y: 5 },
-          { id: "right-via", pairedPortId: "left-via", x: 10, y: 5 },
+          {
+            portId: "left-via",
+            pairedPortId: "right-via",
+            x: 0,
+            y: 5,
+          },
+          {
+            portId: "right-via",
+            pairedPortId: "left-via",
+            x: 10,
+            y: 5,
+          },
         ],
       },
       breakoutBoundary: {
@@ -22,8 +32,8 @@ describe("via-boundary teleportation", () => {
         maxX: 8,
         maxY: 8,
         ports: [
-          { id: "left", netId: "signal", x: 2, y: 5 },
-          { id: "right", netId: "signal", x: 8, y: 5 },
+          { portId: "left", netId: "signal", x: 2, y: 5 },
+          { portId: "right", netId: "signal", x: 8, y: 5 },
         ],
       },
       options: { expansionsPerStep: 10 },

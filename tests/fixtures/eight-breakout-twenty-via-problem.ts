@@ -24,7 +24,7 @@ const viaLocations: Point[] = [
 ]
 
 const viaPorts: ViaPort[] = viaLocations.map((point, index) => ({
-  id: `via-${index}`,
+  portId: `via-${index}`,
   pairedPortId: `via-${(index + 10) % viaLocations.length}`,
   ...point,
 }))
@@ -43,14 +43,14 @@ export const eightBreakoutTwentyViaProblem: BoundaryRoutingProblem = {
     maxX: 14,
     maxY: 10,
     ports: [
-      { id: "top-left", netId: "A", x: 7, y: 4 },
-      { id: "top-center", netId: "B", x: 10, y: 4 },
-      { id: "top-right", netId: "C", x: 13, y: 4 },
-      { id: "right-top", netId: "D", x: 14, y: 6 },
-      { id: "right-bottom", netId: "D", x: 14, y: 8 },
-      { id: "bottom-right", netId: "A", x: 13, y: 10 },
-      { id: "bottom-center", netId: "B", x: 10, y: 10 },
-      { id: "bottom-left", netId: "C", x: 7, y: 10 },
+      { portId: "top-left", netId: "A", x: 7, y: 4 },
+      { portId: "top-center", netId: "B", x: 10, y: 4 },
+      { portId: "top-right", netId: "C", x: 13, y: 4 },
+      { portId: "right-top", netId: "D", x: 14, y: 6 },
+      { portId: "right-bottom", netId: "D", x: 14, y: 8 },
+      { portId: "bottom-right", netId: "A", x: 13, y: 10 },
+      { portId: "bottom-center", netId: "B", x: 10, y: 10 },
+      { portId: "bottom-left", netId: "C", x: 7, y: 10 },
     ],
   },
   options: {

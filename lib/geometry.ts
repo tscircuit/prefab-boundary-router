@@ -164,12 +164,12 @@ export const netColor = (netId: string) => {
 
 export const getUniqueViaPairs = (problem: BoundaryRoutingProblem) => {
   const viaById = new Map(
-    problem.viaBoundary.ports.map((port) => [port.id, port]),
+    problem.viaBoundary.ports.map((port) => [port.portId, port]),
   )
   const seen = new Set<string>()
   const pairs: Array<[ViaPort, ViaPort]> = []
   for (const port of problem.viaBoundary.ports) {
-    const pairKey = [port.id, port.pairedPortId].sort().join(":")
+    const pairKey = [port.portId, port.pairedPortId].sort().join(":")
     if (seen.has(pairKey)) continue
     const pairedPort = viaById.get(port.pairedPortId)
     if (!pairedPort) continue
@@ -319,8 +319,8 @@ const findViaPair = (
 ) => {
   const pairs = getUniqueViaPairs(problem)
   const pairIndex = pairs.findIndex(([first, second]) => {
-    const ids = new Set([first.id, second.id])
-    return ids.has(firstPortId) && ids.has(secondPortId)
+    const portIds = new Set([first.portId, second.portId])
+    return portIds.has(firstPortId) && portIds.has(secondPortId)
   })
   return { pair: pairs[pairIndex], pairIndex }
 }
@@ -390,24 +390,24 @@ export const visualizeProblem = (
       x: port.x,
       y: port.y,
       color: netColor(port.netId),
-      label: `${port.id} (${port.netId})`,
+      label: `${port.portId} (${port.netId})`,
     })),
     ...problem.viaBoundary.ports.map((port) => ({
       x: port.x,
       y: port.y,
       color: "#7c3aed",
-      label: `${port.id} → ${port.pairedPortId}`,
+      label: `${port.portId} → ${port.pairedPortId}`,
     })),
   ],
   lines: [
     rectOutline(problem.viaBoundary, "#6d28d9", "via boundary"),
     rectOutline(problem.breakoutBoundary, "#475569", "breakout boundary"),
     ...getUniqueViaPairs(problem).map(([first, second]) => ({
-      points: getViaPairCurvePoints(problem, first.id, second.id),
-      strokeColor: getViaPairColor(problem, first.id, second.id),
+      points: getViaPairCurvePoints(problem, first.portId, second.portId),
+      strokeColor: getViaPairColor(problem, first.portId, second.portId),
       strokeWidth: 0.065,
       strokeDash: "2.5 3",
-      label: `${first.id} ↔ ${second.id}`,
+      label: `${first.portId} ↔ ${second.portId}`,
     })),
   ],
   circles: [],

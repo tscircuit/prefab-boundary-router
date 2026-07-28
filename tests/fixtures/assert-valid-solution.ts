@@ -7,7 +7,7 @@ export const assertValidSolution = (
   solution: BoundaryRoutingSolution,
 ) => {
   const netByPortId = new Map(
-    problem.breakoutBoundary.ports.map((port) => [port.id, port.netId]),
+    problem.breakoutBoundary.ports.map((port) => [port.portId, port.netId]),
   )
   const adjacencyByNet = new Map<string, Map<string, Set<string>>>()
 
@@ -64,7 +64,7 @@ export const assertValidSolution = (
   const portsByNet = new Map<string, string[]>()
   for (const port of problem.breakoutBoundary.ports) {
     const portIds = portsByNet.get(port.netId) ?? []
-    portIds.push(port.id)
+    portIds.push(port.portId)
     portsByNet.set(port.netId, portIds)
   }
   for (const [netId, portIds] of portsByNet) {

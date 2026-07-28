@@ -100,7 +100,9 @@ const buildNetDemands = (
   const demands: RouteDemand[] = []
 
   for (const [netId, unsortedPorts] of orderedNets) {
-    const netPorts = [...unsortedPorts].sort((a, b) => a.id.localeCompare(b.id))
+    const netPorts = [...unsortedPorts].sort((a, b) =>
+      a.portId.localeCompare(b.portId),
+    )
     if (netPorts.length < 2) continue
     const connected = [netPorts[0]!]
     const remaining = netPorts.slice(1)
@@ -117,8 +119,8 @@ const buildNetDemands = (
           if (
             distance < bestDistance ||
             (distance === bestDistance &&
-              `${connectedPort.id}:${candidate.id}` <
-                `${bestConnected.id}:${remaining[bestRemainingIndex]!.id}`)
+              `${connectedPort.portId}:${candidate.portId}` <
+                `${bestConnected.portId}:${remaining[bestRemainingIndex]!.portId}`)
           ) {
             bestConnected = connectedPort
             bestRemainingIndex = index
@@ -129,12 +131,12 @@ const buildNetDemands = (
 
       const target = remaining.splice(bestRemainingIndex, 1)[0]!
       demands.push({
-        id: `${netId}:${edgeIndex++}:${bestConnected.id}->${target.id}`,
+        routeId: `${netId}:${edgeIndex++}:${bestConnected.portId}->${target.portId}`,
         netId,
-        sourcePortId: bestConnected.id,
-        targetPortId: target.id,
-        sourceNode: portNodeById.get(bestConnected.id)!,
-        targetNode: portNodeById.get(target.id)!,
+        sourcePortId: bestConnected.portId,
+        targetPortId: target.portId,
+        sourceNode: portNodeById.get(bestConnected.portId)!,
+        targetNode: portNodeById.get(target.portId)!,
       })
       connected.push(target)
     }
@@ -143,7 +145,7 @@ const buildNetDemands = (
 }
 
 const traceEdgeKey = (first: VectorGraphNode, second: VectorGraphNode) =>
-  `trace:${[first.id, second.id].sort().join(":")}`
+  `trace:${[first.nodeId, second.nodeId].sort().join(":")}`
 
 const viaEdgeKey = (firstPortId: string, secondPortId: string) =>
   `via:${[firstPortId, secondPortId].sort().join(":")}`
@@ -179,39 +181,43 @@ export const prepareBoundaryRoutingProblem = (
   const options = normalizeOptions(problem)
   const nodes: VectorGraphNode[] = []
   const breakoutPortNodeById = new Map<string, number>()
-  const portLocations: Array<{ point: Point; id: string }> = []
+  const portLocations: Array<{ point: Point; portId: string }> = []
 
   for (const port of problem.breakoutBoundary.ports) {
-    if (breakoutPortNodeById.has(port.id)) {
-      throw new Error(`Duplicate breakout port id "${port.id}"`)
+    if (breakoutPortNodeById.has(port.portId)) {
+      throw new Error(`Duplicate breakout port id "${port.portId}"`)
     }
-    if (!port.netId) throw new Error(`Breakout port "${port.id}" has no netId`)
+    if (!port.netId) {
+      throw new Error(`Breakout port "${port.portId}" has no netId`)
+    }
     if (!isPointOnRectBoundary(port, problem.breakoutBoundary)) {
-      throw new Error(`Breakout port "${port.id}" must lie on breakoutBoundary`)
+      throw new Error(
+        `Breakout port "${port.portId}" must lie on breakoutBoundary`,
+      )
     }
     const conflictingPort = portLocations.find(({ point }) =>
       pointsEqual(point, port),
     )
     if (conflictingPort) {
       throw new Error(
-        `Ports "${conflictingPort.id}" and "${port.id}" share a location`,
+        `Ports "${conflictingPort.portId}" and "${port.portId}" share a location`,
       )
     }
     const nodeIndex = nodes.length
     nodes.push({
-      id: `breakout:${port.id}`,
+      nodeId: `breakout:${port.portId}`,
       kind: "breakout_port",
-      portId: port.id,
+      portId: port.portId,
       netId: port.netId,
       x: port.x,
       y: port.y,
     })
-    breakoutPortNodeById.set(port.id, nodeIndex)
-    portLocations.push({ point: port, id: port.id })
+    breakoutPortNodeById.set(port.portId, nodeIndex)
+    portLocations.push({ point: port, portId: port.portId })
   }
 
   const viaById = new Map(
-    problem.viaBoundary.ports.map((port) => [port.id, port]),
+    problem.viaBoundary.ports.map((port) => [port.portId, port]),
   )
   if (viaById.size !== problem.viaBoundary.ports.length) {
     throw new Error("Via port ids must be unique")
@@ -219,20 +225,20 @@ export const prepareBoundaryRoutingProblem = (
   const viaPortNodeById = new Map<string, number>()
   for (const port of problem.viaBoundary.ports) {
     if (!isPointOnRectBoundary(port, problem.viaBoundary)) {
-      throw new Error(`Via port "${port.id}" must lie on viaBoundary`)
+      throw new Error(`Via port "${port.portId}" must lie on viaBoundary`)
     }
     const pairedPort = viaById.get(port.pairedPortId)
     if (!pairedPort) {
       throw new Error(
-        `Via port "${port.id}" references missing pair "${port.pairedPortId}"`,
+        `Via port "${port.portId}" references missing pair "${port.pairedPortId}"`,
       )
     }
-    if (pairedPort.id === port.id) {
-      throw new Error(`Via port "${port.id}" cannot pair with itself`)
+    if (pairedPort.portId === port.portId) {
+      throw new Error(`Via port "${port.portId}" cannot pair with itself`)
     }
-    if (pairedPort.pairedPortId !== port.id) {
+    if (pairedPort.pairedPortId !== port.portId) {
       throw new Error(
-        `Via pairing must be reciprocal: "${port.id}" and "${pairedPort.id}"`,
+        `Via pairing must be reciprocal: "${port.portId}" and "${pairedPort.portId}"`,
       )
     }
     const conflictingPort = portLocations.find(({ point }) =>
@@ -240,19 +246,19 @@ export const prepareBoundaryRoutingProblem = (
     )
     if (conflictingPort) {
       throw new Error(
-        `Ports "${conflictingPort.id}" and "${port.id}" share a location`,
+        `Ports "${conflictingPort.portId}" and "${port.portId}" share a location`,
       )
     }
     const nodeIndex = nodes.length
     nodes.push({
-      id: `via:${port.id}`,
+      nodeId: `via:${port.portId}`,
       kind: "via_port",
-      portId: port.id,
+      portId: port.portId,
       x: port.x,
       y: port.y,
     })
-    viaPortNodeById.set(port.id, nodeIndex)
-    portLocations.push({ point: port, id: port.id })
+    viaPortNodeById.set(port.portId, nodeIndex)
+    portLocations.push({ point: port, portId: port.portId })
   }
 
   const adjacency: VectorGraphEdge[][] = Array.from(
@@ -293,16 +299,16 @@ export const prepareBoundaryRoutingProblem = (
   }
 
   for (const port of problem.viaBoundary.ports) {
-    if (port.id > port.pairedPortId) continue
-    const fromNode = viaPortNodeById.get(port.id)!
+    if (port.portId > port.pairedPortId) continue
+    const fromNode = viaPortNodeById.get(port.portId)!
     const toNode = viaPortNodeById.get(port.pairedPortId)!
     addBidirectionalEdge(adjacency, {
-      key: viaEdgeKey(port.id, port.pairedPortId),
+      key: viaEdgeKey(port.portId, port.pairedPortId),
       kind: "via_jump",
       fromNode,
       toNode,
       cost: options.viaJumpCost,
-      entryPortId: port.id,
+      entryPortId: port.portId,
       exitPortId: port.pairedPortId,
     })
   }
@@ -317,7 +323,7 @@ export const prepareBoundaryRoutingProblem = (
     nodes,
     adjacency,
     demands,
-    demandById: new Map(demands.map((demand) => [demand.id, demand])),
+    demandById: new Map(demands.map((demand) => [demand.routeId, demand])),
     breakoutPortNodeById,
     viaPortNodeById,
   }

@@ -11,12 +11,12 @@ export interface RectBounds {
 }
 
 export interface BreakoutPort extends Point {
-  id: string
+  portId: string
   netId: string
 }
 
 export interface ViaPort extends Point {
-  id: string
+  portId: string
   pairedPortId: string
 }
 
@@ -61,7 +61,7 @@ export interface NormalizedBoundaryRoutingOptions {
 export type VectorGraphNodeKind = "breakout_port" | "via_port"
 
 export interface VectorGraphNode extends Point {
-  id: string
+  nodeId: string
   kind: VectorGraphNodeKind
   portId?: string
   netId?: string
@@ -86,7 +86,7 @@ export type VectorGraphEdge =
     }
 
 export interface RouteDemand {
-  id: string
+  routeId: string
   netId: string
   sourcePortId: string
   targetPortId: string
