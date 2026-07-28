@@ -50,7 +50,7 @@ The package is published to GitHub Packages and can be installed through
 tscircuit's JSCDN without configuring npm authentication:
 
 ```sh
-bun add -D https://jscdn.tscircuit.com/@tscircuit/prefab-boundary-router
+bun add https://jscdn.tscircuit.com/@tscircuit/prefab-boundary-router/latest.tgz
 ```
 
 ## Usage
@@ -96,7 +96,7 @@ Run the project with:
 
 ```sh
 bun install
-bun test
+bun run test
 bun run build
 ```
 

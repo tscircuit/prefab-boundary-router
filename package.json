@@ -23,11 +23,11 @@
   },
   "scripts": {
     "build": "bunx tsc --noEmit",
-    "test": "bun test",
+    "test": "bun run setup:test-deps && bun test",
+    "setup:test-deps": "bun run --cwd node_modules/sharp install",
     "lint": "biome check .",
     "format": "biome format --write .",
     "format:check": "biome format .",
-    "postinstall": "bun run --cwd node_modules/sharp install",
     "start": "cosmos"
   },
   "dependencies": {
