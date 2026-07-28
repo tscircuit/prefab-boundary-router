@@ -95,7 +95,7 @@ const buildNetDemands = (
 
   const orderedNets = [...portsByNet.entries()].sort(
     ([leftNet, leftPorts], [rightNet, rightPorts]) =>
-      rightPorts.length - leftPorts.length || leftNet.localeCompare(rightNet),
+      leftPorts.length - rightPorts.length || leftNet.localeCompare(rightNet),
   )
   const demands: RouteDemand[] = []
 

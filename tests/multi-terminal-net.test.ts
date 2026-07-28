@@ -1,6 +1,9 @@
 import { describe, expect, test } from "bun:test"
 import type { BoundaryRoutingProblem } from "../lib"
-import { BoundaryRoutingPipelineSolver } from "../lib"
+import {
+  BoundaryRoutingPipelineSolver,
+  prepareBoundaryRoutingProblem,
+} from "../lib"
 import { assertValidSolution } from "./fixtures/assert-valid-solution"
 
 describe("multi-terminal nets", () => {
@@ -28,6 +31,12 @@ describe("multi-terminal nets", () => {
       },
       options: { expansionsPerStep: 20 },
     }
+
+    expect(
+      prepareBoundaryRoutingProblem(problem).demands.map(
+        (demand) => demand.netId,
+      ),
+    ).toEqual(["B", "A", "A"])
 
     const solver = new BoundaryRoutingPipelineSolver(problem)
     solver.solve()
