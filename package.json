@@ -1,0 +1,40 @@
+{
+  "name": "@tscircuit/prefab-boundary-router",
+  "version": "0.0.1",
+  "description": "A* breakout-boundary router with paired via escapes and negotiated rip-up",
+  "type": "module",
+  "module": "lib/index.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "bunx tsc --noEmit",
+    "test": "bun test",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "postinstall": "bun run --cwd node_modules/sharp install",
+    "start": "cosmos"
+  },
+  "dependencies": {
+    "@tscircuit/solver-utils": "^0.0.16",
+    "graphics-debug": "^0.0.86"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.6",
+    "@types/bun": "latest",
+    "@types/react": "^19.1.13",
+    "bun-match-svg": "^0.0.15",
+    "react": "^19.1.1",
+    "react-cosmos": "^7.1.1",
+    "react-cosmos-plugin-vite": "^7.1.1",
+    "react-dom": "^19.1.1",
+    "sharp": "0.32.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "trustedDependencies": ["sharp"]
+}
