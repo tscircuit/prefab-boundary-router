@@ -4,6 +4,7 @@ import type { StressProblemCase, StressProblemDataset } from "./stress-dataset"
 interface CaseBenchmarkResult {
   caseId: string
   viaCount: number
+  breakoutPortCount: number
   netCount: number
   solved: boolean
   durationMs: number
@@ -71,6 +72,7 @@ const benchmarkCase = (problemCase: StressProblemCase): CaseBenchmarkResult => {
   return {
     caseId: problemCase.caseId,
     viaCount: problemCase.viaCount,
+    breakoutPortCount: problemCase.breakoutPortCount,
     netCount: problemCase.netCount,
     solved: solver.solved && !solver.failed,
     durationMs,
@@ -90,10 +92,12 @@ const createMarkdownReport = (
   byViaCount: Record<string, BenchmarkSummary>,
 ) => {
   const rows = Object.entries(byViaCount)
-    .map(
-      ([viaCount, summary]) =>
-        `| ${viaCount} | ${summary.solvedCount}/${summary.caseCount} (${summary.solvePercent.toFixed(2)}%) | ${formatMetric(summary.solvedTimeP50Ms)} | ${formatMetric(summary.solvedTimeP95Ms)} | ${summary.attemptTimeP50Ms.toFixed(2)} | ${summary.attemptTimeP95Ms.toFixed(2)} |`,
-    )
+    .map(([viaCount, summary]) => {
+      const breakoutPortCount = dataset.cases.find(
+        (problemCase) => problemCase.viaCount === Number(viaCount),
+      )!.breakoutPortCount
+      return `| ${viaCount} | ${breakoutPortCount} | ${summary.solvedCount}/${summary.caseCount} (${summary.solvePercent.toFixed(2)}%) | ${formatMetric(summary.solvedTimeP50Ms)} | ${formatMetric(summary.solvedTimeP95Ms)} | ${summary.attemptTimeP50Ms.toFixed(2)} | ${summary.attemptTimeP95Ms.toFixed(2)} |`
+    })
     .join("\n")
 
   return `# Random boundary stress benchmark
@@ -107,10 +111,10 @@ const createMarkdownReport = (
 Successful-solve percentiles include solved cases only. Attempt percentiles include
 both solved and failed cases, measuring the wall-clock cost of every attempt.
 
-| Via ports | Solved | Solved p50 (ms) | Solved p95 (ms) | Attempt p50 (ms) | Attempt p95 (ms) |
-| ---: | ---: | ---: | ---: | ---: | ---: |
+| Via ports | Breakout ports | Solved | Solved p50 (ms) | Solved p95 (ms) | Attempt p50 (ms) | Attempt p95 (ms) |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 ${rows}
-| **Overall** | **${overall.solvedCount}/${overall.caseCount} (${overall.solvePercent.toFixed(2)}%)** | **${formatMetric(overall.solvedTimeP50Ms)}** | **${formatMetric(overall.solvedTimeP95Ms)}** | **${overall.attemptTimeP50Ms.toFixed(2)}** | **${overall.attemptTimeP95Ms.toFixed(2)}** |
+| **Overall** | **8–40** | **${overall.solvedCount}/${overall.caseCount} (${overall.solvePercent.toFixed(2)}%)** | **${formatMetric(overall.solvedTimeP50Ms)}** | **${formatMetric(overall.solvedTimeP95Ms)}** | **${overall.attemptTimeP50Ms.toFixed(2)}** | **${overall.attemptTimeP95Ms.toFixed(2)}** |
 `
 }
 

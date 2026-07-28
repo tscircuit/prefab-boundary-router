@@ -8,6 +8,7 @@ export interface StressProblemCase {
   caseId: string
   seed: number
   viaCount: number
+  breakoutPortCount: number
   netCount: number
   problem: BoundaryRoutingProblem
 }
@@ -141,12 +142,11 @@ const createProblem = (
     ...point,
   }))
 
-  const minimumNetCount = Math.max(4, Math.floor(viaCount / 14))
-  const maximumNetCount = Math.min(10, minimumNetCount + 2)
-  const netCount = random.integer(minimumNetCount, maximumNetCount)
+  const breakoutPortCount = Math.round(viaCount * 0.4)
+  const netCount = breakoutPortCount / 2
   const breakoutPoints = createBoundaryPoints(
     breakoutBoundary,
-    netCount * 2,
+    breakoutPortCount,
     random,
   )
   const shuffledBreakoutIndexes = random.shuffle(
@@ -165,6 +165,7 @@ const createProblem = (
     caseId,
     seed,
     viaCount,
+    breakoutPortCount,
     netCount,
     problem: {
       viaBoundary: { ...viaBoundary, ports: viaPorts },
@@ -179,8 +180,8 @@ const createProblem = (
       options: {
         viaJumpCost: 0.25,
         maxBlockersPerSearch: 4,
-        maxRipsPerRoute: 6,
-        maxTotalRips: 50,
+        maxRipsPerRoute: 8,
+        maxTotalRips: 100,
         maxSearchStates: 20_000,
         expansionsPerStep: 500,
       },
@@ -202,9 +203,9 @@ export const generateStressDataset = (): StressProblemDataset => {
   )
 
   return {
-    datasetId: "random-boundary-problems-v1",
+    datasetId: "random-boundary-problems-v2",
     description:
-      "Deterministic random vector-routing problems with via and breakout ports on the top, right, and bottom boundaries.",
+      "Deterministic random vector-routing problems whose via and breakout port counts both scale across the top, right, and bottom boundaries.",
     seed: STRESS_DATASET_SEED,
     cases,
   }

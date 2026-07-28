@@ -32,10 +32,12 @@ describe("random stress dataset", () => {
     for (const problemCase of dataset.cases) {
       const { problem } = problemCase
       expect(problemCase.viaCount).toBeLessThanOrEqual(100)
+      expect(problemCase.breakoutPortCount).toBe(problemCase.viaCount * 0.4)
       expect(problem.viaBoundary.ports).toHaveLength(problemCase.viaCount)
       expect(problem.breakoutBoundary.ports).toHaveLength(
-        problemCase.netCount * 2,
+        problemCase.breakoutPortCount,
       )
+      expect(problemCase.netCount * 2).toBe(problemCase.breakoutPortCount)
 
       const viaByPortId = new Map(
         problem.viaBoundary.ports.map((port) => [port.portId, port]),

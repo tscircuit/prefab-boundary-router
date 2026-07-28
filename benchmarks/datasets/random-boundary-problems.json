@@ -1,13 +1,14 @@
 {
-  "datasetId": "random-boundary-problems-v1",
-  "description": "Deterministic random vector-routing problems with via and breakout ports on the top, right, and bottom boundaries.",
+  "datasetId": "random-boundary-problems-v2",
+  "description": "Deterministic random vector-routing problems whose via and breakout port counts both scale across the top, right, and bottom boundaries.",
   "seed": 20260728,
   "cases": [
     {
       "caseId": "random-v20-c1",
       "seed": 2093261317,
       "viaCount": 20,
-      "netCount": 5,
+      "breakoutPortCount": 8,
+      "netCount": 4,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -145,62 +146,50 @@
           "ports": [
             {
               "portId": "random-v20-c1-breakout-port-0",
-              "netId": "random-v20-c1-net-3",
-              "x": 31.4716,
+              "netId": "random-v20-c1-net-2",
+              "x": 34.0973,
               "y": 20.9422
             },
             {
               "portId": "random-v20-c1-breakout-port-1",
               "netId": "random-v20-c1-net-2",
-              "x": 44.1324,
+              "x": 43.1252,
               "y": 20.9422
             },
             {
               "portId": "random-v20-c1-breakout-port-2",
-              "netId": "random-v20-c1-net-4",
-              "x": 58.6595,
+              "netId": "random-v20-c1-net-1",
+              "x": 55.786,
               "y": 20.9422
             },
             {
               "portId": "random-v20-c1-breakout-port-3",
-              "netId": "random-v20-c1-net-0",
+              "netId": "random-v20-c1-net-3",
               "x": 69.1369,
-              "y": 29.0472
+              "y": 34.2945
             },
             {
               "portId": "random-v20-c1-breakout-port-4",
-              "netId": "random-v20-c1-net-1",
+              "netId": "random-v20-c1-net-0",
               "x": 69.1369,
-              "y": 40.2633
+              "y": 43.8772
             },
             {
               "portId": "random-v20-c1-breakout-port-5",
-              "netId": "random-v20-c1-net-0",
-              "x": 69.1369,
-              "y": 46.3104
+              "netId": "random-v20-c1-net-1",
+              "x": 56.0372,
+              "y": 57.3269
             },
             {
               "portId": "random-v20-c1-breakout-port-6",
-              "netId": "random-v20-c1-net-4",
-              "x": 60.0063,
+              "netId": "random-v20-c1-net-0",
+              "x": 48.2899,
               "y": 57.3269
             },
             {
               "portId": "random-v20-c1-breakout-port-7",
-              "netId": "random-v20-c1-net-2",
-              "x": 50.8596,
-              "y": 57.3269
-            },
-            {
-              "portId": "random-v20-c1-breakout-port-8",
               "netId": "random-v20-c1-net-3",
-              "x": 41.2228,
-              "y": 57.3269
-            },
-            {
-              "portId": "random-v20-c1-breakout-port-9",
-              "netId": "random-v20-c1-net-1",
-              "x": 34.0584,
+              "x": 34.4164,
               "y": 57.3269
             }
           ]
@@ -208,8 +197,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -219,6 +208,7 @@
       "caseId": "random-v20-c2",
       "seed": 1145597859,
       "viaCount": 20,
+      "breakoutPortCount": 8,
       "netCount": 4,
       "problem": {
         "viaBoundary": {
@@ -357,50 +347,50 @@
           "ports": [
             {
               "portId": "random-v20-c2-breakout-port-0",
-              "netId": "random-v20-c2-net-1",
-              "x": 36.39,
+              "netId": "random-v20-c2-net-3",
+              "x": 43.6705,
               "y": 19.4142
             },
             {
               "portId": "random-v20-c2-breakout-port-1",
               "netId": "random-v20-c2-net-0",
-              "x": 45.8395,
+              "x": 58.713,
               "y": 19.4142
             },
             {
               "portId": "random-v20-c2-breakout-port-2",
-              "netId": "random-v20-c2-net-0",
-              "x": 60.4501,
-              "y": 19.4142
+              "netId": "random-v20-c2-net-2",
+              "x": 75.4792,
+              "y": 25.0281
             },
             {
               "portId": "random-v20-c2-breakout-port-3",
-              "netId": "random-v20-c2-net-2",
+              "netId": "random-v20-c2-net-1",
               "x": 75.4792,
-              "y": 27.0492
+              "y": 33.1234
             },
             {
               "portId": "random-v20-c2-breakout-port-4",
               "netId": "random-v20-c2-net-3",
               "x": 75.4792,
-              "y": 33.9929
+              "y": 41.7402
             },
             {
               "portId": "random-v20-c2-breakout-port-5",
-              "netId": "random-v20-c2-net-3",
-              "x": 75.4792,
-              "y": 40.5524
+              "netId": "random-v20-c2-net-0",
+              "x": 62.4245,
+              "y": 48.7961
             },
             {
               "portId": "random-v20-c2-breakout-port-6",
-              "netId": "random-v20-c2-net-1",
-              "x": 54.2931,
+              "netId": "random-v20-c2-net-2",
+              "x": 50.5858,
               "y": 48.7961
             },
             {
               "portId": "random-v20-c2-breakout-port-7",
-              "netId": "random-v20-c2-net-2",
-              "x": 44.1491,
+              "netId": "random-v20-c2-net-1",
+              "x": 33.0751,
               "y": 48.7961
             }
           ]
@@ -408,8 +398,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -419,6 +409,7 @@
       "caseId": "random-v20-c3",
       "seed": 804884444,
       "viaCount": 20,
+      "breakoutPortCount": 8,
       "netCount": 4,
       "problem": {
         "viaBoundary": {
@@ -558,49 +549,49 @@
             {
               "portId": "random-v20-c3-breakout-port-0",
               "netId": "random-v20-c3-net-0",
-              "x": 34.3186,
+              "x": 34.955,
               "y": 20.1802
             },
             {
               "portId": "random-v20-c3-breakout-port-1",
-              "netId": "random-v20-c3-net-0",
-              "x": 52.4274,
+              "netId": "random-v20-c3-net-1",
+              "x": 51.005,
               "y": 20.1802
             },
             {
               "portId": "random-v20-c3-breakout-port-2",
-              "netId": "random-v20-c3-net-3",
+              "netId": "random-v20-c3-net-2",
               "x": 71.5191,
-              "y": 29.0817
+              "y": 27.4146
             },
             {
               "portId": "random-v20-c3-breakout-port-3",
               "netId": "random-v20-c3-net-1",
               "x": 71.5191,
-              "y": 37.7384
+              "y": 37.5345
             },
             {
               "portId": "random-v20-c3-breakout-port-4",
-              "netId": "random-v20-c3-net-2",
+              "netId": "random-v20-c3-net-3",
               "x": 71.5191,
-              "y": 46.7345
+              "y": 46.1912
             },
             {
               "portId": "random-v20-c3-breakout-port-5",
               "netId": "random-v20-c3-net-3",
-              "x": 61.8401,
+              "x": 57.2337,
               "y": 53.9914
             },
             {
               "portId": "random-v20-c3-breakout-port-6",
-              "netId": "random-v20-c3-net-2",
-              "x": 46.2427,
+              "netId": "random-v20-c3-net-0",
+              "x": 49.3253,
               "y": 53.9914
             },
             {
               "portId": "random-v20-c3-breakout-port-7",
-              "netId": "random-v20-c3-net-1",
-              "x": 32.7023,
+              "netId": "random-v20-c3-net-2",
+              "x": 33.728,
               "y": 53.9914
             }
           ]
@@ -608,8 +599,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -619,7 +610,8 @@
       "caseId": "random-v20-c4",
       "seed": 1674331512,
       "viaCount": 20,
-      "netCount": 5,
+      "breakoutPortCount": 8,
+      "netCount": 4,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -757,62 +749,50 @@
           "ports": [
             {
               "portId": "random-v20-c4-breakout-port-0",
-              "netId": "random-v20-c4-net-4",
-              "x": 36.6039,
+              "netId": "random-v20-c4-net-1",
+              "x": 34.5605,
               "y": 16.8942
             },
             {
               "portId": "random-v20-c4-breakout-port-1",
-              "netId": "random-v20-c4-net-1",
-              "x": 47.6728,
+              "netId": "random-v20-c4-net-3",
+              "x": 49.8296,
               "y": 16.8942
             },
             {
               "portId": "random-v20-c4-breakout-port-2",
-              "netId": "random-v20-c4-net-3",
-              "x": 61.9215,
+              "netId": "random-v20-c4-net-1",
+              "x": 60.8986,
               "y": 16.8942
             },
             {
               "portId": "random-v20-c4-breakout-port-3",
-              "netId": "random-v20-c4-net-0",
+              "netId": "random-v20-c4-net-2",
               "x": 75.9661,
-              "y": 21.6977
+              "y": 26.5243
             },
             {
               "portId": "random-v20-c4-breakout-port-4",
-              "netId": "random-v20-c4-net-1",
+              "netId": "random-v20-c4-net-2",
               "x": 75.9661,
-              "y": 28.3021
+              "y": 35.1658
             },
             {
               "portId": "random-v20-c4-breakout-port-5",
-              "netId": "random-v20-c4-net-2",
-              "x": 75.9661,
-              "y": 36.0161
+              "netId": "random-v20-c4-net-0",
+              "x": 64.6966,
+              "y": 47.6915
             },
             {
               "portId": "random-v20-c4-breakout-port-6",
               "netId": "random-v20-c4-net-3",
-              "x": 75.9661,
-              "y": 40.6833
+              "x": 48.1328,
+              "y": 47.6915
             },
             {
               "portId": "random-v20-c4-breakout-port-7",
-              "netId": "random-v20-c4-net-4",
-              "x": 61.0173,
-              "y": 47.6915
-            },
-            {
-              "portId": "random-v20-c4-breakout-port-8",
-              "netId": "random-v20-c4-net-2",
-              "x": 51.207,
-              "y": 47.6915
-            },
-            {
-              "portId": "random-v20-c4-breakout-port-9",
               "netId": "random-v20-c4-net-0",
-              "x": 34.7441,
+              "x": 38.1113,
               "y": 47.6915
             }
           ]
@@ -820,8 +800,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -831,7 +811,8 @@
       "caseId": "random-v40-c1",
       "seed": 193924313,
       "viaCount": 40,
-      "netCount": 4,
+      "breakoutPortCount": 16,
+      "netCount": 8,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -1089,50 +1070,98 @@
           "ports": [
             {
               "portId": "random-v40-c1-breakout-port-0",
-              "netId": "random-v40-c1-net-1",
-              "x": 47.926,
+              "netId": "random-v40-c1-net-4",
+              "x": 37.4557,
               "y": 17.1071
             },
             {
               "portId": "random-v40-c1-breakout-port-1",
-              "netId": "random-v40-c1-net-3",
-              "x": 63.1846,
+              "netId": "random-v40-c1-net-7",
+              "x": 46.0631,
               "y": 17.1071
             },
             {
               "portId": "random-v40-c1-breakout-port-2",
               "netId": "random-v40-c1-net-0",
-              "x": 77.4939,
-              "y": 23.9865
+              "x": 53.6923,
+              "y": 17.1071
             },
             {
               "portId": "random-v40-c1-breakout-port-3",
               "netId": "random-v40-c1-net-0",
-              "x": 77.4939,
-              "y": 31.3347
+              "x": 61.2396,
+              "y": 17.1071
             },
             {
               "portId": "random-v40-c1-breakout-port-4",
               "netId": "random-v40-c1-net-1",
-              "x": 77.4939,
-              "y": 37.7851
+              "x": 70.5496,
+              "y": 17.1071
             },
             {
               "portId": "random-v40-c1-breakout-port-5",
               "netId": "random-v40-c1-net-2",
-              "x": 62.0066,
-              "y": 43.3852
+              "x": 77.4939,
+              "y": 21.415
             },
             {
               "portId": "random-v40-c1-breakout-port-6",
-              "netId": "random-v40-c1-net-3",
-              "x": 52.1399,
-              "y": 43.3852
+              "netId": "random-v40-c1-net-6",
+              "x": 77.4939,
+              "y": 25.5178
             },
             {
               "portId": "random-v40-c1-breakout-port-7",
+              "netId": "random-v40-c1-net-6",
+              "x": 77.4939,
+              "y": 28.4845
+            },
+            {
+              "portId": "random-v40-c1-breakout-port-8",
+              "netId": "random-v40-c1-net-7",
+              "x": 77.4939,
+              "y": 31.5353
+            },
+            {
+              "portId": "random-v40-c1-breakout-port-9",
+              "netId": "random-v40-c1-net-5",
+              "x": 77.4939,
+              "y": 36.3469
+            },
+            {
+              "portId": "random-v40-c1-breakout-port-10",
+              "netId": "random-v40-c1-net-3",
+              "x": 77.4939,
+              "y": 39.2267
+            },
+            {
+              "portId": "random-v40-c1-breakout-port-11",
+              "netId": "random-v40-c1-net-4",
+              "x": 67.5185,
+              "y": 43.3852
+            },
+            {
+              "portId": "random-v40-c1-breakout-port-12",
               "netId": "random-v40-c1-net-2",
-              "x": 41.9935,
+              "x": 61.6597,
+              "y": 43.3852
+            },
+            {
+              "portId": "random-v40-c1-breakout-port-13",
+              "netId": "random-v40-c1-net-5",
+              "x": 52.5997,
+              "y": 43.3852
+            },
+            {
+              "portId": "random-v40-c1-breakout-port-14",
+              "netId": "random-v40-c1-net-3",
+              "x": 45.5025,
+              "y": 43.3852
+            },
+            {
+              "portId": "random-v40-c1-breakout-port-15",
+              "netId": "random-v40-c1-net-1",
+              "x": 37.0652,
               "y": 43.3852
             }
           ]
@@ -1140,8 +1169,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -1151,7 +1180,8 @@
       "caseId": "random-v40-c2",
       "seed": 2023813466,
       "viaCount": 40,
-      "netCount": 4,
+      "breakoutPortCount": 16,
+      "netCount": 8,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -1409,50 +1439,98 @@
           "ports": [
             {
               "portId": "random-v40-c2-breakout-port-0",
-              "netId": "random-v40-c2-net-2",
-              "x": 41.2965,
+              "netId": "random-v40-c2-net-4",
+              "x": 36.1349,
               "y": 21.0431
             },
             {
               "portId": "random-v40-c2-breakout-port-1",
-              "netId": "random-v40-c2-net-0",
-              "x": 57.1447,
+              "netId": "random-v40-c2-net-4",
+              "x": 42.1993,
               "y": 21.0431
             },
             {
               "portId": "random-v40-c2-breakout-port-2",
-              "netId": "random-v40-c2-net-3",
-              "x": 76.4406,
-              "y": 31.2842
+              "netId": "random-v40-c2-net-5",
+              "x": 50.1235,
+              "y": 21.0431
             },
             {
               "portId": "random-v40-c2-breakout-port-3",
-              "netId": "random-v40-c2-net-0",
-              "x": 76.4406,
-              "y": 37.7804
+              "netId": "random-v40-c2-net-3",
+              "x": 61.556,
+              "y": 21.0431
             },
             {
               "portId": "random-v40-c2-breakout-port-4",
-              "netId": "random-v40-c2-net-1",
-              "x": 76.4406,
-              "y": 44.2746
+              "netId": "random-v40-c2-net-0",
+              "x": 67.9749,
+              "y": 21.0431
             },
             {
               "portId": "random-v40-c2-breakout-port-5",
-              "netId": "random-v40-c2-net-3",
-              "x": 63.4853,
-              "y": 54.7831
+              "netId": "random-v40-c2-net-7",
+              "x": 76.4406,
+              "y": 24.6782
             },
             {
               "portId": "random-v40-c2-breakout-port-6",
-              "netId": "random-v40-c2-net-1",
-              "x": 49.0603,
-              "y": 54.7831
+              "netId": "random-v40-c2-net-2",
+              "x": 76.4406,
+              "y": 30.8579
             },
             {
               "portId": "random-v40-c2-breakout-port-7",
+              "netId": "random-v40-c2-net-1",
+              "x": 76.4406,
+              "y": 36.4193
+            },
+            {
+              "portId": "random-v40-c2-breakout-port-8",
+              "netId": "random-v40-c2-net-0",
+              "x": 76.4406,
+              "y": 39.5802
+            },
+            {
+              "portId": "random-v40-c2-breakout-port-9",
+              "netId": "random-v40-c2-net-6",
+              "x": 76.4406,
+              "y": 45.4522
+            },
+            {
+              "portId": "random-v40-c2-breakout-port-10",
+              "netId": "random-v40-c2-net-5",
+              "x": 76.4406,
+              "y": 49.6225
+            },
+            {
+              "portId": "random-v40-c2-breakout-port-11",
               "netId": "random-v40-c2-net-2",
-              "x": 40.8618,
+              "x": 69.9608,
+              "y": 54.7831
+            },
+            {
+              "portId": "random-v40-c2-breakout-port-12",
+              "netId": "random-v40-c2-net-6",
+              "x": 61.8292,
+              "y": 54.7831
+            },
+            {
+              "portId": "random-v40-c2-breakout-port-13",
+              "netId": "random-v40-c2-net-7",
+              "x": 52.5491,
+              "y": 54.7831
+            },
+            {
+              "portId": "random-v40-c2-breakout-port-14",
+              "netId": "random-v40-c2-net-1",
+              "x": 41.2731,
+              "y": 54.7831
+            },
+            {
+              "portId": "random-v40-c2-breakout-port-15",
+              "netId": "random-v40-c2-net-3",
+              "x": 36.4008,
               "y": 54.7831
             }
           ]
@@ -1460,8 +1538,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -1471,7 +1549,8 @@
       "caseId": "random-v40-c3",
       "seed": 1306689776,
       "viaCount": 40,
-      "netCount": 6,
+      "breakoutPortCount": 16,
+      "netCount": 8,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -1729,74 +1808,98 @@
           "ports": [
             {
               "portId": "random-v40-c3-breakout-port-0",
-              "netId": "random-v40-c3-net-4",
-              "x": 35.7446,
+              "netId": "random-v40-c3-net-7",
+              "x": 30.4408,
               "y": 18.6374
             },
             {
               "portId": "random-v40-c3-breakout-port-1",
-              "netId": "random-v40-c3-net-1",
-              "x": 44.788,
+              "netId": "random-v40-c3-net-0",
+              "x": 39.9395,
               "y": 18.6374
             },
             {
               "portId": "random-v40-c3-breakout-port-2",
               "netId": "random-v40-c3-net-0",
-              "x": 53.3583,
+              "x": 46.3991,
               "y": 18.6374
             },
             {
               "portId": "random-v40-c3-breakout-port-3",
-              "netId": "random-v40-c3-net-3",
-              "x": 64.6545,
+              "netId": "random-v40-c3-net-4",
+              "x": 52.5207,
               "y": 18.6374
             },
             {
               "portId": "random-v40-c3-breakout-port-4",
-              "netId": "random-v40-c3-net-2",
-              "x": 78.2181,
-              "y": 25.1215
+              "netId": "random-v40-c3-net-5",
+              "x": 60.5894,
+              "y": 18.6374
             },
             {
               "portId": "random-v40-c3-breakout-port-5",
-              "netId": "random-v40-c3-net-3",
-              "x": 78.2181,
-              "y": 30.6163
+              "netId": "random-v40-c3-net-1",
+              "x": 70.1296,
+              "y": 18.6374
             },
             {
               "portId": "random-v40-c3-breakout-port-6",
-              "netId": "random-v40-c3-net-5",
+              "netId": "random-v40-c3-net-6",
               "x": 78.2181,
-              "y": 37.7277
+              "y": 23.1136
             },
             {
               "portId": "random-v40-c3-breakout-port-7",
-              "netId": "random-v40-c3-net-5",
+              "netId": "random-v40-c3-net-3",
               "x": 78.2181,
-              "y": 46.5468
+              "y": 29.0398
             },
             {
               "portId": "random-v40-c3-breakout-port-8",
-              "netId": "random-v40-c3-net-1",
-              "x": 64.9573,
-              "y": 51.6744
+              "netId": "random-v40-c3-net-4",
+              "x": 78.2181,
+              "y": 36.3891
             },
             {
               "portId": "random-v40-c3-breakout-port-9",
-              "netId": "random-v40-c3-net-4",
-              "x": 53.9001,
-              "y": 51.6744
+              "netId": "random-v40-c3-net-6",
+              "x": 78.2181,
+              "y": 41.7241
             },
             {
               "portId": "random-v40-c3-breakout-port-10",
-              "netId": "random-v40-c3-net-2",
-              "x": 43.979,
-              "y": 51.6744
+              "netId": "random-v40-c3-net-7",
+              "x": 78.2181,
+              "y": 47.2009
             },
             {
               "portId": "random-v40-c3-breakout-port-11",
-              "netId": "random-v40-c3-net-0",
-              "x": 31.2349,
+              "netId": "random-v40-c3-net-2",
+              "x": 68.213,
+              "y": 51.6744
+            },
+            {
+              "portId": "random-v40-c3-breakout-port-12",
+              "netId": "random-v40-c3-net-5",
+              "x": 57.593,
+              "y": 51.6744
+            },
+            {
+              "portId": "random-v40-c3-breakout-port-13",
+              "netId": "random-v40-c3-net-2",
+              "x": 49.8991,
+              "y": 51.6744
+            },
+            {
+              "portId": "random-v40-c3-breakout-port-14",
+              "netId": "random-v40-c3-net-3",
+              "x": 40.7731,
+              "y": 51.6744
+            },
+            {
+              "portId": "random-v40-c3-breakout-port-15",
+              "netId": "random-v40-c3-net-1",
+              "x": 34.1406,
               "y": 51.6744
             }
           ]
@@ -1804,8 +1907,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -1815,7 +1918,8 @@
       "caseId": "random-v40-c4",
       "seed": 828466178,
       "viaCount": 40,
-      "netCount": 5,
+      "breakoutPortCount": 16,
+      "netCount": 8,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -2073,62 +2177,98 @@
           "ports": [
             {
               "portId": "random-v40-c4-breakout-port-0",
-              "netId": "random-v40-c4-net-1",
-              "x": 34.9777,
+              "netId": "random-v40-c4-net-5",
+              "x": 32.9627,
               "y": 18.2903
             },
             {
               "portId": "random-v40-c4-breakout-port-1",
               "netId": "random-v40-c4-net-2",
-              "x": 48.5995,
+              "x": 39.6696,
               "y": 18.2903
             },
             {
               "portId": "random-v40-c4-breakout-port-2",
-              "netId": "random-v40-c4-net-3",
-              "x": 56.3019,
+              "netId": "random-v40-c4-net-6",
+              "x": 49.3995,
               "y": 18.2903
             },
             {
               "portId": "random-v40-c4-breakout-port-3",
-              "netId": "random-v40-c4-net-3",
-              "x": 69.2953,
+              "netId": "random-v40-c4-net-0",
+              "x": 54.9012,
               "y": 18.2903
             },
             {
               "portId": "random-v40-c4-breakout-port-4",
-              "netId": "random-v40-c4-net-0",
-              "x": 78.6026,
-              "y": 26.0536
+              "netId": "random-v40-c4-net-4",
+              "x": 64.1822,
+              "y": 18.2903
             },
             {
               "portId": "random-v40-c4-breakout-port-5",
-              "netId": "random-v40-c4-net-1",
-              "x": 78.6026,
-              "y": 32.7015
+              "netId": "random-v40-c4-net-7",
+              "x": 71.9068,
+              "y": 18.2903
             },
             {
               "portId": "random-v40-c4-breakout-port-6",
-              "netId": "random-v40-c4-net-0",
+              "netId": "random-v40-c4-net-7",
               "x": 78.6026,
-              "y": 38.8147
+              "y": 23.3519
             },
             {
               "portId": "random-v40-c4-breakout-port-7",
-              "netId": "random-v40-c4-net-4",
-              "x": 61.9297,
-              "y": 45.5657
+              "netId": "random-v40-c4-net-5",
+              "x": 78.6026,
+              "y": 27.4273
             },
             {
               "portId": "random-v40-c4-breakout-port-8",
-              "netId": "random-v40-c4-net-4",
-              "x": 52.0076,
-              "y": 45.5657
+              "netId": "random-v40-c4-net-3",
+              "x": 78.6026,
+              "y": 32.9545
             },
             {
               "portId": "random-v40-c4-breakout-port-9",
               "netId": "random-v40-c4-net-2",
-              "x": 40.1945,
+              "x": 78.6026,
+              "y": 36.2707
+            },
+            {
+              "portId": "random-v40-c4-breakout-port-10",
+              "netId": "random-v40-c4-net-1",
+              "x": 78.6026,
+              "y": 40.2188
+            },
+            {
+              "portId": "random-v40-c4-breakout-port-11",
+              "netId": "random-v40-c4-net-6",
+              "x": 68.3965,
+              "y": 45.5657
+            },
+            {
+              "portId": "random-v40-c4-breakout-port-12",
+              "netId": "random-v40-c4-net-0",
+              "x": 58.2494,
+              "y": 45.5657
+            },
+            {
+              "portId": "random-v40-c4-breakout-port-13",
+              "netId": "random-v40-c4-net-1",
+              "x": 52.5226,
+              "y": 45.5657
+            },
+            {
+              "portId": "random-v40-c4-breakout-port-14",
+              "netId": "random-v40-c4-net-3",
+              "x": 42.0786,
+              "y": 45.5657
+            },
+            {
+              "portId": "random-v40-c4-breakout-port-15",
+              "netId": "random-v40-c4-net-4",
+              "x": 34.5067,
               "y": 45.5657
             }
           ]
@@ -2136,8 +2276,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -2147,7 +2287,8 @@
       "caseId": "random-v60-c1",
       "seed": 935809769,
       "viaCount": 60,
-      "netCount": 5,
+      "breakoutPortCount": 24,
+      "netCount": 12,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -2525,62 +2666,146 @@
           "ports": [
             {
               "portId": "random-v60-c1-breakout-port-0",
-              "netId": "random-v60-c1-net-4",
-              "x": 31.7065,
+              "netId": "random-v60-c1-net-1",
+              "x": 26.4136,
               "y": 21.1089
             },
             {
               "portId": "random-v60-c1-breakout-port-1",
-              "netId": "random-v60-c1-net-4",
-              "x": 45.6604,
+              "netId": "random-v60-c1-net-10",
+              "x": 32.0489,
               "y": 21.1089
             },
             {
               "portId": "random-v60-c1-breakout-port-2",
-              "netId": "random-v60-c1-net-1",
-              "x": 59.9348,
+              "netId": "random-v60-c1-net-4",
+              "x": 38.2506,
               "y": 21.1089
             },
             {
               "portId": "random-v60-c1-breakout-port-3",
-              "netId": "random-v60-c1-net-3",
-              "x": 73.0827,
-              "y": 29.6592
+              "netId": "random-v60-c1-net-0",
+              "x": 44.5948,
+              "y": 21.1089
             },
             {
               "portId": "random-v60-c1-breakout-port-4",
-              "netId": "random-v60-c1-net-1",
-              "x": 73.0827,
-              "y": 37.4525
+              "netId": "random-v60-c1-net-10",
+              "x": 51.2285,
+              "y": 21.1089
             },
             {
               "portId": "random-v60-c1-breakout-port-5",
-              "netId": "random-v60-c1-net-3",
-              "x": 73.0827,
-              "y": 42.6902
+              "netId": "random-v60-c1-net-9",
+              "x": 57.1086,
+              "y": 21.1089
             },
             {
               "portId": "random-v60-c1-breakout-port-6",
-              "netId": "random-v60-c1-net-2",
-              "x": 73.0827,
-              "y": 49.9567
+              "netId": "random-v60-c1-net-1",
+              "x": 61.0605,
+              "y": 21.1089
             },
             {
               "portId": "random-v60-c1-breakout-port-7",
-              "netId": "random-v60-c1-net-0",
-              "x": 57.7872,
-              "y": 58.624
+              "netId": "random-v60-c1-net-5",
+              "x": 66.5431,
+              "y": 21.1089
             },
             {
               "portId": "random-v60-c1-breakout-port-8",
-              "netId": "random-v60-c1-net-0",
-              "x": 47.0103,
-              "y": 58.624
+              "netId": "random-v60-c1-net-3",
+              "x": 73.0827,
+              "y": 26.1144
             },
             {
               "portId": "random-v60-c1-breakout-port-9",
+              "netId": "random-v60-c1-net-7",
+              "x": 73.0827,
+              "y": 29.6411
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-10",
+              "netId": "random-v60-c1-net-3",
+              "x": 73.0827,
+              "y": 32.9688
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-11",
+              "netId": "random-v60-c1-net-11",
+              "x": 73.0827,
+              "y": 36.8687
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-12",
               "netId": "random-v60-c1-net-2",
-              "x": 36.8416,
+              "x": 73.0827,
+              "y": 41.1599
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-13",
+              "netId": "random-v60-c1-net-6",
+              "x": 73.0827,
+              "y": 46.1018
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-14",
+              "netId": "random-v60-c1-net-7",
+              "x": 73.0827,
+              "y": 50.9427
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-15",
+              "netId": "random-v60-c1-net-6",
+              "x": 73.0827,
+              "y": 53.7073
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-16",
+              "netId": "random-v60-c1-net-8",
+              "x": 68.2733,
+              "y": 58.624
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-17",
+              "netId": "random-v60-c1-net-9",
+              "x": 63.1131,
+              "y": 58.624
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-18",
+              "netId": "random-v60-c1-net-4",
+              "x": 55.2233,
+              "y": 58.624
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-19",
+              "netId": "random-v60-c1-net-8",
+              "x": 51.4268,
+              "y": 58.624
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-20",
+              "netId": "random-v60-c1-net-0",
+              "x": 45.3225,
+              "y": 58.624
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-21",
+              "netId": "random-v60-c1-net-2",
+              "x": 40.3812,
+              "y": 58.624
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-22",
+              "netId": "random-v60-c1-net-5",
+              "x": 33.6003,
+              "y": 58.624
+            },
+            {
+              "portId": "random-v60-c1-breakout-port-23",
+              "netId": "random-v60-c1-net-11",
+              "x": 27.3121,
               "y": 58.624
             }
           ]
@@ -2588,8 +2813,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -2599,7 +2824,8 @@
       "caseId": "random-v60-c2",
       "seed": 30134618,
       "viaCount": 60,
-      "netCount": 6,
+      "breakoutPortCount": 24,
+      "netCount": 12,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -2977,74 +3203,146 @@
           "ports": [
             {
               "portId": "random-v60-c2-breakout-port-0",
-              "netId": "random-v60-c2-net-0",
-              "x": 36.5858,
+              "netId": "random-v60-c2-net-8",
+              "x": 33.3091,
               "y": 19.8032
             },
             {
               "portId": "random-v60-c2-breakout-port-1",
-              "netId": "random-v60-c2-net-1",
-              "x": 47.034,
+              "netId": "random-v60-c2-net-9",
+              "x": 38.4388,
               "y": 19.8032
             },
             {
               "portId": "random-v60-c2-breakout-port-2",
-              "netId": "random-v60-c2-net-5",
-              "x": 59.8549,
+              "netId": "random-v60-c2-net-7",
+              "x": 44.2433,
               "y": 19.8032
             },
             {
               "portId": "random-v60-c2-breakout-port-3",
-              "netId": "random-v60-c2-net-2",
-              "x": 71.1135,
+              "netId": "random-v60-c2-net-1",
+              "x": 51.3661,
               "y": 19.8032
             },
             {
               "portId": "random-v60-c2-breakout-port-4",
-              "netId": "random-v60-c2-net-3",
-              "x": 81.3896,
-              "y": 27.3208
+              "netId": "random-v60-c2-net-0",
+              "x": 57.6208,
+              "y": 19.8032
             },
             {
               "portId": "random-v60-c2-breakout-port-5",
-              "netId": "random-v60-c2-net-1",
-              "x": 81.3896,
-              "y": 34.6628
+              "netId": "random-v60-c2-net-11",
+              "x": 63.6564,
+              "y": 19.8032
             },
             {
               "portId": "random-v60-c2-breakout-port-6",
-              "netId": "random-v60-c2-net-4",
-              "x": 81.3896,
-              "y": 42.3104
+              "netId": "random-v60-c2-net-0",
+              "x": 69.8548,
+              "y": 19.8032
             },
             {
               "portId": "random-v60-c2-breakout-port-7",
-              "netId": "random-v60-c2-net-2",
-              "x": 81.3896,
-              "y": 48.215
+              "netId": "random-v60-c2-net-7",
+              "x": 76.3112,
+              "y": 19.8032
             },
             {
               "portId": "random-v60-c2-breakout-port-8",
-              "netId": "random-v60-c2-net-0",
-              "x": 70.5952,
-              "y": 55.4565
+              "netId": "random-v60-c2-net-4",
+              "x": 81.3896,
+              "y": 23.7031
             },
             {
               "portId": "random-v60-c2-breakout-port-9",
-              "netId": "random-v60-c2-net-5",
-              "x": 57.7006,
-              "y": 55.4565
+              "netId": "random-v60-c2-net-3",
+              "x": 81.3896,
+              "y": 27.711
             },
             {
               "portId": "random-v60-c2-breakout-port-10",
-              "netId": "random-v60-c2-net-4",
-              "x": 48.2604,
-              "y": 55.4565
+              "netId": "random-v60-c2-net-11",
+              "x": 81.3896,
+              "y": 32.4251
             },
             {
               "portId": "random-v60-c2-breakout-port-11",
+              "netId": "random-v60-c2-net-10",
+              "x": 81.3896,
+              "y": 35.8763
+            },
+            {
+              "portId": "random-v60-c2-breakout-port-12",
+              "netId": "random-v60-c2-net-8",
+              "x": 81.3896,
+              "y": 40.4339
+            },
+            {
+              "portId": "random-v60-c2-breakout-port-13",
               "netId": "random-v60-c2-net-3",
-              "x": 35.7939,
+              "x": 81.3896,
+              "y": 42.9202
+            },
+            {
+              "portId": "random-v60-c2-breakout-port-14",
+              "netId": "random-v60-c2-net-2",
+              "x": 81.3896,
+              "y": 48.2669
+            },
+            {
+              "portId": "random-v60-c2-breakout-port-15",
+              "netId": "random-v60-c2-net-5",
+              "x": 81.3896,
+              "y": 52.4505
+            },
+            {
+              "portId": "random-v60-c2-breakout-port-16",
+              "netId": "random-v60-c2-net-2",
+              "x": 74.6869,
+              "y": 55.4565
+            },
+            {
+              "portId": "random-v60-c2-breakout-port-17",
+              "netId": "random-v60-c2-net-5",
+              "x": 68.9766,
+              "y": 55.4565
+            },
+            {
+              "portId": "random-v60-c2-breakout-port-18",
+              "netId": "random-v60-c2-net-4",
+              "x": 63.6818,
+              "y": 55.4565
+            },
+            {
+              "portId": "random-v60-c2-breakout-port-19",
+              "netId": "random-v60-c2-net-6",
+              "x": 57.0414,
+              "y": 55.4565
+            },
+            {
+              "portId": "random-v60-c2-breakout-port-20",
+              "netId": "random-v60-c2-net-10",
+              "x": 50.2585,
+              "y": 55.4565
+            },
+            {
+              "portId": "random-v60-c2-breakout-port-21",
+              "netId": "random-v60-c2-net-9",
+              "x": 44.0626,
+              "y": 55.4565
+            },
+            {
+              "portId": "random-v60-c2-breakout-port-22",
+              "netId": "random-v60-c2-net-1",
+              "x": 38.9169,
+              "y": 55.4565
+            },
+            {
+              "portId": "random-v60-c2-breakout-port-23",
+              "netId": "random-v60-c2-net-6",
+              "x": 31.9968,
               "y": 55.4565
             }
           ]
@@ -3052,8 +3350,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -3063,7 +3361,8 @@
       "caseId": "random-v60-c3",
       "seed": 401195730,
       "viaCount": 60,
-      "netCount": 6,
+      "breakoutPortCount": 24,
+      "netCount": 12,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -3441,74 +3740,146 @@
           "ports": [
             {
               "portId": "random-v60-c3-breakout-port-0",
-              "netId": "random-v60-c3-net-5",
-              "x": 32.1614,
+              "netId": "random-v60-c3-net-2",
+              "x": 27.4086,
               "y": 14.7377
             },
             {
               "portId": "random-v60-c3-breakout-port-1",
-              "netId": "random-v60-c3-net-1",
-              "x": 43.9287,
+              "netId": "random-v60-c3-net-7",
+              "x": 33.1646,
               "y": 14.7377
             },
             {
               "portId": "random-v60-c3-breakout-port-2",
-              "netId": "random-v60-c3-net-0",
-              "x": 49.9005,
+              "netId": "random-v60-c3-net-8",
+              "x": 39.7019,
               "y": 14.7377
             },
             {
               "portId": "random-v60-c3-breakout-port-3",
-              "netId": "random-v60-c3-net-4",
-              "x": 59.9628,
+              "netId": "random-v60-c3-net-3",
+              "x": 43.0196,
               "y": 14.7377
             },
             {
               "portId": "random-v60-c3-breakout-port-4",
-              "netId": "random-v60-c3-net-0",
-              "x": 71.6515,
-              "y": 21.1703
+              "netId": "random-v60-c3-net-7",
+              "x": 48.6098,
+              "y": 14.7377
             },
             {
               "portId": "random-v60-c3-breakout-port-5",
-              "netId": "random-v60-c3-net-4",
-              "x": 71.6515,
-              "y": 28.324
+              "netId": "random-v60-c3-net-2",
+              "x": 55.1716,
+              "y": 14.7377
             },
             {
               "portId": "random-v60-c3-breakout-port-6",
-              "netId": "random-v60-c3-net-3",
-              "x": 71.6515,
-              "y": 34.3654
+              "netId": "random-v60-c3-net-6",
+              "x": 61.3816,
+              "y": 14.7377
             },
             {
               "portId": "random-v60-c3-breakout-port-7",
-              "netId": "random-v60-c3-net-5",
-              "x": 71.6515,
-              "y": 40.9062
+              "netId": "random-v60-c3-net-1",
+              "x": 66.6261,
+              "y": 14.7377
             },
             {
               "portId": "random-v60-c3-breakout-port-8",
-              "netId": "random-v60-c3-net-2",
-              "x": 60.6733,
-              "y": 46.5086
+              "netId": "random-v60-c3-net-1",
+              "x": 71.6515,
+              "y": 18.6855
             },
             {
               "portId": "random-v60-c3-breakout-port-9",
-              "netId": "random-v60-c3-net-2",
-              "x": 53.5768,
-              "y": 46.5086
+              "netId": "random-v60-c3-net-9",
+              "x": 71.6515,
+              "y": 22.171
             },
             {
               "portId": "random-v60-c3-breakout-port-10",
-              "netId": "random-v60-c3-net-3",
-              "x": 41.5129,
-              "y": 46.5086
+              "netId": "random-v60-c3-net-8",
+              "x": 71.6515,
+              "y": 24.6941
             },
             {
               "portId": "random-v60-c3-breakout-port-11",
-              "netId": "random-v60-c3-net-1",
-              "x": 34.3635,
+              "netId": "random-v60-c3-net-6",
+              "x": 71.6515,
+              "y": 28.9833
+            },
+            {
+              "portId": "random-v60-c3-breakout-port-12",
+              "netId": "random-v60-c3-net-11",
+              "x": 71.6515,
+              "y": 31.5252
+            },
+            {
+              "portId": "random-v60-c3-breakout-port-13",
+              "netId": "random-v60-c3-net-4",
+              "x": 71.6515,
+              "y": 36.1392
+            },
+            {
+              "portId": "random-v60-c3-breakout-port-14",
+              "netId": "random-v60-c3-net-5",
+              "x": 71.6515,
+              "y": 38.6
+            },
+            {
+              "portId": "random-v60-c3-breakout-port-15",
+              "netId": "random-v60-c3-net-9",
+              "x": 71.6515,
+              "y": 42.9936
+            },
+            {
+              "portId": "random-v60-c3-breakout-port-16",
+              "netId": "random-v60-c3-net-10",
+              "x": 66.3096,
+              "y": 46.5086
+            },
+            {
+              "portId": "random-v60-c3-breakout-port-17",
+              "netId": "random-v60-c3-net-5",
+              "x": 61.9452,
+              "y": 46.5086
+            },
+            {
+              "portId": "random-v60-c3-breakout-port-18",
+              "netId": "random-v60-c3-net-0",
+              "x": 53.7621,
+              "y": 46.5086
+            },
+            {
+              "portId": "random-v60-c3-breakout-port-19",
+              "netId": "random-v60-c3-net-10",
+              "x": 48.5266,
+              "y": 46.5086
+            },
+            {
+              "portId": "random-v60-c3-breakout-port-20",
+              "netId": "random-v60-c3-net-11",
+              "x": 43.7621,
+              "y": 46.5086
+            },
+            {
+              "portId": "random-v60-c3-breakout-port-21",
+              "netId": "random-v60-c3-net-0",
+              "x": 38.7985,
+              "y": 46.5086
+            },
+            {
+              "portId": "random-v60-c3-breakout-port-22",
+              "netId": "random-v60-c3-net-3",
+              "x": 33.926,
+              "y": 46.5086
+            },
+            {
+              "portId": "random-v60-c3-breakout-port-23",
+              "netId": "random-v60-c3-net-4",
+              "x": 28.3509,
               "y": 46.5086
             }
           ]
@@ -3516,8 +3887,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -3527,7 +3898,8 @@
       "caseId": "random-v60-c4",
       "seed": 79953841,
       "viaCount": 60,
-      "netCount": 6,
+      "breakoutPortCount": 24,
+      "netCount": 12,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -3905,74 +4277,146 @@
           "ports": [
             {
               "portId": "random-v60-c4-breakout-port-0",
-              "netId": "random-v60-c4-net-0",
-              "x": 34.1968,
+              "netId": "random-v60-c4-net-5",
+              "x": 27.6701,
               "y": 17.4279
             },
             {
               "portId": "random-v60-c4-breakout-port-1",
-              "netId": "random-v60-c4-net-5",
-              "x": 41.5142,
+              "netId": "random-v60-c4-net-7",
+              "x": 34.4692,
               "y": 17.4279
             },
             {
               "portId": "random-v60-c4-breakout-port-2",
-              "netId": "random-v60-c4-net-3",
-              "x": 53.2149,
+              "netId": "random-v60-c4-net-5",
+              "x": 38.5344,
               "y": 17.4279
             },
             {
               "portId": "random-v60-c4-breakout-port-3",
-              "netId": "random-v60-c4-net-0",
-              "x": 59.8484,
+              "netId": "random-v60-c4-net-2",
+              "x": 45.0348,
               "y": 17.4279
             },
             {
               "portId": "random-v60-c4-breakout-port-4",
-              "netId": "random-v60-c4-net-4",
-              "x": 71.3038,
-              "y": 22.9727
+              "netId": "random-v60-c4-net-6",
+              "x": 48.72,
+              "y": 17.4279
             },
             {
               "portId": "random-v60-c4-breakout-port-5",
-              "netId": "random-v60-c4-net-5",
-              "x": 71.3038,
-              "y": 27.7858
+              "netId": "random-v60-c4-net-2",
+              "x": 55.2233,
+              "y": 17.4279
             },
             {
               "portId": "random-v60-c4-breakout-port-6",
-              "netId": "random-v60-c4-net-1",
-              "x": 71.3038,
-              "y": 32.7475
+              "netId": "random-v60-c4-net-0",
+              "x": 60.0372,
+              "y": 17.4279
             },
             {
               "portId": "random-v60-c4-breakout-port-7",
-              "netId": "random-v60-c4-net-2",
-              "x": 71.3038,
-              "y": 38.0703
+              "netId": "random-v60-c4-net-7",
+              "x": 64.9997,
+              "y": 17.4279
             },
             {
               "portId": "random-v60-c4-breakout-port-8",
-              "netId": "random-v60-c4-net-2",
-              "x": 61.9571,
-              "y": 44.4562
+              "netId": "random-v60-c4-net-10",
+              "x": 71.3038,
+              "y": 19.8865
             },
             {
               "portId": "random-v60-c4-breakout-port-9",
-              "netId": "random-v60-c4-net-3",
-              "x": 53.0589,
-              "y": 44.4562
+              "netId": "random-v60-c4-net-8",
+              "x": 71.3038,
+              "y": 23.3154
             },
             {
               "portId": "random-v60-c4-breakout-port-10",
-              "netId": "random-v60-c4-net-1",
-              "x": 42.9333,
-              "y": 44.4562
+              "netId": "random-v60-c4-net-3",
+              "x": 71.3038,
+              "y": 26.0613
             },
             {
               "portId": "random-v60-c4-breakout-port-11",
+              "netId": "random-v60-c4-net-10",
+              "x": 71.3038,
+              "y": 29.1859
+            },
+            {
+              "portId": "random-v60-c4-breakout-port-12",
+              "netId": "random-v60-c4-net-1",
+              "x": 71.3038,
+              "y": 32.6885
+            },
+            {
+              "portId": "random-v60-c4-breakout-port-13",
               "netId": "random-v60-c4-net-4",
-              "x": 31.5833,
+              "x": 71.3038,
+              "y": 35.3403
+            },
+            {
+              "portId": "random-v60-c4-breakout-port-14",
+              "netId": "random-v60-c4-net-8",
+              "x": 71.3038,
+              "y": 37.8615
+            },
+            {
+              "portId": "random-v60-c4-breakout-port-15",
+              "netId": "random-v60-c4-net-11",
+              "x": 71.3038,
+              "y": 41.4628
+            },
+            {
+              "portId": "random-v60-c4-breakout-port-16",
+              "netId": "random-v60-c4-net-9",
+              "x": 65.9201,
+              "y": 44.4562
+            },
+            {
+              "portId": "random-v60-c4-breakout-port-17",
+              "netId": "random-v60-c4-net-1",
+              "x": 61.1205,
+              "y": 44.4562
+            },
+            {
+              "portId": "random-v60-c4-breakout-port-18",
+              "netId": "random-v60-c4-net-6",
+              "x": 54.208,
+              "y": 44.4562
+            },
+            {
+              "portId": "random-v60-c4-breakout-port-19",
+              "netId": "random-v60-c4-net-4",
+              "x": 49.1005,
+              "y": 44.4562
+            },
+            {
+              "portId": "random-v60-c4-breakout-port-20",
+              "netId": "random-v60-c4-net-11",
+              "x": 44.2379,
+              "y": 44.4562
+            },
+            {
+              "portId": "random-v60-c4-breakout-port-21",
+              "netId": "random-v60-c4-net-9",
+              "x": 39.2339,
+              "y": 44.4562
+            },
+            {
+              "portId": "random-v60-c4-breakout-port-22",
+              "netId": "random-v60-c4-net-3",
+              "x": 32.6827,
+              "y": 44.4562
+            },
+            {
+              "portId": "random-v60-c4-breakout-port-23",
+              "netId": "random-v60-c4-net-0",
+              "x": 27.2654,
               "y": 44.4562
             }
           ]
@@ -3980,8 +4424,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -3991,7 +4435,8 @@
       "caseId": "random-v80-c1",
       "seed": 767701427,
       "viaCount": 80,
-      "netCount": 6,
+      "breakoutPortCount": 32,
+      "netCount": 16,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -4489,74 +4934,194 @@
           "ports": [
             {
               "portId": "random-v80-c1-breakout-port-0",
-              "netId": "random-v80-c1-net-5",
-              "x": 36.8359,
+              "netId": "random-v80-c1-net-6",
+              "x": 31.3735,
               "y": 20.1485
             },
             {
               "portId": "random-v80-c1-breakout-port-1",
-              "netId": "random-v80-c1-net-0",
-              "x": 50.9071,
+              "netId": "random-v80-c1-net-7",
+              "x": 35.9327,
               "y": 20.1485
             },
             {
               "portId": "random-v80-c1-breakout-port-2",
-              "netId": "random-v80-c1-net-5",
-              "x": 58.952,
+              "netId": "random-v80-c1-net-9",
+              "x": 41.7957,
               "y": 20.1485
             },
             {
               "portId": "random-v80-c1-breakout-port-3",
-              "netId": "random-v80-c1-net-3",
-              "x": 70.2211,
+              "netId": "random-v80-c1-net-0",
+              "x": 45.1478,
               "y": 20.1485
             },
             {
               "portId": "random-v80-c1-breakout-port-4",
-              "netId": "random-v80-c1-net-1",
-              "x": 79.66,
-              "y": 26.9633
+              "netId": "random-v80-c1-net-3",
+              "x": 49.8432,
+              "y": 20.1485
             },
             {
               "portId": "random-v80-c1-breakout-port-5",
-              "netId": "random-v80-c1-net-4",
-              "x": 79.66,
-              "y": 32.5035
+              "netId": "random-v80-c1-net-15",
+              "x": 54.3069,
+              "y": 20.1485
             },
             {
               "portId": "random-v80-c1-breakout-port-6",
-              "netId": "random-v80-c1-net-2",
-              "x": 79.66,
-              "y": 37.3746
+              "netId": "random-v80-c1-net-13",
+              "x": 58.2455,
+              "y": 20.1485
             },
             {
               "portId": "random-v80-c1-breakout-port-7",
-              "netId": "random-v80-c1-net-1",
-              "x": 79.66,
-              "y": 45.534
+              "netId": "random-v80-c1-net-2",
+              "x": 61.7085,
+              "y": 20.1485
             },
             {
               "portId": "random-v80-c1-breakout-port-8",
-              "netId": "random-v80-c1-net-3",
-              "x": 69.7045,
-              "y": 50.4894
+              "netId": "random-v80-c1-net-6",
+              "x": 67.5091,
+              "y": 20.1485
             },
             {
               "portId": "random-v80-c1-breakout-port-9",
-              "netId": "random-v80-c1-net-0",
-              "x": 59.435,
-              "y": 50.4894
+              "netId": "random-v80-c1-net-9",
+              "x": 70.8662,
+              "y": 20.1485
             },
             {
               "portId": "random-v80-c1-breakout-port-10",
-              "netId": "random-v80-c1-net-4",
-              "x": 47.458,
-              "y": 50.4894
+              "netId": "random-v80-c1-net-8",
+              "x": 75.1451,
+              "y": 20.1485
             },
             {
               "portId": "random-v80-c1-breakout-port-11",
+              "netId": "random-v80-c1-net-4",
+              "x": 79.66,
+              "y": 23.2108
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-12",
+              "netId": "random-v80-c1-net-5",
+              "x": 79.66,
+              "y": 25.9108
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-13",
+              "netId": "random-v80-c1-net-5",
+              "x": 79.66,
+              "y": 27.7645
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-14",
+              "netId": "random-v80-c1-net-10",
+              "x": 79.66,
+              "y": 30.7829
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-15",
               "netId": "random-v80-c1-net-2",
-              "x": 37.323,
+              "x": 79.66,
+              "y": 33.6012
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-16",
+              "netId": "random-v80-c1-net-3",
+              "x": 79.66,
+              "y": 36.9134
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-17",
+              "netId": "random-v80-c1-net-12",
+              "x": 79.66,
+              "y": 39.4514
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-18",
+              "netId": "random-v80-c1-net-11",
+              "x": 79.66,
+              "y": 42.6355
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-19",
+              "netId": "random-v80-c1-net-14",
+              "x": 79.66,
+              "y": 44.3974
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-20",
+              "netId": "random-v80-c1-net-8",
+              "x": 79.66,
+              "y": 47.1213
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-21",
+              "netId": "random-v80-c1-net-12",
+              "x": 74.5633,
+              "y": 50.4894
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-22",
+              "netId": "random-v80-c1-net-7",
+              "x": 71.8314,
+              "y": 50.4894
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-23",
+              "netId": "random-v80-c1-net-15",
+              "x": 67.1604,
+              "y": 50.4894
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-24",
+              "netId": "random-v80-c1-net-11",
+              "x": 62.7516,
+              "y": 50.4894
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-25",
+              "netId": "random-v80-c1-net-10",
+              "x": 57.8128,
+              "y": 50.4894
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-26",
+              "netId": "random-v80-c1-net-1",
+              "x": 54.0461,
+              "y": 50.4894
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-27",
+              "netId": "random-v80-c1-net-4",
+              "x": 49.7859,
+              "y": 50.4894
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-28",
+              "netId": "random-v80-c1-net-1",
+              "x": 46.2141,
+              "y": 50.4894
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-29",
+              "netId": "random-v80-c1-net-13",
+              "x": 40.5484,
+              "y": 50.4894
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-30",
+              "netId": "random-v80-c1-net-0",
+              "x": 36.7868,
+              "y": 50.4894
+            },
+            {
+              "portId": "random-v80-c1-breakout-port-31",
+              "netId": "random-v80-c1-net-14",
+              "x": 31.4345,
               "y": 50.4894
             }
           ]
@@ -4564,8 +5129,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -4575,7 +5140,8 @@
       "caseId": "random-v80-c2",
       "seed": 1573215007,
       "viaCount": 80,
-      "netCount": 5,
+      "breakoutPortCount": 32,
+      "netCount": 16,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -5073,62 +5639,194 @@
           "ports": [
             {
               "portId": "random-v80-c2-breakout-port-0",
-              "netId": "random-v80-c2-net-3",
-              "x": 33.5081,
+              "netId": "random-v80-c2-net-7",
+              "x": 27.2627,
               "y": 18.8838
             },
             {
               "portId": "random-v80-c2-breakout-port-1",
-              "netId": "random-v80-c2-net-0",
-              "x": 45.7193,
+              "netId": "random-v80-c2-net-8",
+              "x": 30.8266,
               "y": 18.8838
             },
             {
               "portId": "random-v80-c2-breakout-port-2",
-              "netId": "random-v80-c2-net-1",
-              "x": 57.8964,
+              "netId": "random-v80-c2-net-9",
+              "x": 35.2671,
               "y": 18.8838
             },
             {
               "portId": "random-v80-c2-breakout-port-3",
-              "netId": "random-v80-c2-net-2",
-              "x": 67.324,
-              "y": 27.6028
+              "netId": "random-v80-c2-net-10",
+              "x": 39.6951,
+              "y": 18.8838
             },
             {
               "portId": "random-v80-c2-breakout-port-4",
-              "netId": "random-v80-c2-net-0",
-              "x": 67.324,
-              "y": 35.4543
+              "netId": "random-v80-c2-net-3",
+              "x": 43.6954,
+              "y": 18.8838
             },
             {
               "portId": "random-v80-c2-breakout-port-5",
               "netId": "random-v80-c2-net-3",
-              "x": 67.324,
-              "y": 43.1561
+              "x": 47.8426,
+              "y": 18.8838
             },
             {
               "portId": "random-v80-c2-breakout-port-6",
               "netId": "random-v80-c2-net-4",
-              "x": 59.7609,
-              "y": 49.4281
+              "x": 51.9107,
+              "y": 18.8838
             },
             {
               "portId": "random-v80-c2-breakout-port-7",
-              "netId": "random-v80-c2-net-4",
-              "x": 49.5814,
-              "y": 49.4281
+              "netId": "random-v80-c2-net-9",
+              "x": 54.628,
+              "y": 18.8838
             },
             {
               "portId": "random-v80-c2-breakout-port-8",
-              "netId": "random-v80-c2-net-1",
-              "x": 41.8129,
-              "y": 49.4281
+              "netId": "random-v80-c2-net-8",
+              "x": 59.255,
+              "y": 18.8838
             },
             {
               "portId": "random-v80-c2-breakout-port-9",
+              "netId": "random-v80-c2-net-4",
+              "x": 62.7862,
+              "y": 18.8838
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-10",
+              "netId": "random-v80-c2-net-0",
+              "x": 67.324,
+              "y": 21.3048
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-11",
+              "netId": "random-v80-c2-net-14",
+              "x": 67.324,
+              "y": 24.2586
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-12",
+              "netId": "random-v80-c2-net-12",
+              "x": 67.324,
+              "y": 26.8399
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-13",
+              "netId": "random-v80-c2-net-15",
+              "x": 67.324,
+              "y": 28.58
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-14",
               "netId": "random-v80-c2-net-2",
-              "x": 32.2632,
+              "x": 67.324,
+              "y": 32.0291
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-15",
+              "netId": "random-v80-c2-net-6",
+              "x": 67.324,
+              "y": 33.6333
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-16",
+              "netId": "random-v80-c2-net-1",
+              "x": 67.324,
+              "y": 36.831
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-17",
+              "netId": "random-v80-c2-net-0",
+              "x": 67.324,
+              "y": 38.6835
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-18",
+              "netId": "random-v80-c2-net-12",
+              "x": 67.324,
+              "y": 42.1042
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-19",
+              "netId": "random-v80-c2-net-11",
+              "x": 67.324,
+              "y": 44.2311
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-20",
+              "netId": "random-v80-c2-net-11",
+              "x": 67.324,
+              "y": 46.8016
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-21",
+              "netId": "random-v80-c2-net-14",
+              "x": 63.0038,
+              "y": 49.4281
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-22",
+              "netId": "random-v80-c2-net-2",
+              "x": 60.1211,
+              "y": 49.4281
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-23",
+              "netId": "random-v80-c2-net-5",
+              "x": 56.9877,
+              "y": 49.4281
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-24",
+              "netId": "random-v80-c2-net-7",
+              "x": 52.1544,
+              "y": 49.4281
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-25",
+              "netId": "random-v80-c2-net-13",
+              "x": 48.1119,
+              "y": 49.4281
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-26",
+              "netId": "random-v80-c2-net-6",
+              "x": 45.7478,
+              "y": 49.4281
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-27",
+              "netId": "random-v80-c2-net-15",
+              "x": 41.1205,
+              "y": 49.4281
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-28",
+              "netId": "random-v80-c2-net-5",
+              "x": 36.9681,
+              "y": 49.4281
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-29",
+              "netId": "random-v80-c2-net-13",
+              "x": 33.8287,
+              "y": 49.4281
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-30",
+              "netId": "random-v80-c2-net-1",
+              "x": 30.3539,
+              "y": 49.4281
+            },
+            {
+              "portId": "random-v80-c2-breakout-port-31",
+              "netId": "random-v80-c2-net-10",
+              "x": 26.2603,
               "y": 49.4281
             }
           ]
@@ -5136,8 +5834,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -5147,7 +5845,8 @@
       "caseId": "random-v80-c3",
       "seed": 2013241785,
       "viaCount": 80,
-      "netCount": 6,
+      "breakoutPortCount": 32,
+      "netCount": 16,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -5645,74 +6344,194 @@
           "ports": [
             {
               "portId": "random-v80-c3-breakout-port-0",
-              "netId": "random-v80-c3-net-5",
-              "x": 32.8675,
+              "netId": "random-v80-c3-net-14",
+              "x": 28.7993,
               "y": 21.5576
             },
             {
               "portId": "random-v80-c3-breakout-port-1",
-              "netId": "random-v80-c3-net-4",
-              "x": 44.6899,
+              "netId": "random-v80-c3-net-9",
+              "x": 32.1273,
               "y": 21.5576
             },
             {
               "portId": "random-v80-c3-breakout-port-2",
               "netId": "random-v80-c3-net-3",
-              "x": 55.5286,
+              "x": 37.0533,
               "y": 21.5576
             },
             {
               "portId": "random-v80-c3-breakout-port-3",
-              "netId": "random-v80-c3-net-4",
-              "x": 65.5431,
+              "netId": "random-v80-c3-net-12",
+              "x": 41.5694,
               "y": 21.5576
             },
             {
               "portId": "random-v80-c3-breakout-port-4",
-              "netId": "random-v80-c3-net-0",
-              "x": 79.3611,
-              "y": 27.4709
+              "netId": "random-v80-c3-net-8",
+              "x": 45.7421,
+              "y": 21.5576
             },
             {
               "portId": "random-v80-c3-breakout-port-5",
-              "netId": "random-v80-c3-net-1",
-              "x": 79.3611,
-              "y": 35.9118
+              "netId": "random-v80-c3-net-14",
+              "x": 50.6369,
+              "y": 21.5576
             },
             {
               "portId": "random-v80-c3-breakout-port-6",
-              "netId": "random-v80-c3-net-1",
-              "x": 79.3611,
-              "y": 41.6233
+              "netId": "random-v80-c3-net-6",
+              "x": 56.0339,
+              "y": 21.5576
             },
             {
               "portId": "random-v80-c3-breakout-port-7",
-              "netId": "random-v80-c3-net-2",
-              "x": 79.3611,
-              "y": 51.6278
+              "netId": "random-v80-c3-net-9",
+              "x": 59.6857,
+              "y": 21.5576
             },
             {
               "portId": "random-v80-c3-breakout-port-8",
-              "netId": "random-v80-c3-net-5",
-              "x": 68.2125,
-              "y": 57.8706
+              "netId": "random-v80-c3-net-15",
+              "x": 66.0824,
+              "y": 21.5576
             },
             {
               "portId": "random-v80-c3-breakout-port-9",
-              "netId": "random-v80-c3-net-2",
-              "x": 58.3741,
-              "y": 57.8706
+              "netId": "random-v80-c3-net-0",
+              "x": 70.0756,
+              "y": 21.5576
             },
             {
               "portId": "random-v80-c3-breakout-port-10",
-              "netId": "random-v80-c3-net-3",
-              "x": 48.3078,
-              "y": 57.8706
+              "netId": "random-v80-c3-net-5",
+              "x": 74.1749,
+              "y": 21.5576
             },
             {
               "portId": "random-v80-c3-breakout-port-11",
+              "netId": "random-v80-c3-net-1",
+              "x": 79.3611,
+              "y": 24.1536
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-12",
+              "netId": "random-v80-c3-net-6",
+              "x": 79.3611,
+              "y": 28.1559
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-13",
+              "netId": "random-v80-c3-net-7",
+              "x": 79.3611,
+              "y": 30.724
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-14",
+              "netId": "random-v80-c3-net-4",
+              "x": 79.3611,
+              "y": 35.247
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-15",
               "netId": "random-v80-c3-net-0",
-              "x": 34.7965,
+              "x": 79.3611,
+              "y": 37.8097
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-16",
+              "netId": "random-v80-c3-net-2",
+              "x": 79.3611,
+              "y": 40.8227
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-17",
+              "netId": "random-v80-c3-net-3",
+              "x": 79.3611,
+              "y": 44.2827
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-18",
+              "netId": "random-v80-c3-net-8",
+              "x": 79.3611,
+              "y": 47.5997
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-19",
+              "netId": "random-v80-c3-net-13",
+              "x": 79.3611,
+              "y": 51.1551
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-20",
+              "netId": "random-v80-c3-net-13",
+              "x": 79.3611,
+              "y": 54.89
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-21",
+              "netId": "random-v80-c3-net-11",
+              "x": 74.5521,
+              "y": 57.8706
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-22",
+              "netId": "random-v80-c3-net-15",
+              "x": 70.4305,
+              "y": 57.8706
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-23",
+              "netId": "random-v80-c3-net-10",
+              "x": 66.3864,
+              "y": 57.8706
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-24",
+              "netId": "random-v80-c3-net-2",
+              "x": 61.8792,
+              "y": 57.8706
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-25",
+              "netId": "random-v80-c3-net-4",
+              "x": 57.0514,
+              "y": 57.8706
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-26",
+              "netId": "random-v80-c3-net-10",
+              "x": 50.4561,
+              "y": 57.8706
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-27",
+              "netId": "random-v80-c3-net-11",
+              "x": 47.4762,
+              "y": 57.8706
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-28",
+              "netId": "random-v80-c3-net-1",
+              "x": 43.104,
+              "y": 57.8706
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-29",
+              "netId": "random-v80-c3-net-7",
+              "x": 36.8092,
+              "y": 57.8706
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-30",
+              "netId": "random-v80-c3-net-5",
+              "x": 31.8329,
+              "y": 57.8706
+            },
+            {
+              "portId": "random-v80-c3-breakout-port-31",
+              "netId": "random-v80-c3-net-12",
+              "x": 27.5681,
               "y": 57.8706
             }
           ]
@@ -5720,8 +6539,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -5731,7 +6550,8 @@
       "caseId": "random-v80-c4",
       "seed": 1484907829,
       "viaCount": 80,
-      "netCount": 7,
+      "breakoutPortCount": 32,
+      "netCount": 16,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -6229,86 +7049,194 @@
           "ports": [
             {
               "portId": "random-v80-c4-breakout-port-0",
-              "netId": "random-v80-c4-net-1",
-              "x": 33.7527,
+              "netId": "random-v80-c4-net-9",
+              "x": 27.1295,
               "y": 21.3657
             },
             {
               "portId": "random-v80-c4-breakout-port-1",
-              "netId": "random-v80-c4-net-3",
-              "x": 41.2249,
+              "netId": "random-v80-c4-net-2",
+              "x": 32.8441,
               "y": 21.3657
             },
             {
               "portId": "random-v80-c4-breakout-port-2",
-              "netId": "random-v80-c4-net-2",
-              "x": 47.0968,
+              "netId": "random-v80-c4-net-7",
+              "x": 36.5802,
               "y": 21.3657
             },
             {
               "portId": "random-v80-c4-breakout-port-3",
-              "netId": "random-v80-c4-net-4",
-              "x": 56.3279,
+              "netId": "random-v80-c4-net-15",
+              "x": 39.5161,
               "y": 21.3657
             },
             {
               "portId": "random-v80-c4-breakout-port-4",
-              "netId": "random-v80-c4-net-0",
-              "x": 63.2806,
+              "netId": "random-v80-c4-net-6",
+              "x": 44.1317,
               "y": 21.3657
             },
             {
               "portId": "random-v80-c4-breakout-port-5",
-              "netId": "random-v80-c4-net-6",
-              "x": 73.4286,
-              "y": 26.6878
+              "netId": "random-v80-c4-net-7",
+              "x": 47.6081,
+              "y": 21.3657
             },
             {
               "portId": "random-v80-c4-breakout-port-6",
-              "netId": "random-v80-c4-net-3",
-              "x": 73.4286,
-              "y": 32.8144
+              "netId": "random-v80-c4-net-11",
+              "x": 52.5409,
+              "y": 21.3657
             },
             {
               "portId": "random-v80-c4-breakout-port-7",
-              "netId": "random-v80-c4-net-6",
-              "x": 73.4286,
-              "y": 36.8454
+              "netId": "random-v80-c4-net-12",
+              "x": 57.155,
+              "y": 21.3657
             },
             {
               "portId": "random-v80-c4-breakout-port-8",
-              "netId": "random-v80-c4-net-2",
-              "x": 73.4286,
-              "y": 42.2115
+              "netId": "random-v80-c4-net-14",
+              "x": 60.1909,
+              "y": 21.3657
             },
             {
               "portId": "random-v80-c4-breakout-port-9",
-              "netId": "random-v80-c4-net-1",
-              "x": 73.4286,
-              "y": 48.1413
+              "netId": "random-v80-c4-net-9",
+              "x": 64.2322,
+              "y": 21.3657
             },
             {
               "portId": "random-v80-c4-breakout-port-10",
-              "netId": "random-v80-c4-net-5",
-              "x": 65.5925,
-              "y": 54.4226
+              "netId": "random-v80-c4-net-8",
+              "x": 68.698,
+              "y": 21.3657
             },
             {
               "portId": "random-v80-c4-breakout-port-11",
-              "netId": "random-v80-c4-net-5",
-              "x": 54.0154,
-              "y": 54.4226
+              "netId": "random-v80-c4-net-13",
+              "x": 73.4286,
+              "y": 23.5334
             },
             {
               "portId": "random-v80-c4-breakout-port-12",
-              "netId": "random-v80-c4-net-0",
-              "x": 43.0361,
-              "y": 54.4226
+              "netId": "random-v80-c4-net-4",
+              "x": 73.4286,
+              "y": 26.7359
             },
             {
               "portId": "random-v80-c4-breakout-port-13",
+              "netId": "random-v80-c4-net-2",
+              "x": 73.4286,
+              "y": 29.7731
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-14",
+              "netId": "random-v80-c4-net-5",
+              "x": 73.4286,
+              "y": 32.389
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-15",
+              "netId": "random-v80-c4-net-11",
+              "x": 73.4286,
+              "y": 35.2206
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-16",
+              "netId": "random-v80-c4-net-3",
+              "x": 73.4286,
+              "y": 37.7357
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-17",
+              "netId": "random-v80-c4-net-10",
+              "x": 73.4286,
+              "y": 41.2761
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-18",
+              "netId": "random-v80-c4-net-8",
+              "x": 73.4286,
+              "y": 43.9933
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-19",
+              "netId": "random-v80-c4-net-13",
+              "x": 73.4286,
+              "y": 46.0045
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-20",
+              "netId": "random-v80-c4-net-5",
+              "x": 73.4286,
+              "y": 49.3425
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-21",
+              "netId": "random-v80-c4-net-1",
+              "x": 73.4286,
+              "y": 52.02
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-22",
+              "netId": "random-v80-c4-net-15",
+              "x": 69.4493,
+              "y": 54.4226
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-23",
+              "netId": "random-v80-c4-net-6",
+              "x": 64.6804,
+              "y": 54.4226
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-24",
+              "netId": "random-v80-c4-net-14",
+              "x": 60.4532,
+              "y": 54.4226
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-25",
+              "netId": "random-v80-c4-net-3",
+              "x": 56.1744,
+              "y": 54.4226
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-26",
+              "netId": "random-v80-c4-net-0",
+              "x": 51.6151,
+              "y": 54.4226
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-27",
               "netId": "random-v80-c4-net-4",
-              "x": 33.5797,
+              "x": 46.146,
+              "y": 54.4226
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-28",
+              "netId": "random-v80-c4-net-1",
+              "x": 42.2429,
+              "y": 54.4226
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-29",
+              "netId": "random-v80-c4-net-12",
+              "x": 36.5937,
+              "y": 54.4226
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-30",
+              "netId": "random-v80-c4-net-0",
+              "x": 33.3362,
+              "y": 54.4226
+            },
+            {
+              "portId": "random-v80-c4-breakout-port-31",
+              "netId": "random-v80-c4-net-10",
+              "x": 27.6475,
               "y": 54.4226
             }
           ]
@@ -6316,8 +7244,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -6327,7 +7255,8 @@
       "caseId": "random-v100-c1",
       "seed": 1737036495,
       "viaCount": 100,
-      "netCount": 9,
+      "breakoutPortCount": 40,
+      "netCount": 20,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -6945,110 +7874,242 @@
           "ports": [
             {
               "portId": "random-v100-c1-breakout-port-0",
-              "netId": "random-v100-c1-net-4",
-              "x": 32.0054,
+              "netId": "random-v100-c1-net-11",
+              "x": 27.5602,
               "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-1",
-              "netId": "random-v100-c1-net-7",
-              "x": 37.0401,
+              "netId": "random-v100-c1-net-6",
+              "x": 31.2836,
               "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-2",
-              "netId": "random-v100-c1-net-5",
-              "x": 45.347,
+              "netId": "random-v100-c1-net-2",
+              "x": 33.6331,
               "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-3",
-              "netId": "random-v100-c1-net-6",
-              "x": 51.1651,
+              "netId": "random-v100-c1-net-3",
+              "x": 37.5097,
               "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-4",
-              "netId": "random-v100-c1-net-6",
-              "x": 58.934,
+              "netId": "random-v100-c1-net-9",
+              "x": 40.2248,
               "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-5",
-              "netId": "random-v100-c1-net-1",
-              "x": 67.0584,
+              "netId": "random-v100-c1-net-15",
+              "x": 43.8503,
               "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-6",
-              "netId": "random-v100-c1-net-2",
-              "x": 74.039,
-              "y": 23.6487
+              "netId": "random-v100-c1-net-12",
+              "x": 47.6417,
+              "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-7",
-              "netId": "random-v100-c1-net-3",
-              "x": 74.039,
-              "y": 30.8932
+              "netId": "random-v100-c1-net-8",
+              "x": 50.2181,
+              "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-8",
-              "netId": "random-v100-c1-net-2",
-              "x": 74.039,
-              "y": 33.6635
+              "netId": "random-v100-c1-net-18",
+              "x": 54.9424,
+              "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-9",
-              "netId": "random-v100-c1-net-8",
-              "x": 74.039,
-              "y": 39.5672
+              "netId": "random-v100-c1-net-9",
+              "x": 56.749,
+              "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-10",
-              "netId": "random-v100-c1-net-7",
-              "x": 74.039,
-              "y": 45.6815
+              "netId": "random-v100-c1-net-11",
+              "x": 60.5989,
+              "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-11",
-              "netId": "random-v100-c1-net-0",
-              "x": 74.039,
-              "y": 50.0458
+              "netId": "random-v100-c1-net-16",
+              "x": 64.5862,
+              "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-12",
-              "netId": "random-v100-c1-net-0",
-              "x": 65.7384,
-              "y": 55.1079
+              "netId": "random-v100-c1-net-16",
+              "x": 67.4322,
+              "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-13",
-              "netId": "random-v100-c1-net-1",
-              "x": 59.4295,
-              "y": 55.1079
+              "netId": "random-v100-c1-net-19",
+              "x": 71.3013,
+              "y": 19.6242
             },
             {
               "portId": "random-v100-c1-breakout-port-14",
-              "netId": "random-v100-c1-net-8",
-              "x": 52.6176,
-              "y": 55.1079
+              "netId": "random-v100-c1-net-6",
+              "x": 74.039,
+              "y": 22.317
             },
             {
               "portId": "random-v100-c1-breakout-port-15",
-              "netId": "random-v100-c1-net-5",
-              "x": 44.3006,
-              "y": 55.1079
+              "netId": "random-v100-c1-net-7",
+              "x": 74.039,
+              "y": 24.7543
             },
             {
               "portId": "random-v100-c1-breakout-port-16",
-              "netId": "random-v100-c1-net-4",
-              "x": 39.979,
-              "y": 55.1079
+              "netId": "random-v100-c1-net-15",
+              "x": 74.039,
+              "y": 27.7302
             },
             {
               "portId": "random-v100-c1-breakout-port-17",
               "netId": "random-v100-c1-net-3",
-              "x": 30.8228,
+              "x": 74.039,
+              "y": 29.2765
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-18",
+              "netId": "random-v100-c1-net-8",
+              "x": 74.039,
+              "y": 32.5527
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-19",
+              "netId": "random-v100-c1-net-17",
+              "x": 74.039,
+              "y": 35.2214
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-20",
+              "netId": "random-v100-c1-net-19",
+              "x": 74.039,
+              "y": 37.4476
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-21",
+              "netId": "random-v100-c1-net-4",
+              "x": 74.039,
+              "y": 40.0857
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-22",
+              "netId": "random-v100-c1-net-12",
+              "x": 74.039,
+              "y": 41.9249
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-23",
+              "netId": "random-v100-c1-net-5",
+              "x": 74.039,
+              "y": 44.6545
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-24",
+              "netId": "random-v100-c1-net-2",
+              "x": 74.039,
+              "y": 47.2834
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-25",
+              "netId": "random-v100-c1-net-0",
+              "x": 74.039,
+              "y": 49.6574
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-26",
+              "netId": "random-v100-c1-net-14",
+              "x": 74.039,
+              "y": 53.1022
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-27",
+              "netId": "random-v100-c1-net-10",
+              "x": 69.6354,
+              "y": 55.1079
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-28",
+              "netId": "random-v100-c1-net-1",
+              "x": 67.6765,
+              "y": 55.1079
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-29",
+              "netId": "random-v100-c1-net-14",
+              "x": 62.6687,
+              "y": 55.1079
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-30",
+              "netId": "random-v100-c1-net-0",
+              "x": 60.3567,
+              "y": 55.1079
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-31",
+              "netId": "random-v100-c1-net-13",
+              "x": 56.7803,
+              "y": 55.1079
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-32",
+              "netId": "random-v100-c1-net-1",
+              "x": 53.3931,
+              "y": 55.1079
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-33",
+              "netId": "random-v100-c1-net-4",
+              "x": 48.61,
+              "y": 55.1079
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-34",
+              "netId": "random-v100-c1-net-7",
+              "x": 45.7282,
+              "y": 55.1079
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-35",
+              "netId": "random-v100-c1-net-13",
+              "x": 42.4262,
+              "y": 55.1079
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-36",
+              "netId": "random-v100-c1-net-10",
+              "x": 38.2965,
+              "y": 55.1079
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-37",
+              "netId": "random-v100-c1-net-5",
+              "x": 34.9631,
+              "y": 55.1079
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-38",
+              "netId": "random-v100-c1-net-17",
+              "x": 31.3532,
+              "y": 55.1079
+            },
+            {
+              "portId": "random-v100-c1-breakout-port-39",
+              "netId": "random-v100-c1-net-18",
+              "x": 28.0247,
               "y": 55.1079
             }
           ]
@@ -7056,8 +8117,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -7067,7 +8128,8 @@
       "caseId": "random-v100-c2",
       "seed": 304055634,
       "viaCount": 100,
-      "netCount": 7,
+      "breakoutPortCount": 40,
+      "netCount": 20,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -7685,86 +8747,242 @@
           "ports": [
             {
               "portId": "random-v100-c2-breakout-port-0",
-              "netId": "random-v100-c2-net-1",
-              "x": 28.5092,
+              "netId": "random-v100-c2-net-0",
+              "x": 24.0655,
               "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-1",
               "netId": "random-v100-c2-net-1",
-              "x": 36.6943,
+              "x": 28.0773,
               "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-2",
-              "netId": "random-v100-c2-net-3",
-              "x": 48.2373,
+              "netId": "random-v100-c2-net-10",
+              "x": 31.5851,
               "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-3",
-              "netId": "random-v100-c2-net-4",
-              "x": 56.9528,
+              "netId": "random-v100-c2-net-15",
+              "x": 36.5322,
               "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-4",
-              "netId": "random-v100-c2-net-5",
-              "x": 62.6956,
+              "netId": "random-v100-c2-net-9",
+              "x": 40.2674,
               "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-5",
-              "netId": "random-v100-c2-net-4",
-              "x": 73.5927,
-              "y": 23.4749
+              "netId": "random-v100-c2-net-7",
+              "x": 42.7286,
+              "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-6",
-              "netId": "random-v100-c2-net-6",
-              "x": 73.5927,
-              "y": 28.7906
+              "netId": "random-v100-c2-net-8",
+              "x": 47.0346,
+              "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-7",
-              "netId": "random-v100-c2-net-2",
-              "x": 73.5927,
-              "y": 37.4292
+              "netId": "random-v100-c2-net-18",
+              "x": 50.2766,
+              "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-8",
-              "netId": "random-v100-c2-net-2",
-              "x": 73.5927,
-              "y": 43.1618
+              "netId": "random-v100-c2-net-14",
+              "x": 55.5454,
+              "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-9",
-              "netId": "random-v100-c2-net-6",
-              "x": 73.5927,
-              "y": 48.3349
+              "netId": "random-v100-c2-net-0",
+              "x": 59.0418,
+              "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-10",
-              "netId": "random-v100-c2-net-5",
-              "x": 64.2988,
-              "y": 54.7486
+              "netId": "random-v100-c2-net-14",
+              "x": 62.1969,
+              "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-11",
-              "netId": "random-v100-c2-net-3",
-              "x": 55.2099,
-              "y": 54.7486
+              "netId": "random-v100-c2-net-1",
+              "x": 65.686,
+              "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-12",
-              "netId": "random-v100-c2-net-0",
-              "x": 39.8985,
-              "y": 54.7486
+              "netId": "random-v100-c2-net-8",
+              "x": 68.932,
+              "y": 17.9367
             },
             {
               "portId": "random-v100-c2-breakout-port-13",
-              "netId": "random-v100-c2-net-0",
-              "x": 33.2086,
+              "netId": "random-v100-c2-net-11",
+              "x": 73.5927,
+              "y": 21.1337
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-14",
+              "netId": "random-v100-c2-net-7",
+              "x": 73.5927,
+              "y": 22.8125
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-15",
+              "netId": "random-v100-c2-net-9",
+              "x": 73.5927,
+              "y": 26.0669
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-16",
+              "netId": "random-v100-c2-net-2",
+              "x": 73.5927,
+              "y": 28.4879
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-17",
+              "netId": "random-v100-c2-net-5",
+              "x": 73.5927,
+              "y": 31.6004
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-18",
+              "netId": "random-v100-c2-net-6",
+              "x": 73.5927,
+              "y": 33.5363
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-19",
+              "netId": "random-v100-c2-net-11",
+              "x": 73.5927,
+              "y": 36.4286
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-20",
+              "netId": "random-v100-c2-net-16",
+              "x": 73.5927,
+              "y": 38.8981
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-21",
+              "netId": "random-v100-c2-net-15",
+              "x": 73.5927,
+              "y": 41.3801
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-22",
+              "netId": "random-v100-c2-net-4",
+              "x": 73.5927,
+              "y": 44.3904
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-23",
+              "netId": "random-v100-c2-net-17",
+              "x": 73.5927,
+              "y": 46.8615
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-24",
+              "netId": "random-v100-c2-net-13",
+              "x": 73.5927,
+              "y": 49.5959
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-25",
+              "netId": "random-v100-c2-net-18",
+              "x": 73.5927,
+              "y": 51.6256
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-26",
+              "netId": "random-v100-c2-net-10",
+              "x": 69.9513,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-27",
+              "netId": "random-v100-c2-net-13",
+              "x": 66.4849,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-28",
+              "netId": "random-v100-c2-net-16",
+              "x": 63.42,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-29",
+              "netId": "random-v100-c2-net-19",
+              "x": 58.8523,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-30",
+              "netId": "random-v100-c2-net-3",
+              "x": 56.4795,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-31",
+              "netId": "random-v100-c2-net-4",
+              "x": 52.6761,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-32",
+              "netId": "random-v100-c2-net-19",
+              "x": 49.8896,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-33",
+              "netId": "random-v100-c2-net-2",
+              "x": 45.6848,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-34",
+              "netId": "random-v100-c2-net-6",
+              "x": 41.4326,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-35",
+              "netId": "random-v100-c2-net-12",
+              "x": 38.096,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-36",
+              "netId": "random-v100-c2-net-3",
+              "x": 35.3807,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-37",
+              "netId": "random-v100-c2-net-12",
+              "x": 30.951,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-38",
+              "netId": "random-v100-c2-net-17",
+              "x": 27.9866,
+              "y": 54.7486
+            },
+            {
+              "portId": "random-v100-c2-breakout-port-39",
+              "netId": "random-v100-c2-net-5",
+              "x": 25.543,
               "y": 54.7486
             }
           ]
@@ -7772,8 +8990,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -7783,7 +9001,8 @@
       "caseId": "random-v100-c3",
       "seed": 249632452,
       "viaCount": 100,
-      "netCount": 9,
+      "breakoutPortCount": 40,
+      "netCount": 20,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -8401,110 +9620,242 @@
           "ports": [
             {
               "portId": "random-v100-c3-breakout-port-0",
-              "netId": "random-v100-c3-net-6",
-              "x": 31.7276,
+              "netId": "random-v100-c3-net-12",
+              "x": 28.2622,
               "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-1",
-              "netId": "random-v100-c3-net-3",
-              "x": 38.4368,
+              "netId": "random-v100-c3-net-6",
+              "x": 31.0642,
               "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-2",
-              "netId": "random-v100-c3-net-2",
-              "x": 43.6749,
+              "netId": "random-v100-c3-net-13",
+              "x": 34.1952,
               "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-3",
-              "netId": "random-v100-c3-net-2",
-              "x": 48.4962,
+              "netId": "random-v100-c3-net-12",
+              "x": 36.6396,
               "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-4",
               "netId": "random-v100-c3-net-7",
-              "x": 57.1224,
+              "x": 38.8895,
               "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-5",
-              "netId": "random-v100-c3-net-8",
-              "x": 63.0493,
+              "netId": "random-v100-c3-net-7",
+              "x": 42.9151,
               "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-6",
-              "netId": "random-v100-c3-net-1",
-              "x": 68.7279,
-              "y": 26.8084
+              "netId": "random-v100-c3-net-5",
+              "x": 45.681,
+              "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-7",
-              "netId": "random-v100-c3-net-4",
-              "x": 68.7279,
-              "y": 33.1045
+              "netId": "random-v100-c3-net-6",
+              "x": 47.9075,
+              "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-8",
-              "netId": "random-v100-c3-net-6",
-              "x": 68.7279,
-              "y": 37.9586
+              "netId": "random-v100-c3-net-9",
+              "x": 51.6596,
+              "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-9",
-              "netId": "random-v100-c3-net-5",
-              "x": 68.7279,
-              "y": 41.7791
+              "netId": "random-v100-c3-net-2",
+              "x": 54.5524,
+              "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-10",
-              "netId": "random-v100-c3-net-0",
-              "x": 68.7279,
-              "y": 46.0545
+              "netId": "random-v100-c3-net-8",
+              "x": 56.8293,
+              "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-11",
-              "netId": "random-v100-c3-net-8",
-              "x": 68.7279,
-              "y": 51.6932
+              "netId": "random-v100-c3-net-1",
+              "x": 59.3771,
+              "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-12",
-              "netId": "random-v100-c3-net-5",
-              "x": 61.1768,
-              "y": 56.8556
+              "netId": "random-v100-c3-net-9",
+              "x": 62.7375,
+              "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-13",
-              "netId": "random-v100-c3-net-3",
-              "x": 55.1198,
-              "y": 56.8556
+              "netId": "random-v100-c3-net-11",
+              "x": 66.424,
+              "y": 22.6297
             },
             {
               "portId": "random-v100-c3-breakout-port-14",
-              "netId": "random-v100-c3-net-1",
-              "x": 51.5394,
-              "y": 56.8556
+              "netId": "random-v100-c3-net-17",
+              "x": 68.7279,
+              "y": 25.513
             },
             {
               "portId": "random-v100-c3-breakout-port-15",
-              "netId": "random-v100-c3-net-7",
-              "x": 44.0755,
-              "y": 56.8556
+              "netId": "random-v100-c3-net-10",
+              "x": 68.7279,
+              "y": 26.9149
             },
             {
               "portId": "random-v100-c3-breakout-port-16",
-              "netId": "random-v100-c3-net-4",
-              "x": 36.687,
-              "y": 56.8556
+              "netId": "random-v100-c3-net-8",
+              "x": 68.7279,
+              "y": 29.8372
             },
             {
               "portId": "random-v100-c3-breakout-port-17",
               "netId": "random-v100-c3-net-0",
-              "x": 31.6092,
+              "x": 68.7279,
+              "y": 32.73
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-18",
+              "netId": "random-v100-c3-net-16",
+              "x": 68.7279,
+              "y": 34.7182
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-19",
+              "netId": "random-v100-c3-net-4",
+              "x": 68.7279,
+              "y": 37.4618
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-20",
+              "netId": "random-v100-c3-net-4",
+              "x": 68.7279,
+              "y": 39.5116
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-21",
+              "netId": "random-v100-c3-net-2",
+              "x": 68.7279,
+              "y": 42.7813
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-22",
+              "netId": "random-v100-c3-net-15",
+              "x": 68.7279,
+              "y": 44.4202
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-23",
+              "netId": "random-v100-c3-net-19",
+              "x": 68.7279,
+              "y": 47.2446
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-24",
+              "netId": "random-v100-c3-net-19",
+              "x": 68.7279,
+              "y": 48.9915
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-25",
+              "netId": "random-v100-c3-net-5",
+              "x": 68.7279,
+              "y": 52.3491
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-26",
+              "netId": "random-v100-c3-net-3",
+              "x": 68.7279,
+              "y": 53.8442
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-27",
+              "netId": "random-v100-c3-net-0",
+              "x": 65.2018,
+              "y": 56.8556
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-28",
+              "netId": "random-v100-c3-net-10",
+              "x": 62.3037,
+              "y": 56.8556
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-29",
+              "netId": "random-v100-c3-net-1",
+              "x": 59.1013,
+              "y": 56.8556
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-30",
+              "netId": "random-v100-c3-net-13",
+              "x": 56.6124,
+              "y": 56.8556
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-31",
+              "netId": "random-v100-c3-net-15",
+              "x": 53.2403,
+              "y": 56.8556
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-32",
+              "netId": "random-v100-c3-net-14",
+              "x": 49.5489,
+              "y": 56.8556
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-33",
+              "netId": "random-v100-c3-net-17",
+              "x": 46.8967,
+              "y": 56.8556
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-34",
+              "netId": "random-v100-c3-net-11",
+              "x": 43.5389,
+              "y": 56.8556
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-35",
+              "netId": "random-v100-c3-net-16",
+              "x": 40.5924,
+              "y": 56.8556
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-36",
+              "netId": "random-v100-c3-net-3",
+              "x": 37.4526,
+              "y": 56.8556
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-37",
+              "netId": "random-v100-c3-net-14",
+              "x": 34.4658,
+              "y": 56.8556
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-38",
+              "netId": "random-v100-c3-net-18",
+              "x": 30.5975,
+              "y": 56.8556
+            },
+            {
+              "portId": "random-v100-c3-breakout-port-39",
+              "netId": "random-v100-c3-net-18",
+              "x": 28.5178,
               "y": 56.8556
             }
           ]
@@ -8512,8 +9863,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
@@ -8523,7 +9874,8 @@
       "caseId": "random-v100-c4",
       "seed": 1343794705,
       "viaCount": 100,
-      "netCount": 7,
+      "breakoutPortCount": 40,
+      "netCount": 20,
       "problem": {
         "viaBoundary": {
           "minX": 0,
@@ -9141,86 +10493,242 @@
           "ports": [
             {
               "portId": "random-v100-c4-breakout-port-0",
-              "netId": "random-v100-c4-net-5",
-              "x": 32.7469,
+              "netId": "random-v100-c4-net-13",
+              "x": 26.4282,
               "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-1",
-              "netId": "random-v100-c4-net-3",
-              "x": 48.0085,
+              "netId": "random-v100-c4-net-12",
+              "x": 30.6948,
               "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-2",
-              "netId": "random-v100-c4-net-5",
-              "x": 55.3705,
+              "netId": "random-v100-c4-net-13",
+              "x": 36.1454,
               "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-3",
-              "netId": "random-v100-c4-net-1",
-              "x": 69.4544,
+              "netId": "random-v100-c4-net-0",
+              "x": 38.7746,
               "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-4",
-              "netId": "random-v100-c4-net-1",
-              "x": 81.0628,
-              "y": 20.9952
+              "netId": "random-v100-c4-net-6",
+              "x": 43.8046,
+              "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-5",
-              "netId": "random-v100-c4-net-0",
-              "x": 81.0628,
-              "y": 26.0673
+              "netId": "random-v100-c4-net-9",
+              "x": 48.0642,
+              "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-6",
-              "netId": "random-v100-c4-net-4",
-              "x": 81.0628,
-              "y": 31.591
+              "netId": "random-v100-c4-net-15",
+              "x": 52.3217,
+              "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-7",
-              "netId": "random-v100-c4-net-0",
-              "x": 81.0628,
-              "y": 36.2991
+              "netId": "random-v100-c4-net-19",
+              "x": 56.9583,
+              "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-8",
-              "netId": "random-v100-c4-net-6",
-              "x": 81.0628,
-              "y": 41.8132
+              "netId": "random-v100-c4-net-4",
+              "x": 60.9103,
+              "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-9",
-              "netId": "random-v100-c4-net-4",
-              "x": 70.0045,
-              "y": 45.5144
+              "netId": "random-v100-c4-net-19",
+              "x": 65.5389,
+              "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-10",
-              "netId": "random-v100-c4-net-2",
-              "x": 61.9906,
-              "y": 45.5144
+              "netId": "random-v100-c4-net-18",
+              "x": 69.2459,
+              "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-11",
-              "netId": "random-v100-c4-net-6",
-              "x": 53.5059,
-              "y": 45.5144
+              "netId": "random-v100-c4-net-3",
+              "x": 72.6804,
+              "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-12",
-              "netId": "random-v100-c4-net-2",
-              "x": 41.1746,
-              "y": 45.5144
+              "netId": "random-v100-c4-net-16",
+              "x": 76.3167,
+              "y": 15.9288
             },
             {
               "portId": "random-v100-c4-breakout-port-13",
+              "netId": "random-v100-c4-net-4",
+              "x": 81.0628,
+              "y": 18.1579
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-14",
+              "netId": "random-v100-c4-net-5",
+              "x": 81.0628,
+              "y": 20.0547
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-15",
+              "netId": "random-v100-c4-net-14",
+              "x": 81.0628,
+              "y": 22.1554
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-16",
+              "netId": "random-v100-c4-net-17",
+              "x": 81.0628,
+              "y": 23.9799
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-17",
               "netId": "random-v100-c4-net-3",
-              "x": 31.887,
+              "x": 81.0628,
+              "y": 25.3319
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-18",
+              "netId": "random-v100-c4-net-0",
+              "x": 81.0628,
+              "y": 27.4662
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-19",
+              "netId": "random-v100-c4-net-2",
+              "x": 81.0628,
+              "y": 30.1917
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-20",
+              "netId": "random-v100-c4-net-16",
+              "x": 81.0628,
+              "y": 31.9782
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-21",
+              "netId": "random-v100-c4-net-2",
+              "x": 81.0628,
+              "y": 33.2478
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-22",
+              "netId": "random-v100-c4-net-8",
+              "x": 81.0628,
+              "y": 35.3019
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-23",
+              "netId": "random-v100-c4-net-15",
+              "x": 81.0628,
+              "y": 37.5569
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-24",
+              "netId": "random-v100-c4-net-6",
+              "x": 81.0628,
+              "y": 39.4495
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-25",
+              "netId": "random-v100-c4-net-11",
+              "x": 81.0628,
+              "y": 41.9242
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-26",
+              "netId": "random-v100-c4-net-12",
+              "x": 81.0628,
+              "y": 43.5533
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-27",
+              "netId": "random-v100-c4-net-1",
+              "x": 77.339,
+              "y": 45.5144
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-28",
+              "netId": "random-v100-c4-net-10",
+              "x": 72.0616,
+              "y": 45.5144
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-29",
+              "netId": "random-v100-c4-net-7",
+              "x": 68.5632,
+              "y": 45.5144
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-30",
+              "netId": "random-v100-c4-net-9",
+              "x": 63.4849,
+              "y": 45.5144
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-31",
+              "netId": "random-v100-c4-net-17",
+              "x": 60.98,
+              "y": 45.5144
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-32",
+              "netId": "random-v100-c4-net-8",
+              "x": 56.8431,
+              "y": 45.5144
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-33",
+              "netId": "random-v100-c4-net-1",
+              "x": 52.4941,
+              "y": 45.5144
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-34",
+              "netId": "random-v100-c4-net-11",
+              "x": 47.9108,
+              "y": 45.5144
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-35",
+              "netId": "random-v100-c4-net-7",
+              "x": 44.3528,
+              "y": 45.5144
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-36",
+              "netId": "random-v100-c4-net-14",
+              "x": 39.365,
+              "y": 45.5144
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-37",
+              "netId": "random-v100-c4-net-18",
+              "x": 35.5558,
+              "y": 45.5144
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-38",
+              "netId": "random-v100-c4-net-5",
+              "x": 31.6725,
+              "y": 45.5144
+            },
+            {
+              "portId": "random-v100-c4-breakout-port-39",
+              "netId": "random-v100-c4-net-10",
+              "x": 26.3187,
               "y": 45.5144
             }
           ]
@@ -9228,8 +10736,8 @@
         "options": {
           "viaJumpCost": 0.25,
           "maxBlockersPerSearch": 4,
-          "maxRipsPerRoute": 6,
-          "maxTotalRips": 50,
+          "maxRipsPerRoute": 8,
+          "maxTotalRips": 100,
           "maxSearchStates": 20000,
           "expansionsPerStep": 500
         }
