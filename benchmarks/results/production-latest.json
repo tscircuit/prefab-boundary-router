@@ -1,31 +1,32 @@
 {
-  "datasetId": "production-boundary-problems-v1",
+  "datasetId": "production-boundary-problems-v2",
   "datasetSeed": 20260729,
-  "generatedAt": "2026-07-28T23:16:58.170Z",
+  "generatedAt": "2026-07-28T23:41:03.950Z",
   "runtime": {
     "bun": "1.3.2",
     "platform": "darwin",
     "architecture": "arm64"
   },
   "percentileMethod": "linear interpolation",
+  "minimumSolvePercent": 50,
   "overall": {
     "caseCount": 20,
-    "solvedCount": 0,
-    "solvePercent": 0,
-    "attemptTimeP50Ms": 120.1,
-    "attemptTimeP95Ms": 145.41,
-    "solvedTimeP50Ms": null,
-    "solvedTimeP95Ms": null
+    "solvedCount": 15,
+    "solvePercent": 75,
+    "attemptTimeP50Ms": 153.26,
+    "attemptTimeP95Ms": 777.04,
+    "solvedTimeP50Ms": 145.26,
+    "solvedTimeP95Ms": 480.2
   },
   "byViaCount": {
     "80": {
       "caseCount": 20,
-      "solvedCount": 0,
-      "solvePercent": 0,
-      "attemptTimeP50Ms": 120.1,
-      "attemptTimeP95Ms": 145.41,
-      "solvedTimeP50Ms": null,
-      "solvedTimeP95Ms": null
+      "solvedCount": 15,
+      "solvePercent": 75,
+      "attemptTimeP50Ms": 153.26,
+      "attemptTimeP95Ms": 777.04,
+      "solvedTimeP50Ms": 145.26,
+      "solvedTimeP95Ms": 480.2
     }
   },
   "results": [
@@ -34,11 +35,11 @@
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 111.54,
-      "ripCount": 100,
-      "expandedStateCount": 1453,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 145.26,
+      "ripCount": 45,
+      "expandedStateCount": 1959,
+      "error": null
     },
     {
       "caseId": "production-c02",
@@ -46,43 +47,43 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": false,
-      "durationMs": 128.56,
-      "ripCount": 98,
-      "expandedStateCount": 1536,
-      "error": "Total rip limit (100) reached"
+      "durationMs": 93.68,
+      "ripCount": 28,
+      "expandedStateCount": 1230,
+      "error": "No route found for \"signal-net-44:0:production-c02-breakout-port-106->production-c02-breakout-port-2\" with at most 4 ripped blockers"
     },
     {
       "caseId": "production-c03",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 104.98,
-      "ripCount": 100,
-      "expandedStateCount": 1564,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 110.87,
+      "ripCount": 54,
+      "expandedStateCount": 1440,
+      "error": null
     },
     {
       "caseId": "production-c04",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 116.93,
-      "ripCount": 100,
-      "expandedStateCount": 1519,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 158.87,
+      "ripCount": 77,
+      "expandedStateCount": 1670,
+      "error": null
     },
     {
       "caseId": "production-c05",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 93.27,
-      "ripCount": 99,
-      "expandedStateCount": 1218,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 115.01,
+      "ripCount": 70,
+      "expandedStateCount": 1205,
+      "error": null
     },
     {
       "caseId": "production-c06",
@@ -90,76 +91,76 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": false,
-      "durationMs": 127.9,
-      "ripCount": 100,
-      "expandedStateCount": 1522,
-      "error": "Total rip limit (100) reached"
+      "durationMs": 661.89,
+      "ripCount": 164,
+      "expandedStateCount": 7339,
+      "error": "No route found for \"signal-net-71:0:production-c06-breakout-port-45->production-c06-breakout-port-89\" with at most 4 ripped blockers"
     },
     {
       "caseId": "production-c07",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 144.75,
-      "ripCount": 100,
-      "expandedStateCount": 1734,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 113.56,
+      "ripCount": 24,
+      "expandedStateCount": 1192,
+      "error": null
     },
     {
       "caseId": "production-c08",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 94.67,
-      "ripCount": 100,
-      "expandedStateCount": 1389,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 324.57,
+      "ripCount": 131,
+      "expandedStateCount": 3717,
+      "error": null
     },
     {
       "caseId": "production-c09",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 144.14,
-      "ripCount": 100,
-      "expandedStateCount": 1779,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 56.79,
+      "ripCount": 14,
+      "expandedStateCount": 553,
+      "error": null
     },
     {
       "caseId": "production-c10",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 118.6,
-      "ripCount": 100,
-      "expandedStateCount": 1440,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 454.38,
+      "ripCount": 162,
+      "expandedStateCount": 5743,
+      "error": null
     },
     {
       "caseId": "production-c11",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 140.01,
-      "ripCount": 100,
-      "expandedStateCount": 1555,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 540.44,
+      "ripCount": 192,
+      "expandedStateCount": 7893,
+      "error": null
     },
     {
       "caseId": "production-c12",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 124.29,
-      "ripCount": 100,
-      "expandedStateCount": 1458,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 52.83,
+      "ripCount": 13,
+      "expandedStateCount": 581,
+      "error": null
     },
     {
       "caseId": "production-c13",
@@ -167,21 +168,21 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": false,
-      "durationMs": 136.78,
-      "ripCount": 100,
-      "expandedStateCount": 1536,
-      "error": "Total rip limit (100) reached"
+      "durationMs": 800.6,
+      "ripCount": 300,
+      "expandedStateCount": 11959,
+      "error": "Total rip limit (300) reached"
     },
     {
       "caseId": "production-c14",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 106.29,
-      "ripCount": 100,
-      "expandedStateCount": 1273,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 169.65,
+      "ripCount": 87,
+      "expandedStateCount": 2277,
+      "error": null
     },
     {
       "caseId": "production-c15",
@@ -189,43 +190,43 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": false,
-      "durationMs": 120.29,
-      "ripCount": 98,
-      "expandedStateCount": 1631,
-      "error": "Total rip limit (100) reached"
+      "durationMs": 287.04,
+      "ripCount": 129,
+      "expandedStateCount": 4143,
+      "error": "No route found for \"VCC:10:production-c15-breakout-port-16->production-c15-breakout-port-12\" with at most 4 ripped blockers"
     },
     {
       "caseId": "production-c16",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 157.89,
-      "ripCount": 97,
-      "expandedStateCount": 1973,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 108.25,
+      "ripCount": 28,
+      "expandedStateCount": 1501,
+      "error": null
     },
     {
       "caseId": "production-c17",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 114.62,
-      "ripCount": 100,
-      "expandedStateCount": 1434,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 276.16,
+      "ripCount": 104,
+      "expandedStateCount": 4544,
+      "error": null
     },
     {
       "caseId": "production-c18",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 111.9,
-      "ripCount": 100,
-      "expandedStateCount": 1444,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 97.23,
+      "ripCount": 30,
+      "expandedStateCount": 1058,
+      "error": null
     },
     {
       "caseId": "production-c19",
@@ -233,21 +234,21 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": false,
-      "durationMs": 121.98,
-      "ripCount": 100,
-      "expandedStateCount": 1527,
-      "error": "Total rip limit (100) reached"
+      "durationMs": 775.8,
+      "ripCount": 198,
+      "expandedStateCount": 9085,
+      "error": "No route found for \"signal-net-75:0:production-c19-breakout-port-35->production-c19-breakout-port-41\" with at most 4 ripped blockers"
     },
     {
       "caseId": "production-c20",
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 119.91,
-      "ripCount": 99,
-      "expandedStateCount": 1531,
-      "error": "Total rip limit (100) reached"
+      "solved": true,
+      "durationMs": 147.64,
+      "ripCount": 52,
+      "expandedStateCount": 2135,
+      "error": null
     }
   ]
 }

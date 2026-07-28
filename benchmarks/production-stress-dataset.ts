@@ -1,4 +1,4 @@
-import type { RectBounds, ViaPort } from "../lib"
+import type { BreakoutPort, Point, RectBounds, ViaPort } from "../lib"
 import {
   createBoundaryPoints,
   roundCoordinate,
@@ -21,16 +21,26 @@ export const SINGLE_PORT_SIGNAL_NET_COUNT =
 export const PRODUCTION_ROUTE_DEMAND_COUNT =
   (POWER_NET_PORT_COUNT - 1) * 2 + TWO_PORT_SIGNAL_NET_COUNT
 
+export interface KnownRoutePlanConnection {
+  netId: string
+  sourcePortId: string
+  targetPortId: string
+  entryViaPortId: string
+  exitViaPortId: string
+}
+
 export interface ProductionStressProblemCase extends StressProblemCase {
   powerNetPortCounts: {
     VCC: number
     GND: number
   }
   twoPortSignalNetCount: number
+  knownRoutePlan: KnownRoutePlanConnection[]
 }
 
 export interface ProductionStressProblemDataset
   extends Omit<StressProblemDataset, "cases"> {
+  minimumSolvePercent: number
   profile: {
     viaCount: number
     breakoutPortCount: number
@@ -43,6 +53,178 @@ export interface ProductionStressProblemDataset
     singlePortSignalNetCount: number
   }
   cases: ProductionStressProblemCase[]
+}
+
+interface PlannedConnection {
+  netId: string
+  sourcePort: BreakoutPort
+  targetPort: BreakoutPort
+}
+
+type SupportedBoundarySide = "top" | "right" | "bottom"
+
+const getBoundarySide = (
+  point: Point,
+  bounds: RectBounds,
+): SupportedBoundarySide => {
+  if (point.y === bounds.minY) return "top"
+  if (point.x === bounds.maxX) return "right"
+  if (point.y === bounds.maxY) return "bottom"
+  throw new Error("Production dataset only supports top, right, and bottom")
+}
+
+const getBoundaryPosition = (
+  point: Point,
+  bounds: RectBounds,
+  side: SupportedBoundarySide,
+) => {
+  if (side === "top") return point.x - bounds.minX
+  if (side === "right") return point.y - bounds.minY
+  return bounds.maxX - point.x
+}
+
+const createPlannedConnections = (
+  breakoutPorts: BreakoutPort[],
+): PlannedConnection[] => {
+  const portsByNet = new Map<string, BreakoutPort[]>()
+  for (const port of breakoutPorts) {
+    const netPorts = portsByNet.get(port.netId) ?? []
+    netPorts.push(port)
+    portsByNet.set(port.netId, netPorts)
+  }
+
+  const connections: PlannedConnection[] = []
+  for (const [netId, unsortedPorts] of [...portsByNet].sort(([left], [right]) =>
+    left.localeCompare(right),
+  )) {
+    const ports = [...unsortedPorts].sort((left, right) =>
+      left.portId.localeCompare(right.portId),
+    )
+    if (ports.length < 2) continue
+    const rootPort = ports[0]!
+    for (const targetPort of ports.slice(1)) {
+      connections.push({
+        netId,
+        sourcePort: rootPort,
+        targetPort,
+      })
+    }
+  }
+  return connections
+}
+
+interface ConnectionEndpoint {
+  endpointKey: string
+  connectionIndex: number
+  port: BreakoutPort
+}
+
+const createViaPlan = (
+  caseId: string,
+  viaBoundary: RectBounds,
+  breakoutBoundary: RectBounds,
+  connections: PlannedConnection[],
+  random: SeededRandom,
+) => {
+  const endpoints: ConnectionEndpoint[] = connections.flatMap(
+    (connection, connectionIndex) => [
+      {
+        endpointKey: `${connectionIndex}:source`,
+        connectionIndex,
+        port: connection.sourcePort,
+      },
+      {
+        endpointKey: `${connectionIndex}:target`,
+        connectionIndex,
+        port: connection.targetPort,
+      },
+    ],
+  )
+  const viaPointByEndpointKey = new Map<string, Point>()
+  const viaPortIdByEndpointKey = new Map<string, string>()
+  let viaIndex = 0
+
+  for (const side of ["top", "right", "bottom"] as const) {
+    const sideEndpoints = endpoints
+      .filter(({ port }) => getBoundarySide(port, breakoutBoundary) === side)
+      .sort(
+        (left, right) =>
+          getBoundaryPosition(left.port, breakoutBoundary, side) -
+            getBoundaryPosition(right.port, breakoutBoundary, side) ||
+          left.connectionIndex - right.connectionIndex ||
+          left.endpointKey.localeCompare(right.endpointKey),
+      )
+
+    for (const [sideIndex, endpoint] of sideEndpoints.entries()) {
+      const evenFraction = (sideIndex + 1) / (sideEndpoints.length + 1)
+      const jitter = ((random.next() - 0.5) * 0.4) / (sideEndpoints.length + 1)
+      const fraction = evenFraction + jitter
+      const point =
+        side === "top"
+          ? {
+              x: roundCoordinate(
+                breakoutBoundary.minX +
+                  fraction * (breakoutBoundary.maxX - breakoutBoundary.minX),
+              ),
+              y: viaBoundary.minY,
+            }
+          : side === "right"
+            ? {
+                x: viaBoundary.maxX,
+                y: roundCoordinate(
+                  breakoutBoundary.minY +
+                    fraction * (breakoutBoundary.maxY - breakoutBoundary.minY),
+                ),
+              }
+            : {
+                x: roundCoordinate(
+                  breakoutBoundary.maxX -
+                    fraction * (breakoutBoundary.maxX - breakoutBoundary.minX),
+                ),
+                y: viaBoundary.maxY,
+              }
+      viaPointByEndpointKey.set(endpoint.endpointKey, point)
+      viaPortIdByEndpointKey.set(
+        endpoint.endpointKey,
+        `${caseId}-via-port-${viaIndex++}`,
+      )
+    }
+  }
+
+  const pairedEndpointKey = new Map<string, string>()
+  for (
+    let connectionIndex = 0;
+    connectionIndex < connections.length;
+    connectionIndex++
+  ) {
+    pairedEndpointKey.set(
+      `${connectionIndex}:source`,
+      `${connectionIndex}:target`,
+    )
+    pairedEndpointKey.set(
+      `${connectionIndex}:target`,
+      `${connectionIndex}:source`,
+    )
+  }
+
+  const viaPorts: ViaPort[] = endpoints.map(({ endpointKey }) => ({
+    portId: viaPortIdByEndpointKey.get(endpointKey)!,
+    pairedPortId: viaPortIdByEndpointKey.get(
+      pairedEndpointKey.get(endpointKey)!,
+    )!,
+    ...viaPointByEndpointKey.get(endpointKey)!,
+  }))
+  const knownRoutePlan: KnownRoutePlanConnection[] = connections.map(
+    (connection, connectionIndex) => ({
+      netId: connection.netId,
+      sourcePortId: connection.sourcePort.portId,
+      targetPortId: connection.targetPort.portId,
+      entryViaPortId: viaPortIdByEndpointKey.get(`${connectionIndex}:source`)!,
+      exitViaPortId: viaPortIdByEndpointKey.get(`${connectionIndex}:target`)!,
+    }),
+  )
+
+  return { viaPorts, knownRoutePlan }
 }
 
 const createProductionProblem = (
@@ -67,27 +249,6 @@ const createProductionProblem = (
     maxY: roundCoordinate(height - verticalMargin),
   }
 
-  const viaPoints = createBoundaryPoints(
-    viaBoundary,
-    PRODUCTION_VIA_COUNT,
-    random,
-  )
-  const shuffledViaIndexes = random.shuffle(
-    Array.from({ length: PRODUCTION_VIA_COUNT }, (_, index) => index),
-  )
-  const pairedIndexByIndex = new Map<number, number>()
-  for (let index = 0; index < shuffledViaIndexes.length; index += 2) {
-    const first = shuffledViaIndexes[index]!
-    const second = shuffledViaIndexes[index + 1]!
-    pairedIndexByIndex.set(first, second)
-    pairedIndexByIndex.set(second, first)
-  }
-  const viaPorts: ViaPort[] = viaPoints.map((point, index) => ({
-    portId: `${caseId}-via-port-${index}`,
-    pairedPortId: `${caseId}-via-port-${pairedIndexByIndex.get(index)!}`,
-    ...point,
-  }))
-
   const signalNetIds = Array.from(
     { length: SIGNAL_NET_COUNT },
     (_, index) => `signal-net-${index + 1}`,
@@ -106,6 +267,19 @@ const createProductionProblem = (
     PRODUCTION_BREAKOUT_PORT_COUNT,
     random,
   )
+  const breakoutPorts = breakoutPoints.map((point, index) => ({
+    portId: `${caseId}-breakout-port-${index}`,
+    netId: breakoutNetIds[index]!,
+    ...point,
+  }))
+  const plannedConnections = createPlannedConnections(breakoutPorts)
+  const { viaPorts, knownRoutePlan } = createViaPlan(
+    caseId,
+    viaBoundary,
+    breakoutBoundary,
+    plannedConnections,
+    random,
+  )
 
   return {
     caseId,
@@ -118,21 +292,19 @@ const createProductionProblem = (
       GND: POWER_NET_PORT_COUNT,
     },
     twoPortSignalNetCount: TWO_PORT_SIGNAL_NET_COUNT,
+    knownRoutePlan,
     problem: {
       viaBoundary: { ...viaBoundary, ports: viaPorts },
       breakoutBoundary: {
         ...breakoutBoundary,
-        ports: breakoutPoints.map((point, index) => ({
-          portId: `${caseId}-breakout-port-${index}`,
-          netId: breakoutNetIds[index]!,
-          ...point,
-        })),
+        ports: breakoutPorts,
       },
       options: {
         viaJumpCost: 0.25,
+        ripCost: 60,
         maxBlockersPerSearch: 4,
-        maxRipsPerRoute: 8,
-        maxTotalRips: 100,
+        maxRipsPerRoute: 24,
+        maxTotalRips: 300,
         maxSearchStates: 20_000,
         expansionsPerStep: 500,
       },
@@ -153,10 +325,11 @@ export const generateProductionStressDataset =
     )
 
     return {
-      datasetId: "production-boundary-problems-v1",
+      datasetId: "production-boundary-problems-v2",
       description:
-        "Deterministic production-shaped boundary-routing problems with 120 breakout ports across 80 nets and 80 paired via ports.",
+        "Deterministic known-feasible production-shaped boundary-routing problems with 120 breakout ports across 80 nets and 80 paired via ports.",
       seed: PRODUCTION_DATASET_SEED,
+      minimumSolvePercent: 50,
       profile: {
         viaCount: PRODUCTION_VIA_COUNT,
         breakoutPortCount: PRODUCTION_BREAKOUT_PORT_COUNT,

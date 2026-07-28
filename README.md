@@ -131,8 +131,8 @@ cases. The current Bun 1.3.2 macOS arm64 run produced:
 
 ### Production-shaped corpus
 
-`production-boundary-problems-v1` adds 20 deterministic random configurations
-of a fixed production-sized profile:
+`production-boundary-problems-v2` adds 20 deterministic, known-feasible random
+configurations of a fixed production-sized profile:
 
 - 80 reciprocally paired via ports;
 - 120 breakout ports across exactly 80 nets;
@@ -141,7 +141,13 @@ of a fixed production-sized profile:
 
 The two power nets each produce an 11-edge connection tree, while the 18
 two-port signal nets produce one route each. Singleton nets need no routing, so
-each sample has 40 route demands.
+each sample has 40 route demands. Every case includes an intersection-free
+route certificate used by dataset validation; the benchmark solver receives
+only the routing problem and must independently find a solution.
+
+The production profile routes smaller two-terminal nets before the merge-friendly
+power trees and uses scale-appropriate negotiated-routing limits:
+`ripCost: 60`, `maxRipsPerRoute: 24`, and `maxTotalRips: 300`.
 
 Regenerate and benchmark this corpus with:
 
@@ -150,12 +156,12 @@ bun run generate:production-stress-dataset
 bun run benchmark:production-stress
 ```
 
-On the same Bun 1.3.2 macOS arm64 environment, all 20 samples reached the
-configured total rip limit of 100:
+The production command enforces a 50% minimum solve rate and exits nonzero on a
+regression. On the same Bun 1.3.2 macOS arm64 environment, the current result is:
 
 | Via ports | Breakout ports | Nets | Samples solved | Successful p50/p95 | Attempt p50/p95 |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 80 | 120 | 80 | 0/20 (0%) | n/a | 120.10/145.41 ms |
+| 80 | 120 | 80 | 15/20 (75%) | 145.26/480.20 ms | 153.26/777.04 ms |
 
 The Cosmos fixture uses `GenericSolverDebugger`, showing pipeline stages,
 committed vector traces, via jumps, and the active A* frontier.

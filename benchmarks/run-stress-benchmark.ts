@@ -23,6 +23,10 @@ interface BenchmarkSummary {
   solvedTimeP95Ms: number | null
 }
 
+interface BenchmarkDataset extends StressProblemDataset {
+  minimumSolvePercent?: number
+}
+
 const roundMetric = (value: number) => Math.round(value * 100) / 100
 
 const percentile = (values: number[], probability: number) => {
@@ -86,7 +90,7 @@ const formatMetric = (value: number | null) =>
   value === null ? "n/a" : value.toFixed(2)
 
 const createMarkdownReport = (
-  dataset: StressProblemDataset,
+  dataset: BenchmarkDataset,
   reportTitle: string,
   generatedAt: string,
   overall: BenchmarkSummary,
@@ -117,6 +121,7 @@ const createMarkdownReport = (
 - Generated: ${generatedAt}
 - Runtime: Bun ${Bun.version} on ${process.platform}/${process.arch}
 - Percentile method: linear interpolation
+${dataset.minimumSolvePercent === undefined ? "" : `- Minimum solve target: ${dataset.minimumSolvePercent}%`}
 
 Successful-solve percentiles include solved cases only. Attempt percentiles include
 both solved and failed cases, measuring the wall-clock cost of every attempt.
@@ -153,7 +158,7 @@ const configuration =
     requestedBenchmark as keyof typeof benchmarkConfigurations
   ]
 const datasetPath = new URL(configuration.datasetPath, import.meta.url)
-const dataset = (await Bun.file(datasetPath).json()) as StressProblemDataset
+const dataset = (await Bun.file(datasetPath).json()) as BenchmarkDataset
 
 benchmarkCase(dataset.cases[0]!)
 
@@ -186,6 +191,7 @@ const report = {
     architecture: process.arch,
   },
   percentileMethod: "linear interpolation",
+  minimumSolvePercent: dataset.minimumSolvePercent ?? null,
   overall,
   byViaCount,
   results,
@@ -217,3 +223,12 @@ console.log(
       : `${overall.solvedTimeP50Ms.toFixed(2)}/${overall.solvedTimeP95Ms.toFixed(2)}ms`
   }; attempt p50/p95 ${overall.attemptTimeP50Ms.toFixed(2)}/${overall.attemptTimeP95Ms.toFixed(2)}ms`,
 )
+if (
+  dataset.minimumSolvePercent !== undefined &&
+  overall.solvePercent < dataset.minimumSolvePercent
+) {
+  console.error(
+    `Benchmark failed: ${overall.solvePercent.toFixed(2)}% solved is below the ${dataset.minimumSolvePercent.toFixed(2)}% target`,
+  )
+  process.exitCode = 1
+}
