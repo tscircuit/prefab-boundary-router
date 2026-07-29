@@ -662,6 +662,21 @@ const createAttempt = (
   },
 })
 
+const withViaJumpPenalty = (
+  preparedProblem: PreparedBoundaryRoutingProblem,
+): PreparedBoundaryRoutingProblem => {
+  const viaJumpCost = preparedProblem.options.viaJumpCost * 8
+  return {
+    ...preparedProblem,
+    options: { ...preparedProblem.options, viaJumpCost },
+    adjacency: preparedProblem.adjacency.map((edges) =>
+      edges.map((edge) =>
+        edge.kind === "via_jump" ? { ...edge, cost: viaJumpCost } : edge,
+      ),
+    ),
+  }
+}
+
 const createRoutingAttempts = (
   preparedProblem: PreparedBoundaryRoutingProblem,
 ): RoutingAttempt[] => {
@@ -670,6 +685,14 @@ const createRoutingAttempts = (
     preparedProblem,
     preparedProblem.demands,
   )
+  const rootStarDemands = buildNetDemands(
+    preparedProblem.problem.breakoutBoundary.ports,
+    preparedProblem.breakoutPortNodeById,
+    "root_star",
+  )
+  if (!demandsAreEqual(preparedProblem.demands, rootStarDemands)) {
+    attempts.push(createAttempt("root-star", preparedProblem, rootStarDemands))
+  }
   if (!demandsAreEqual(preparedProblem.demands, shortestFirstDemands)) {
     attempts.push(
       createAttempt(
@@ -678,14 +701,13 @@ const createRoutingAttempts = (
         shortestFirstDemands,
       ),
     )
-  }
-  const rootStarDemands = buildNetDemands(
-    preparedProblem.problem.breakoutBoundary.ports,
-    preparedProblem.breakoutPortNodeById,
-    "root_star",
-  )
-  if (!demandsAreEqual(preparedProblem.demands, rootStarDemands)) {
-    attempts.push(createAttempt("root-star", preparedProblem, rootStarDemands))
+    attempts.push(
+      createAttempt(
+        "nearest-tree-shortest-first-via-penalty",
+        withViaJumpPenalty(preparedProblem),
+        shortestFirstDemands,
+      ),
+    )
   }
   return attempts
 }

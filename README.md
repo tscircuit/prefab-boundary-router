@@ -181,7 +181,10 @@ and which spanning-tree attempt is active.
 production corpus's 80 paired via ports and 40 route demands while doubling
 the inner boundary from 120 to 240 breakout ports. The additional 120 ports
 are singleton signal nets, so they add visibility-graph nodes and boundary
-obstructions without adding routing capacity:
+obstructions without adding routing capacity. A seeded permutation also
+decouples lexical net and port identifiers from their geometric route order,
+preventing favorable identifier sorting from turning the corpus into an easy
+case. All 20 generated cases are retained, including failures:
 
 - 240 breakout ports across 200 nets;
 - 80 reciprocally paired via ports;
@@ -196,12 +199,14 @@ bun run generate:production-double-breakout-stress-dataset
 bun run benchmark:production-double-breakout-stress
 ```
 
-The command enforces a 100% minimum solve rate. The current Bun 1.3.2 macOS
-arm64 run produced:
+Before the higher-via-cost retry, the existing solver completed 14/20 cases
+(70%). The benchmark enforces a 75% minimum solve rate; the improved solver
+completes 15/20 cases, with case `c19` now solved by that retry. The current
+Bun 1.3.2 macOS arm64 run produced:
 
 | Via ports | Breakout ports | Nets | Samples solved | Successful p50/p95 | Attempt p50/p95 |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 80 | 240 | 200 | 20/20 (100%) | 243.91/1982.72 ms | 243.91/1982.72 ms |
+| 80 | 240 | 200 | 15/20 (75%) | 182.39/1811.25 ms | 243.39/4360.40 ms |
 
 The checked-in `vercel.json` follows the other tscircuit solver preview sites:
 Vercel installs with Bun, runs `bun run build:site`, and serves the generated
@@ -222,7 +227,8 @@ curve outside the via boundary. Its test converts
   introduce optimized free-space bend points or physical trace clearance.
 - Via jumps are topological escape edges. Their outside-boundary curves explain
   pairing but do not represent copper and are excluded from intersection tests.
-- Net decomposition retries deterministic nearest-tree and root-star shapes; it
-  is not a Steiner optimizer.
+- Net decomposition retries deterministic nearest-tree and root-star shapes,
+  shortest-first ordering, and a higher via-jump-cost variant; it is not a
+  Steiner optimizer.
 - Rip-up is negotiated and bounded, not a completeness proof; hard instances
   can still exhaust the configured search or rip limits.

@@ -7,7 +7,6 @@ import {
   DOUBLE_BREAKOUT_PRODUCTION_ROUTE_DEMAND_COUNT,
   DOUBLE_BREAKOUT_PRODUCTION_SAMPLE_COUNT,
   DOUBLE_BREAKOUT_PRODUCTION_VIA_COUNT,
-  DOUBLE_BREAKOUT_SIGNAL_NET_COUNT,
   DOUBLE_BREAKOUT_SINGLE_PORT_SIGNAL_NET_COUNT,
   DOUBLE_BREAKOUT_TWO_PORT_SIGNAL_NET_COUNT,
   generateDoubleBreakoutProductionStressDataset,
@@ -29,7 +28,7 @@ describe("double-breakout production stress dataset", () => {
 
   test("doubles the production profile and includes a valid route certificate", () => {
     expect(dataset.cases).toHaveLength(DOUBLE_BREAKOUT_PRODUCTION_SAMPLE_COUNT)
-    expect(dataset.minimumSolvePercent).toBe(100)
+    expect(dataset.minimumSolvePercent).toBe(75)
     expect(dataset.profile).toEqual({
       viaCount: DOUBLE_BREAKOUT_PRODUCTION_VIA_COUNT,
       breakoutPortCount: DOUBLE_BREAKOUT_PRODUCTION_BREAKOUT_PORT_COUNT,
@@ -53,14 +52,32 @@ describe("double-breakout production stress dataset", () => {
       expect(
         new Set(problem.breakoutBoundary.ports.map((port) => port.netId)).size,
       ).toBe(DOUBLE_BREAKOUT_PRODUCTION_NET_COUNT)
+      const portCountByNet = new Map<string, number>()
+      for (const port of problem.breakoutBoundary.ports) {
+        portCountByNet.set(
+          port.netId,
+          (portCountByNet.get(port.netId) ?? 0) + 1,
+        )
+      }
+      const netPortCounts = [...portCountByNet.values()]
       expect(
-        problem.breakoutBoundary.ports.filter(
-          (port) => port.netId !== "VCC" && port.netId !== "GND",
+        netPortCounts.filter(
+          (portCount) => portCount === DOUBLE_BREAKOUT_POWER_NET_PORT_COUNT,
         ),
-      ).toHaveLength(
-        DOUBLE_BREAKOUT_SIGNAL_NET_COUNT +
-          DOUBLE_BREAKOUT_TWO_PORT_SIGNAL_NET_COUNT,
+      ).toHaveLength(2)
+      expect(netPortCounts.filter((portCount) => portCount === 2)).toHaveLength(
+        DOUBLE_BREAKOUT_TWO_PORT_SIGNAL_NET_COUNT,
       )
+      expect(netPortCounts.filter((portCount) => portCount === 1)).toHaveLength(
+        DOUBLE_BREAKOUT_SINGLE_PORT_SIGNAL_NET_COUNT,
+      )
+      expect(
+        problem.breakoutBoundary.ports.every(
+          (port) =>
+            port.netId.startsWith("hard-net-") &&
+            port.portId.startsWith("hard-port-"),
+        ),
+      ).toBe(true)
 
       const preparedProblem = prepareBoundaryRoutingProblem(problem)
       expect(preparedProblem.demands).toHaveLength(

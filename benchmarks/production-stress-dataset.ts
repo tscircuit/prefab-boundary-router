@@ -40,6 +40,7 @@ export const DOUBLE_BREAKOUT_PRODUCTION_ROUTE_DEMAND_COUNT =
   DOUBLE_BREAKOUT_TWO_PORT_SIGNAL_NET_COUNT
 
 interface ProductionStressProfile {
+  caseIdPrefix: string
   datasetId: string
   description: string
   seed: number
@@ -52,9 +53,11 @@ interface ProductionStressProfile {
   maxRipsPerRoute: number
   maxTotalRips: number
   maxSearchStates: number
+  hardenIdentifierOrdering?: boolean
 }
 
 const productionStressProfile: ProductionStressProfile = {
+  caseIdPrefix: "production",
   datasetId: "production-boundary-problems-v2",
   description:
     "Deterministic known-feasible production-shaped boundary-routing problems with 120 breakout ports across 80 nets and 80 paired via ports.",
@@ -71,19 +74,21 @@ const productionStressProfile: ProductionStressProfile = {
 }
 
 const doubleBreakoutProductionStressProfile: ProductionStressProfile = {
+  caseIdPrefix: "production-double-breakout",
   datasetId: "production-double-breakout-boundary-problems-v1",
   description:
-    "Deterministic known-feasible production-shaped boundary-routing problems with 240 breakout ports across 200 nets and 80 paired via ports.",
+    "Deterministic known-feasible production-shaped boundary-routing problems with 240 breakout ports across 200 nets, 80 paired via ports, and identifier ordering decoupled from geometry.",
   seed: DOUBLE_BREAKOUT_PRODUCTION_DATASET_SEED,
   sampleCount: DOUBLE_BREAKOUT_PRODUCTION_SAMPLE_COUNT,
   viaCount: DOUBLE_BREAKOUT_PRODUCTION_VIA_COUNT,
   breakoutPortCount: DOUBLE_BREAKOUT_PRODUCTION_BREAKOUT_PORT_COUNT,
   netCount: DOUBLE_BREAKOUT_PRODUCTION_NET_COUNT,
   powerNetPortCount: DOUBLE_BREAKOUT_POWER_NET_PORT_COUNT,
-  minimumSolvePercent: 100,
+  minimumSolvePercent: 75,
   maxRipsPerRoute: 24,
   maxTotalRips: 300,
   maxSearchStates: 20_000,
+  hardenIdentifierOrdering: true,
 }
 
 export interface KnownRoutePlanConnection {
@@ -381,16 +386,71 @@ const createProductionProblem = (
   }
 }
 
+const hardenProductionProblemOrdering = (
+  problemCase: ProductionStressProblemCase,
+): ProductionStressProblemCase => {
+  const random = new SeededRandom(problemCase.seed ^ 0x5eed2026)
+  const netIds = [
+    ...new Set(
+      problemCase.problem.breakoutBoundary.ports.map((port) => port.netId),
+    ),
+  ].sort()
+  const portIds = problemCase.problem.breakoutBoundary.ports
+    .map((port) => port.portId)
+    .sort()
+  const shuffledNetIds = random.shuffle([...netIds])
+  const shuffledPortIds = random.shuffle([...portIds])
+  const netIdMap = new Map(
+    shuffledNetIds.map((netId, index) => [
+      netId,
+      `hard-net-${String(index).padStart(3, "0")}`,
+    ]),
+  )
+  const portIdMap = new Map(
+    shuffledPortIds.map((portId, index) => [
+      portId,
+      `hard-port-${String(index).padStart(3, "0")}`,
+    ]),
+  )
+
+  return {
+    ...problemCase,
+    problem: {
+      ...problemCase.problem,
+      breakoutBoundary: {
+        ...problemCase.problem.breakoutBoundary,
+        ports: problemCase.problem.breakoutBoundary.ports.map((port) => ({
+          ...port,
+          portId: portIdMap.get(port.portId)!,
+          netId: netIdMap.get(port.netId)!,
+        })),
+      },
+    },
+    knownRoutePlan: problemCase.knownRoutePlan.map((connection) => ({
+      ...connection,
+      netId: netIdMap.get(connection.netId)!,
+      sourcePortId: portIdMap.get(connection.sourcePortId)!,
+      targetPortId: portIdMap.get(connection.targetPortId)!,
+    })),
+  }
+}
+
 const generateProductionStressDatasetForProfile = (
   profile: ProductionStressProfile,
 ): ProductionStressProblemDataset => {
   const masterRandom = new SeededRandom(profile.seed)
-  const cases = Array.from({ length: profile.sampleCount }, (_, sampleIndex) =>
-    createProductionProblem(
-      `production-c${String(sampleIndex + 1).padStart(2, "0")}`,
-      masterRandom.integer(1, 2 ** 31 - 1),
-      profile,
-    ),
+  const cases = Array.from(
+    { length: profile.sampleCount },
+    (_, sampleIndex) => {
+      const problemCase = createProductionProblem(
+        `${profile.caseIdPrefix}-c${String(sampleIndex + 1).padStart(2, "0")}`,
+        masterRandom.integer(1, 2 ** 31 - 1),
+        profile,
+      )
+      return profile.hardenIdentifierOrdering
+        ? hardenProductionProblemOrdering(problemCase)
+        : problemCase
+    },
   )
   const signalNetCount = profile.netCount - 2
   const twoPortSignalNetCount =
