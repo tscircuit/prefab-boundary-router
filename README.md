@@ -175,6 +175,34 @@ fresh `GenericSolverDebugger` for the selected problem. The debugger shows
 pipeline stages, committed vector traces, via jumps, the active A* frontier,
 and which spanning-tree attempt is active.
 
+### Double-breakout production corpus
+
+`production-double-breakout-boundary-problems-v1` keeps the original
+production corpus's 80 paired via ports and 40 route demands while doubling
+the inner boundary from 120 to 240 breakout ports. The additional 120 ports
+are singleton signal nets, so they add visibility-graph nodes and boundary
+obstructions without adding routing capacity:
+
+- 240 breakout ports across 200 nets;
+- 80 reciprocally paired via ports;
+- 12 VCC ports and 12 GND ports;
+- 18 two-port signal nets and 180 singleton signal nets;
+- 40 route demands with a checked non-intersecting route certificate.
+
+Regenerate and benchmark the harder corpus with:
+
+```sh
+bun run generate:production-double-breakout-stress-dataset
+bun run benchmark:production-double-breakout-stress
+```
+
+The command enforces a 100% minimum solve rate. The current Bun 1.3.2 macOS
+arm64 run produced:
+
+| Via ports | Breakout ports | Nets | Samples solved | Successful p50/p95 | Attempt p50/p95 |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 80 | 240 | 200 | 20/20 (100%) | 243.91/1982.72 ms | 243.91/1982.72 ms |
+
 The checked-in `vercel.json` follows the other tscircuit solver preview sites:
 Vercel installs with Bun, runs `bun run build:site`, and serves the generated
 `cosmos-export` directory. The repository is connected to Vercel's Git

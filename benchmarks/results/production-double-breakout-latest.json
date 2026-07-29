@@ -1,0 +1,254 @@
+{
+  "datasetId": "production-double-breakout-boundary-problems-v1",
+  "datasetSeed": 20260730,
+  "generatedAt": "2026-07-29T02:17:50.648Z",
+  "runtime": {
+    "bun": "1.3.2",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "percentileMethod": "linear interpolation",
+  "minimumSolvePercent": 100,
+  "overall": {
+    "caseCount": 20,
+    "solvedCount": 20,
+    "solvePercent": 100,
+    "attemptTimeP50Ms": 243.91,
+    "attemptTimeP95Ms": 1982.72,
+    "solvedTimeP50Ms": 243.91,
+    "solvedTimeP95Ms": 1982.72
+  },
+  "byViaCount": {
+    "80": {
+      "caseCount": 20,
+      "solvedCount": 20,
+      "solvePercent": 100,
+      "attemptTimeP50Ms": 243.91,
+      "attemptTimeP95Ms": 1982.72,
+      "solvedTimeP50Ms": 243.91,
+      "solvedTimeP95Ms": 1982.72
+    }
+  },
+  "results": [
+    {
+      "caseId": "production-c01",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 83.15,
+      "ripCount": 3,
+      "expandedStateCount": 264,
+      "error": null
+    },
+    {
+      "caseId": "production-c02",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 161.21,
+      "ripCount": 18,
+      "expandedStateCount": 785,
+      "error": null
+    },
+    {
+      "caseId": "production-c03",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 139.26,
+      "ripCount": 21,
+      "expandedStateCount": 876,
+      "error": null
+    },
+    {
+      "caseId": "production-c04",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 826.22,
+      "ripCount": 216,
+      "expandedStateCount": 7530,
+      "error": null
+    },
+    {
+      "caseId": "production-c05",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 59.68,
+      "ripCount": 2,
+      "expandedStateCount": 254,
+      "error": null
+    },
+    {
+      "caseId": "production-c06",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 170.62,
+      "ripCount": 49,
+      "expandedStateCount": 1455,
+      "error": null
+    },
+    {
+      "caseId": "production-c07",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 1893.99,
+      "ripCount": 151,
+      "expandedStateCount": 20696,
+      "error": null
+    },
+    {
+      "caseId": "production-c08",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 203.09,
+      "ripCount": 46,
+      "expandedStateCount": 1683,
+      "error": null
+    },
+    {
+      "caseId": "production-c09",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 1704.44,
+      "ripCount": 434,
+      "expandedStateCount": 15123,
+      "error": null
+    },
+    {
+      "caseId": "production-c10",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 975.81,
+      "ripCount": 254,
+      "expandedStateCount": 7801,
+      "error": null
+    },
+    {
+      "caseId": "production-c11",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 1020.07,
+      "ripCount": 423,
+      "expandedStateCount": 9026,
+      "error": null
+    },
+    {
+      "caseId": "production-c12",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 139.11,
+      "ripCount": 18,
+      "expandedStateCount": 696,
+      "error": null
+    },
+    {
+      "caseId": "production-c13",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 124.16,
+      "ripCount": 25,
+      "expandedStateCount": 926,
+      "error": null
+    },
+    {
+      "caseId": "production-c14",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 284.72,
+      "ripCount": 59,
+      "expandedStateCount": 2786,
+      "error": null
+    },
+    {
+      "caseId": "production-c15",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 2272.28,
+      "ripCount": 332,
+      "expandedStateCount": 32826,
+      "error": null
+    },
+    {
+      "caseId": "production-c16",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 87.62,
+      "ripCount": 21,
+      "expandedStateCount": 572,
+      "error": null
+    },
+    {
+      "caseId": "production-c17",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 396.68,
+      "ripCount": 131,
+      "expandedStateCount": 3366,
+      "error": null
+    },
+    {
+      "caseId": "production-c18",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 1967.48,
+      "ripCount": 425,
+      "expandedStateCount": 26565,
+      "error": null
+    },
+    {
+      "caseId": "production-c19",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 329.87,
+      "ripCount": 71,
+      "expandedStateCount": 2430,
+      "error": null
+    },
+    {
+      "caseId": "production-c20",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 164.22,
+      "ripCount": 35,
+      "expandedStateCount": 1002,
+      "error": null
+    }
+  ]
+}

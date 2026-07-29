@@ -146,6 +146,12 @@ const benchmarkConfigurations = {
     markdownOutputPath: "./results/production-latest.md",
     reportTitle: "Production-shaped boundary stress benchmark",
   },
+  "production-double-breakout": {
+    datasetPath: "./datasets/production-double-breakout-boundary-problems.json",
+    jsonOutputPath: "./results/production-double-breakout-latest.json",
+    markdownOutputPath: "./results/production-double-breakout-latest.md",
+    reportTitle: "Double-breakout production boundary stress benchmark",
+  },
 } as const
 const requestedBenchmark = process.argv[2] ?? "size-sweep"
 if (!(requestedBenchmark in benchmarkConfigurations)) {
