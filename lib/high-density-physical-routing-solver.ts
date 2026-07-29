@@ -1429,8 +1429,18 @@ export class HighDensityPhysicalRoutingSolver extends BaseSolver {
   }
 
   override visualize(): GraphicsObject {
+    const viaPortNetIdByPortId = new Map<string, string>()
+    for (const assignment of this.assignedProblem.demandAssignments) {
+      if (!assignment.viaPair) continue
+      viaPortNetIdByPortId.set(assignment.viaPair.firstPortId, assignment.netId)
+      viaPortNetIdByPortId.set(
+        assignment.viaPair.secondPortId,
+        assignment.netId,
+      )
+    }
     const initial = visualizeProblem(
       this.assignedProblem.preparedProblem.problem,
+      { viaPortNetIdByPortId },
     )
     const solution = this.output
     if (!solution) return initial

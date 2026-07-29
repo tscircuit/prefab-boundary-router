@@ -5,7 +5,9 @@ import {
   getUniqueViaPairs,
   getViaPairColor,
   getViaPairCurvePoints,
+  netColor,
   segmentIntersectsRectInterior,
+  visualizeProblem,
 } from "../lib/geometry"
 import { assertValidSolution } from "./fixtures/assert-valid-solution"
 import { eightBreakoutTwentyViaProblem } from "./fixtures/eight-breakout-twenty-via-problem"
@@ -27,6 +29,19 @@ test("routes 8 breakout points through 20 paired via points", async () => {
     getViaPairColor(eightBreakoutTwentyViaProblem, first.portId, second.portId),
   )
   expect(new Set(pairColors).size).toBe(viaPairs.length)
+  const assignedVisualization = visualizeProblem(
+    eightBreakoutTwentyViaProblem,
+    {
+      viaPortNetIdByPortId: new Map([
+        ["via-0", "connectivity_net_A"],
+        ["via-10", "connectivity_net_A"],
+      ]),
+    },
+  )
+  expect(
+    assignedVisualization.lines?.find((line) => line.label === "via-0 ↔ via-10")
+      ?.strokeColor,
+  ).toBe(netColor("connectivity_net_A"))
   for (const [first, second] of viaPairs) {
     const parabola = getViaPairCurvePoints(
       eightBreakoutTwentyViaProblem,

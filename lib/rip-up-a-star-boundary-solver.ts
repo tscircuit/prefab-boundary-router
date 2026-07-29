@@ -1,7 +1,6 @@
 import { BaseSolver } from "@tscircuit/solver-utils"
 import type { GraphicsObject } from "graphics-debug"
 import {
-  getViaPairColor,
   getViaPairCurvePoints,
   netColor,
   segmentsIntersect,
@@ -552,7 +551,15 @@ class SingleAttemptRipUpAStarBoundarySolver extends BaseSolver {
   }
 
   override visualize(): GraphicsObject {
-    const initial = visualizeProblem(this.preparedProblem.problem)
+    const viaPortNetIdByPortId = new Map<string, string>()
+    for (const route of this.committed.values()) {
+      for (const viaPortId of route.usedViaPortIds) {
+        viaPortNetIdByPortId.set(viaPortId, route.netId)
+      }
+    }
+    const initial = visualizeProblem(this.preparedProblem.problem, {
+      viaPortNetIdByPortId,
+    })
     const lines = [...(initial.lines ?? [])]
     const points = [...(initial.points ?? [])]
 
@@ -572,11 +579,7 @@ class SingleAttemptRipUpAStarBoundarySolver extends BaseSolver {
               segment.entryPortId,
               segment.exitPortId,
             ),
-            strokeColor: getViaPairColor(
-              this.preparedProblem.problem,
-              segment.entryPortId,
-              segment.exitPortId,
-            ),
+            strokeColor: color,
             strokeWidth: 0.14,
             strokeDash: "5 2",
             label: `${segment.entryPortId} ↔ ${segment.exitPortId}`,

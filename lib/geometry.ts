@@ -378,6 +378,11 @@ export const getViaPairCurvePoints = (
 
 export const visualizeProblem = (
   problem: BoundaryRoutingProblem,
+  {
+    viaPortNetIdByPortId = new Map(),
+  }: {
+    viaPortNetIdByPortId?: ReadonlyMap<string, string>
+  } = {},
 ): GraphicsObject => ({
   coordinateSystem: "cartesian",
   title: "Vector boundary routing problem",
@@ -395,7 +400,9 @@ export const visualizeProblem = (
     ...problem.viaBoundary.ports.map((port) => ({
       x: port.x,
       y: port.y,
-      color: "#7c3aed",
+      color: viaPortNetIdByPortId.has(port.portId)
+        ? netColor(viaPortNetIdByPortId.get(port.portId)!)
+        : "#7c3aed",
       label: `${port.portId} → ${port.pairedPortId}`,
     })),
   ],
@@ -404,7 +411,12 @@ export const visualizeProblem = (
     rectOutline(problem.breakoutBoundary, "#475569", "breakout boundary"),
     ...getUniqueViaPairs(problem).map(([first, second]) => ({
       points: getViaPairCurvePoints(problem, first.portId, second.portId),
-      strokeColor: getViaPairColor(problem, first.portId, second.portId),
+      strokeColor:
+        viaPortNetIdByPortId.get(first.portId) ===
+          viaPortNetIdByPortId.get(second.portId) &&
+        viaPortNetIdByPortId.has(first.portId)
+          ? netColor(viaPortNetIdByPortId.get(first.portId)!)
+          : getViaPairColor(problem, first.portId, second.portId),
       strokeWidth: 0.065,
       strokeDash: "2.5 3",
       label: `${first.portId} ↔ ${second.portId}`,
