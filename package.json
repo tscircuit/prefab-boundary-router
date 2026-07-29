@@ -1,7 +1,7 @@
 {
   "name": "@tscircuit/prefab-boundary-router",
   "version": "0.0.12",
-  "description": "A* breakout-boundary router with paired via escapes and negotiated rip-up",
+  "description": "Pipeline router with discrete prefab-via assignment and high-density physical routing",
   "type": "module",
   "module": "lib/index.ts",
   "license": "MIT",
@@ -38,6 +38,7 @@
     "dev": "cosmos"
   },
   "dependencies": {
+    "@tscircuit/high-density-b01": "https://jscdn.tscircuit.com/@tscircuit/high-density-b01/latest.tgz",
     "@tscircuit/solver-utils": "^0.0.16",
     "graphics-debug": "^0.0.86"
   },

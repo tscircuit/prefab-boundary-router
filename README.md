@@ -20,34 +20,23 @@ All identifier fields are role-prefixed: `portId`, `pairedPortId`, `netId`,
 
 ## Pipeline
 
-`BoundaryRoutingPipelineSolver` is a two-stage `BasePipelineSolver`:
+`BoundaryRoutingPipelineSolver` is a three-stage `BasePipelineSolver`:
 
-1. `PrepareBoundaryRoutingProblemSolver` validates the geometry, creates a
-   continuous visibility graph whose nodes are breakout and via ports, adds
-   paired-via jump edges, and reduces each multi-terminal net to a deterministic
-   tree of two-terminal demands.
-2. `RipUpAStarBoundarySolver` routes those demands incrementally with A*. If
-   the nearest-tree attempt exhausts its bounded search, it retries with a
-   root-star decomposition for multi-terminal nets. Both attempts use the same
-   vector graph, negotiated rip-up rules, and caller-supplied limits.
+1. `PrepareBoundaryRoutingProblemSolver` validates the geometry and reduces
+   each multi-terminal net to deterministic two-terminal demands.
+2. `ViaBoundaryAssignmentSolver` solves only the discrete problem. Same-side
+   demands stay local; other demands claim reciprocal prefab-via pairs. A pair
+   can be reused by its owning net but cannot be assigned to a different net.
+3. `HighDensityPhysicalRoutingSolver` turns those assignments into concrete
+   point pairs and routes their copper with
+   `@tscircuit/high-density-b01`. Assignment never treats a logical via jump as
+   physical copper.
 
-There is no raster or routing grid. Trace edges are direct Euclidean vectors
-between mutually visible graph nodes, so solutions naturally contain arbitrary
-angles. The A* heuristic is an exact uncongested distance map over that graph
-and remains admissible when a via jump is cheaper than its geometric distance.
-
-## Rip-up behavior
-
-An A* state carries the sorted set of committed foreign routes its candidate
-path would intersect or whose via resources it would occupy. Adding a new
-blocker pays `ripCost`; each intersecting candidate edge pays `crossingCost`.
-When the candidate reaches its goal, only those blocker routes are removed and
-requeued.
-
-Every edge removed by rip-up receives `historyIncrement`. This negotiated
-congestion cost makes repeatedly contested vector paths more expensive on
-subsequent attempts. The per-search blocker count, per-route rip count, total
-rip count, and A* state count are all bounded.
+Each B01 input contains only the bounding box of the point pair, expanded by
+`options.highDensityRoutingMargin` (3 mm by default) and clamped to
+`viaBoundary`. Long boundary runs are split into local handoffs, keeping every
+B01 routing window within its 15×15 mm limit instead of rasterizing the full
+board.
 
 ## Installation
 
@@ -87,7 +76,10 @@ const problem: BoundaryRoutingProblem = {
       { portId: "p2", netId: "signal", x: 8, y: 5 },
     ],
   },
-  options: { viaJumpCost: 0.25 },
+  options: {
+    viaJumpCost: 0.25,
+    highDensityRoutingMargin: 3,
+  },
 }
 
 const solver = new BoundaryRoutingPipelineSolver(problem)
@@ -96,6 +88,29 @@ solver.solve()
 if (solver.failed) throw new Error(solver.error ?? "routing failed")
 console.log(solver.getOutput())
 ```
+
+## Geometry validation
+
+Every pipeline result is validated before it is marked solved, including
+results produced by the legacy fallback. Different-net copper is checked for
+same-layer trace crossings and clearance violations, trace-to-via conflicts,
+and via-to-via conflicts.
+
+The validator is also available for callers that load or transform a solution:
+
+```ts
+import {
+  findDifferentNetGeometryViolations,
+  validateBoundaryRoutingSolutionGeometry,
+} from "@tscircuit/prefab-boundary-router"
+
+const violations = findDifferentNetGeometryViolations(solution)
+validateBoundaryRoutingSolutionGeometry(solution) // throws when invalid
+```
+
+Crossings between different layers and intersections between branches of the
+same net are allowed. Pass `{ clearance: 0.15 }` to require additional spacing
+beyond the physical trace and via dimensions.
 
 Run the project with:
 
@@ -186,7 +201,9 @@ ports on the same three sides of the outer boundary. Each via pair gets a
 unique color and is drawn as a slightly irregular, line-segmented parabolic
 curve outside the via boundary. Its test converts
 `solver.visualize()` with `getSvgFromGraphicsObject` and checks the result with
-`bun-match-svg`'s `toMatchSvgSnapshot`.
+`bun-match-svg`'s `toMatchSvgSnapshot`. A second named `layered-routing`
+snapshot isolates physical copper, draws bottom-layer traces dashed, and marks
+B01 layer-transition vias.
 
 ## Prototype limits
 
