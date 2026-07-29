@@ -92,9 +92,10 @@ export const fourNetProblem: BoundaryRoutingProblem = {
   },
 }
 
-test.failing("routes the four-net Clad1 incremental handoff", () => {
+test("routes the four-net Clad1 incremental handoff", () => {
   const solver = new BoundaryRoutingPipelineSolver(fourNetProblem)
   solver.solve()
 
   expect(solver.solved).toBe(true)
+  expect(solver.routingSolver?.stats.attempt).toBe(1)
 }, 60_000)
