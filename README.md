@@ -3,6 +3,8 @@
 `@tscircuit/prefab-boundary-router` is a standalone TypeScript solver built
 around `@tscircuit/solver-utils`.
 
+[Browse and debug the example problems in the Cosmos preview.](https://prefab-boundary-router.vercel.app)
+
 It connects nets through the continuous region between two rectangular
 boundaries:
 
@@ -24,7 +26,10 @@ All identifier fields are role-prefixed: `portId`, `pairedPortId`, `netId`,
    continuous visibility graph whose nodes are breakout and via ports, adds
    paired-via jump edges, and reduces each multi-terminal net to a deterministic
    tree of two-terminal demands.
-2. `RipUpAStarBoundarySolver` routes those demands incrementally with A*.
+2. `RipUpAStarBoundarySolver` routes those demands incrementally with A*. If
+   the nearest-tree attempt exhausts its bounded search, it retries with a
+   root-star decomposition for multi-terminal nets. Both attempts use the same
+   vector graph, negotiated rip-up rules, and caller-supplied limits.
 
 There is no raster or routing grid. Trace edges are direct Euclidean vectors
 between mutually visible graph nodes, so solutions naturally contain arbitrary
@@ -98,6 +103,7 @@ Run the project with:
 bun install
 bun run test
 bun run build
+bun run build:site
 ```
 
 ## Stress benchmark
@@ -156,15 +162,23 @@ bun run generate:production-stress-dataset
 bun run benchmark:production-stress
 ```
 
-The production command enforces a 50% minimum solve rate and exits nonzero on a
+The production command enforces a 100% minimum solve rate and exits nonzero on a
 regression. On the same Bun 1.3.2 macOS arm64 environment, the current result is:
 
 | Via ports | Breakout ports | Nets | Samples solved | Successful p50/p95 | Attempt p50/p95 |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 80 | 120 | 80 | 15/20 (75%) | 145.26/480.20 ms | 153.26/777.04 ms |
+| 80 | 120 | 80 | 20/20 (100%) | 150.24/906.75 ms | 150.24/906.75 ms |
 
-The Cosmos fixture uses `GenericSolverDebugger`, showing pipeline stages,
-committed vector traces, via jumps, and the active A* frontier.
+The production Cosmos fixture makes all 20 samples browsable with sample tabs,
+previous/next controls, URL query state, checked-in benchmark metrics, and a
+fresh `GenericSolverDebugger` for the selected problem. The debugger shows
+pipeline stages, committed vector traces, via jumps, the active A* frontier,
+and which spanning-tree attempt is active.
+
+The checked-in `vercel.json` follows the other tscircuit solver preview sites:
+Vercel installs with Bun, runs `bun run build:site`, and serves the generated
+`cosmos-export` directory. The repository is connected to Vercel's Git
+integration, so pushes and pull requests automatically receive deployments.
 
 `fixtures/eight-breakout-twenty-via.fixture.tsx` provides a larger visual
 example with eight breakout ports on the top, right, and bottom and twenty via
@@ -180,6 +194,7 @@ curve outside the via boundary. Its test converts
   introduce optimized free-space bend points or physical trace clearance.
 - Via jumps are topological escape edges. Their outside-boundary curves explain
   pairing but do not represent copper and are excluded from intersection tests.
-- Net decomposition is a deterministic nearest-tree, not a Steiner optimizer.
+- Net decomposition retries deterministic nearest-tree and root-star shapes; it
+  is not a Steiner optimizer.
 - Rip-up is negotiated and bounded, not a completeness proof; hard instances
   can still exhaust the configured search or rip limits.

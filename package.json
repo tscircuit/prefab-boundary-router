@@ -12,6 +12,7 @@
     "type": "git",
     "url": "https://github.com/tscircuit/prefab-boundary-router.git"
   },
+  "homepage": "https://prefab-boundary-router.vercel.app",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
@@ -23,6 +24,7 @@
   },
   "scripts": {
     "build": "bunx tsc --noEmit",
+    "build:site": "cosmos-export",
     "test": "bun run setup:test-deps && bun test",
     "setup:test-deps": "bun run --cwd node_modules/sharp install",
     "generate:stress-dataset": "bun benchmarks/generate-stress-dataset.ts",
@@ -32,7 +34,8 @@
     "lint": "biome check .",
     "format": "biome format --write .",
     "format:check": "biome format .",
-    "start": "cosmos"
+    "start": "cosmos",
+    "dev": "cosmos"
   },
   "dependencies": {
     "@tscircuit/solver-utils": "^0.0.16",

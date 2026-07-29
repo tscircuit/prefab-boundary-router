@@ -8,6 +8,7 @@ import {
   visualizeProblem,
 } from "./geometry"
 import { MinHeap } from "./min-heap"
+import { buildNetDemands } from "./prepare-boundary-routing-problem-solver"
 import type {
   BoundaryRoutingSolution,
   BoundaryRoutingStats,
@@ -41,7 +42,7 @@ const stateKey = (graphNode: number, blockers: readonly string[]) =>
 const insertSortedUnique = (values: readonly string[], additions: string[]) =>
   [...new Set([...values, ...additions])].sort()
 
-export class RipUpAStarBoundarySolver extends BaseSolver {
+class SingleAttemptRipUpAStarBoundarySolver extends BaseSolver {
   private readonly viaOwners = new Map<string, Set<string>>()
   private readonly historyCostByEdge = new Map<string, number>()
   private readonly committed = new Map<string, RoutedConnection>()
@@ -601,6 +602,189 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
       title: `Vector rip-up A* (${this.committed.size}/${this.preparedProblem.demands.length} routes, ${this.totalRipCount} rips)`,
       lines,
       points,
+    }
+  }
+
+  override preview() {
+    return this.visualize()
+  }
+}
+
+interface RoutingAttempt {
+  name: string
+  preparedProblem: PreparedBoundaryRoutingProblem
+}
+
+const demandsAreEqual = (
+  left: readonly RouteDemand[],
+  right: readonly RouteDemand[],
+) =>
+  left.length === right.length &&
+  left.every(
+    (demand, index) =>
+      demand.routeId === right[index]?.routeId &&
+      demand.sourceNode === right[index]?.sourceNode &&
+      demand.targetNode === right[index]?.targetNode,
+  )
+
+const createRoutingAttempts = (
+  preparedProblem: PreparedBoundaryRoutingProblem,
+): RoutingAttempt[] => {
+  const attempts: RoutingAttempt[] = [{ name: "nearest-tree", preparedProblem }]
+  const rootStarDemands = buildNetDemands(
+    preparedProblem.problem.breakoutBoundary.ports,
+    preparedProblem.breakoutPortNodeById,
+    "root_star",
+  )
+  if (!demandsAreEqual(preparedProblem.demands, rootStarDemands)) {
+    attempts.push({
+      name: "root-star",
+      preparedProblem: {
+        ...preparedProblem,
+        demands: rootStarDemands,
+        demandById: new Map(
+          rootStarDemands.map((demand) => [demand.routeId, demand]),
+        ),
+      },
+    })
+  }
+  return attempts
+}
+
+export class RipUpAStarBoundarySolver extends BaseSolver {
+  private readonly attempts: RoutingAttempt[]
+  private readonly failedAttemptErrors: string[] = []
+  private readonly completedAttemptStats: BoundaryRoutingStats[] = []
+  private attemptIndex = 0
+  private attemptSolver: SingleAttemptRipUpAStarBoundarySolver
+
+  constructor(
+    private readonly preparedProblem: PreparedBoundaryRoutingProblem,
+  ) {
+    super()
+    this.attempts = createRoutingAttempts(preparedProblem)
+    this.attemptSolver = this.createAttemptSolver()
+    this.MAX_ITERATIONS = Math.max(
+      100_000,
+      this.attemptSolver.MAX_ITERATIONS * this.attempts.length + 100,
+    )
+    this.updateAttemptStats()
+  }
+
+  override getSolverName() {
+    return "RipUpAStarBoundarySolver"
+  }
+
+  override getConstructorParams(): [PreparedBoundaryRoutingProblem] {
+    return [this.preparedProblem]
+  }
+
+  get activeDemand() {
+    return this.attemptSolver.activeDemand
+  }
+
+  get committedRoutes() {
+    return this.attemptSolver.committedRoutes
+  }
+
+  get pendingRouteIds() {
+    return this.attemptSolver.pendingRouteIds
+  }
+
+  override _step() {
+    try {
+      this.attemptSolver.step()
+    } catch (error) {
+      if (!this.attemptSolver.failed) throw error
+    }
+
+    if (this.attemptSolver.solved) {
+      this.solved = true
+      this.progress = 1
+      this.updateAttemptStats()
+      return
+    }
+
+    if (this.attemptSolver.failed) {
+      this.failedAttemptErrors.push(
+        `${this.attempts[this.attemptIndex]!.name}: ${
+          this.attemptSolver.error || "routing failed"
+        }`,
+      )
+      if (this.attemptIndex + 1 < this.attempts.length) {
+        this.completedAttemptStats.push(this.attemptSolver.getOutput().stats)
+        this.attemptIndex++
+        this.attemptSolver = this.createAttemptSolver()
+        this.progress = 0
+        this.updateAttemptStats()
+        return
+      }
+      this.error = this.failedAttemptErrors.join("; ")
+      this.failed = true
+      this.updateAttemptStats()
+      return
+    }
+
+    this.progress =
+      (this.attemptIndex + this.attemptSolver.progress) / this.attempts.length
+    this.updateAttemptStats()
+  }
+
+  private createAttemptSolver() {
+    const solver = new SingleAttemptRipUpAStarBoundarySolver(
+      this.attempts[this.attemptIndex]!.preparedProblem,
+    )
+    this.activeSubSolver = solver
+    return solver
+  }
+
+  private updateAttemptStats() {
+    this.stats = {
+      ...this.getAggregatedStats(),
+      attempt: this.attemptIndex + 1,
+      attemptCount: this.attempts.length,
+      attemptStrategy: this.attempts[this.attemptIndex]!.name,
+      failedAttemptErrors: [...this.failedAttemptErrors],
+    }
+  }
+
+  private getAggregatedStats(): BoundaryRoutingStats {
+    const currentStats = this.attemptSolver.getOutput().stats
+    return {
+      ...currentStats,
+      ripCount:
+        currentStats.ripCount +
+        this.completedAttemptStats.reduce(
+          (total, attemptStats) => total + attemptStats.ripCount,
+          0,
+        ),
+      expandedStateCount:
+        currentStats.expandedStateCount +
+        this.completedAttemptStats.reduce(
+          (total, attemptStats) => total + attemptStats.expandedStateCount,
+          0,
+        ),
+      maxHistoryCost: Math.max(
+        currentStats.maxHistoryCost,
+        ...this.completedAttemptStats.map(
+          (attemptStats) => attemptStats.maxHistoryCost,
+        ),
+      ),
+    }
+  }
+
+  override getOutput(): BoundaryRoutingSolution {
+    const solution = this.attemptSolver.getOutput()
+    return { ...solution, stats: this.getAggregatedStats() }
+  }
+
+  override visualize(): GraphicsObject {
+    const visualization = this.attemptSolver.visualize()
+    return {
+      ...visualization,
+      title: `${visualization.title ?? "Vector rip-up A*"} · attempt ${
+        this.attemptIndex + 1
+      }/${this.attempts.length} (${this.attempts[this.attemptIndex]!.name})`,
     }
   }
 

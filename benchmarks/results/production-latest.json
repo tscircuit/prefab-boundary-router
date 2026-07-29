@@ -1,32 +1,32 @@
 {
   "datasetId": "production-boundary-problems-v2",
   "datasetSeed": 20260729,
-  "generatedAt": "2026-07-28T23:41:03.950Z",
+  "generatedAt": "2026-07-29T00:01:16.108Z",
   "runtime": {
     "bun": "1.3.2",
     "platform": "darwin",
     "architecture": "arm64"
   },
   "percentileMethod": "linear interpolation",
-  "minimumSolvePercent": 50,
+  "minimumSolvePercent": 100,
   "overall": {
     "caseCount": 20,
-    "solvedCount": 15,
-    "solvePercent": 75,
-    "attemptTimeP50Ms": 153.26,
-    "attemptTimeP95Ms": 777.04,
-    "solvedTimeP50Ms": 145.26,
-    "solvedTimeP95Ms": 480.2
+    "solvedCount": 20,
+    "solvePercent": 100,
+    "attemptTimeP50Ms": 150.24,
+    "attemptTimeP95Ms": 906.75,
+    "solvedTimeP50Ms": 150.24,
+    "solvedTimeP95Ms": 906.75
   },
   "byViaCount": {
     "80": {
       "caseCount": 20,
-      "solvedCount": 15,
-      "solvePercent": 75,
-      "attemptTimeP50Ms": 153.26,
-      "attemptTimeP95Ms": 777.04,
-      "solvedTimeP50Ms": 145.26,
-      "solvedTimeP95Ms": 480.2
+      "solvedCount": 20,
+      "solvePercent": 100,
+      "attemptTimeP50Ms": 150.24,
+      "attemptTimeP95Ms": 906.75,
+      "solvedTimeP50Ms": 150.24,
+      "solvedTimeP95Ms": 906.75
     }
   },
   "results": [
@@ -36,7 +36,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 145.26,
+      "durationMs": 140.3,
       "ripCount": 45,
       "expandedStateCount": 1959,
       "error": null
@@ -46,11 +46,11 @@
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 93.68,
-      "ripCount": 28,
-      "expandedStateCount": 1230,
-      "error": "No route found for \"signal-net-44:0:production-c02-breakout-port-106->production-c02-breakout-port-2\" with at most 4 ripped blockers"
+      "solved": true,
+      "durationMs": 148.27,
+      "ripCount": 52,
+      "expandedStateCount": 2261,
+      "error": null
     },
     {
       "caseId": "production-c03",
@@ -58,7 +58,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 110.87,
+      "durationMs": 92.62,
       "ripCount": 54,
       "expandedStateCount": 1440,
       "error": null
@@ -69,7 +69,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 158.87,
+      "durationMs": 152.2,
       "ripCount": 77,
       "expandedStateCount": 1670,
       "error": null
@@ -80,7 +80,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 115.01,
+      "durationMs": 105.88,
       "ripCount": 70,
       "expandedStateCount": 1205,
       "error": null
@@ -90,11 +90,11 @@
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 661.89,
-      "ripCount": 164,
-      "expandedStateCount": 7339,
-      "error": "No route found for \"signal-net-71:0:production-c06-breakout-port-45->production-c06-breakout-port-89\" with at most 4 ripped blockers"
+      "solved": true,
+      "durationMs": 681.78,
+      "ripCount": 195,
+      "expandedStateCount": 7982,
+      "error": null
     },
     {
       "caseId": "production-c07",
@@ -102,7 +102,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 113.56,
+      "durationMs": 107.69,
       "ripCount": 24,
       "expandedStateCount": 1192,
       "error": null
@@ -113,7 +113,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 324.57,
+      "durationMs": 309.87,
       "ripCount": 131,
       "expandedStateCount": 3717,
       "error": null
@@ -124,7 +124,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 56.79,
+      "durationMs": 48.97,
       "ripCount": 14,
       "expandedStateCount": 553,
       "error": null
@@ -135,7 +135,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 454.38,
+      "durationMs": 411.84,
       "ripCount": 162,
       "expandedStateCount": 5743,
       "error": null
@@ -146,7 +146,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 540.44,
+      "durationMs": 522.23,
       "ripCount": 192,
       "expandedStateCount": 7893,
       "error": null
@@ -157,7 +157,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 52.83,
+      "durationMs": 47.64,
       "ripCount": 13,
       "expandedStateCount": 581,
       "error": null
@@ -167,11 +167,11 @@
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 800.6,
-      "ripCount": 300,
-      "expandedStateCount": 11959,
-      "error": "Total rip limit (300) reached"
+      "solved": true,
+      "durationMs": 904.29,
+      "ripCount": 348,
+      "expandedStateCount": 14036,
+      "error": null
     },
     {
       "caseId": "production-c14",
@@ -179,7 +179,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 169.65,
+      "durationMs": 163.25,
       "ripCount": 87,
       "expandedStateCount": 2277,
       "error": null
@@ -189,11 +189,11 @@
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 287.04,
-      "ripCount": 129,
-      "expandedStateCount": 4143,
-      "error": "No route found for \"VCC:10:production-c15-breakout-port-16->production-c15-breakout-port-12\" with at most 4 ripped blockers"
+      "solved": true,
+      "durationMs": 412.53,
+      "ripCount": 168,
+      "expandedStateCount": 6129,
+      "error": null
     },
     {
       "caseId": "production-c16",
@@ -201,7 +201,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 108.25,
+      "durationMs": 103.62,
       "ripCount": 28,
       "expandedStateCount": 1501,
       "error": null
@@ -212,7 +212,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 276.16,
+      "durationMs": 274.23,
       "ripCount": 104,
       "expandedStateCount": 4544,
       "error": null
@@ -223,7 +223,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 97.23,
+      "durationMs": 89.97,
       "ripCount": 30,
       "expandedStateCount": 1058,
       "error": null
@@ -233,11 +233,11 @@
       "viaCount": 80,
       "breakoutPortCount": 120,
       "netCount": 80,
-      "solved": false,
-      "durationMs": 775.8,
-      "ripCount": 198,
-      "expandedStateCount": 9085,
-      "error": "No route found for \"signal-net-75:0:production-c19-breakout-port-35->production-c19-breakout-port-41\" with at most 4 ripped blockers"
+      "solved": true,
+      "durationMs": 953.48,
+      "ripCount": 216,
+      "expandedStateCount": 9986,
+      "error": null
     },
     {
       "caseId": "production-c20",
@@ -245,7 +245,7 @@
       "breakoutPortCount": 120,
       "netCount": 80,
       "solved": true,
-      "durationMs": 147.64,
+      "durationMs": 142.06,
       "ripCount": 52,
       "expandedStateCount": 2135,
       "error": null
