@@ -7,6 +7,7 @@ import {
   segmentsIntersect,
   visualizeProblem,
 } from "./geometry"
+import { HypergraphBoundarySolver } from "./hypergraph-boundary-solver"
 import { MinHeap } from "./min-heap"
 import { buildNetDemands } from "./prepare-boundary-routing-problem-solver"
 import type {
@@ -615,6 +616,21 @@ interface RoutingAttempt {
   preparedProblem: PreparedBoundaryRoutingProblem
 }
 
+// Dense production boards and non-trivial multi-terminal trees need a global
+// view of region crossings. The local visibility-graph router remains faster
+// for smaller point-to-point problems.
+const shouldUseGlobalHypergraph = (
+  preparedProblem: PreparedBoundaryRoutingProblem,
+) => {
+  const demandCount = preparedProblem.demands.length
+  const breakoutPorts = preparedProblem.problem.breakoutBoundary.ports
+  const netCount = new Set(breakoutPorts.map((port) => port.netId)).size
+  return (
+    demandCount >= 60 ||
+    (demandCount >= 10 && breakoutPorts.length >= netCount * 2)
+  )
+}
+
 const demandsAreEqual = (
   left: readonly RouteDemand[],
   right: readonly RouteDemand[],
@@ -657,6 +673,7 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
   private readonly completedAttemptStats: BoundaryRoutingStats[] = []
   private attemptIndex = 0
   private attemptSolver: SingleAttemptRipUpAStarBoundarySolver
+  private readonly globalSolver: HypergraphBoundarySolver | null
 
   constructor(
     private readonly preparedProblem: PreparedBoundaryRoutingProblem,
@@ -664,9 +681,14 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
     super()
     this.attempts = createRoutingAttempts(preparedProblem)
     this.attemptSolver = this.createAttemptSolver()
+    this.globalSolver = shouldUseGlobalHypergraph(preparedProblem)
+      ? new HypergraphBoundarySolver(preparedProblem)
+      : null
+    if (this.globalSolver) this.activeSubSolver = this.globalSolver
     this.MAX_ITERATIONS = Math.max(
       100_000,
-      this.attemptSolver.MAX_ITERATIONS * this.attempts.length + 100,
+      this.globalSolver?.MAX_ITERATIONS ??
+        this.attemptSolver.MAX_ITERATIONS * this.attempts.length + 100,
     )
     this.updateAttemptStats()
   }
@@ -680,18 +702,60 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
   }
 
   get activeDemand() {
+    if (this.globalSolver) return null
     return this.attemptSolver.activeDemand
   }
 
   get committedRoutes() {
+    if (this.globalSolver) {
+      return new Map(
+        this.globalSolver
+          .getOutput()
+          .routes.map((route) => [route.routeId, route]),
+      )
+    }
     return this.attemptSolver.committedRoutes
   }
 
   get pendingRouteIds() {
+    if (this.globalSolver) {
+      return [
+        ...this.globalSolver.unprocessedConnections.map(
+          (connection) => connection.connectionId,
+        ),
+        ...(this.globalSolver.solved ||
+        this.globalSolver.failed ||
+        !this.globalSolver.currentConnection
+          ? []
+          : [this.globalSolver.currentConnection.connectionId]),
+      ]
+    }
     return this.attemptSolver.pendingRouteIds
   }
 
   override _step() {
+    if (this.globalSolver) {
+      for (
+        let batchStep = 0;
+        batchStep < 500 &&
+        !this.globalSolver.solved &&
+        !this.globalSolver.failed;
+        batchStep++
+      ) {
+        this.globalSolver.step()
+      }
+      if (this.globalSolver.solved) {
+        this.solved = true
+        this.progress = 1
+      } else if (this.globalSolver.failed) {
+        this.failed = true
+        this.error = this.globalSolver.error
+      } else {
+        this.progress = this.globalSolver.progress
+      }
+      this.updateAttemptStats()
+      return
+    }
     try {
       this.attemptSolver.step()
     } catch (error) {
@@ -739,6 +803,16 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
   }
 
   private updateAttemptStats() {
+    if (this.globalSolver) {
+      this.stats = {
+        ...this.globalSolver.getOutput().stats,
+        attempt: 1,
+        attemptCount: 1,
+        attemptStrategy: "global-hypergraph",
+        failedAttemptErrors: [],
+      }
+      return
+    }
     this.stats = {
       ...this.getAggregatedStats(),
       attempt: this.attemptIndex + 1,
@@ -774,11 +848,13 @@ export class RipUpAStarBoundarySolver extends BaseSolver {
   }
 
   override getOutput(): BoundaryRoutingSolution {
+    if (this.globalSolver) return this.globalSolver.getOutput()
     const solution = this.attemptSolver.getOutput()
     return { ...solution, stats: this.getAggregatedStats() }
   }
 
   override visualize(): GraphicsObject {
+    if (this.globalSolver) return this.globalSolver.visualize()
     const visualization = this.attemptSolver.visualize()
     return {
       ...visualization,

@@ -1,4 +1,5 @@
 export { BoundaryRoutingPipelineSolver } from "./boundary-routing-pipeline-solver"
+export { HypergraphBoundarySolver } from "./hypergraph-boundary-solver"
 export {
   PrepareBoundaryRoutingProblemSolver,
   prepareBoundaryRoutingProblem,

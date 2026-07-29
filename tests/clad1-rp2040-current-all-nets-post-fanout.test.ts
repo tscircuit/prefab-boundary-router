@@ -38,7 +38,7 @@ test("captures the current all-net Clad1 RP2040 fanout problem", () => {
   expect(preparedProblem.demands).toHaveLength(70)
 })
 
-test.failing("routes every current Clad1 RP2040 net after fanout", () => {
+test("routes every current Clad1 RP2040 net after fanout", () => {
   const solver = new BoundaryRoutingPipelineSolver(postFanoutProblem)
   solver.solve()
 
@@ -57,6 +57,7 @@ test.failing("routes every current Clad1 RP2040 net after fanout", () => {
   }
 
   expect(solver.failed).toBe(false)
+  expect(solver.routingSolver?.stats.attemptStrategy).toBe("global-hypergraph")
   const solution = solver.getOutput()!
   expect(solution.routes).toHaveLength(70)
   assertValidSolution(postFanoutProblem, solution)

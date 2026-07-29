@@ -42,6 +42,7 @@ test("routes the Clad1 RP2040 board after fanout", () => {
 
   expect(solver.failed).toBe(false)
   const solution = solver.getOutput()!
+  expect(solver.routingSolver?.stats.attemptStrategy).toBe("global-hypergraph")
   expect(solution.routes).toHaveLength(93)
   assertValidSolution(postFanoutProblem, solution)
 })
