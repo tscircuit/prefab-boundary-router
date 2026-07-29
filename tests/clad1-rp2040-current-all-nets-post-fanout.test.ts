@@ -2,8 +2,11 @@ import { expect, test } from "bun:test"
 import {
   BoundaryRoutingPipelineSolver,
   type BoundaryRoutingProblem,
+  DEFAULT_TRACE_CLEARANCE_MARGIN,
+  getMinimumDifferentNetTraceClearance,
   prepareBoundaryRoutingProblem,
 } from "../lib"
+import { segmentIntersectsRectInterior } from "../lib/geometry"
 import { assertValidSolution } from "./fixtures/assert-valid-solution"
 import postFanoutProblemJson from "./fixtures/clad1-rp2040-current-all-nets-post-fanout.json"
 
@@ -61,4 +64,29 @@ test("routes every current Clad1 RP2040 net after fanout", () => {
   expect(solver.routingSolver?.stats.attemptStrategy).toBe("global-hypergraph")
   expect(solution.routes).toHaveLength(70)
   assertValidSolution(postFanoutProblem, solution)
+  const traceSegments = solution.routes.flatMap((route) =>
+    route.segments.filter((segment) => segment.kind === "trace"),
+  )
+  expect(traceSegments.length).toBeLessThan(70)
+  expect(
+    Math.max(
+      ...solution.routes.map(
+        (route) =>
+          route.segments.filter((segment) => segment.kind === "trace").length,
+      ),
+    ),
+  ).toBeLessThanOrEqual(6)
+  expect(
+    getMinimumDifferentNetTraceClearance(solution.routes),
+  ).toBeGreaterThanOrEqual(DEFAULT_TRACE_CLEARANCE_MARGIN)
+  expect(
+    traceSegments.every(
+      (segment) =>
+        !segmentIntersectsRectInterior(
+          segment.from,
+          segment.to,
+          postFanoutProblem.breakoutBoundary,
+        ),
+    ),
+  ).toBe(true)
 }, 60_000)

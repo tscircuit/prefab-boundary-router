@@ -14,6 +14,7 @@ import {
   pointsEqual,
   visualizeProblem,
 } from "./geometry"
+import { postProcessBoundaryRoutes } from "./post-process-boundary-routes"
 import { buildNetDemands } from "./prepare-boundary-routing-problem-solver"
 import type {
   BoundaryRoutingSolution,
@@ -423,6 +424,7 @@ const createHypergraphInput = (
 export class HypergraphBoundarySolver extends ViaGraphSolver {
   private readonly preparedProblem: PreparedBoundaryRoutingProblem
   private readonly demandByConnectionId: Map<string, RouteDemand>
+  private cachedFinalOutput: BoundaryRoutingSolution | null = null
   private totalRipCount = 0
 
   constructor(preparedProblem: PreparedBoundaryRoutingProblem) {
@@ -624,16 +626,20 @@ export class HypergraphBoundarySolver extends ViaGraphSolver {
   }
 
   override getOutput(): BoundaryRoutingSolution {
-    const routes = this.solvedRoutes.map((route) =>
+    if (this.cachedFinalOutput) return this.cachedFinalOutput
+    const rawRoutes = this.solvedRoutes.map((route) =>
       this.convertSolvedRoute(route),
     )
+    const routes = this.solved
+      ? postProcessBoundaryRoutes(this.preparedProblem.problem, rawRoutes)
+      : rawRoutes
     const viaJumpCount = routes.reduce(
       (total, route) =>
         total +
         route.segments.filter((segment) => segment.kind === "via_jump").length,
       0,
     )
-    return {
+    const output = {
       routes,
       stats: {
         routeCount: this.connections.length,
@@ -650,6 +656,8 @@ export class HypergraphBoundarySolver extends ViaGraphSolver {
         ),
       },
     }
+    if (this.solved) this.cachedFinalOutput = output
+    return output
   }
 
   override visualize(): GraphicsObject {
