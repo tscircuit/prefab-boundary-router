@@ -1,0 +1,254 @@
+{
+  "datasetId": "production-double-breakout-boundary-problems-v1",
+  "datasetSeed": 20260730,
+  "generatedAt": "2026-07-29T02:28:48.359Z",
+  "runtime": {
+    "bun": "1.3.2",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "percentileMethod": "linear interpolation",
+  "minimumSolvePercent": 75,
+  "overall": {
+    "caseCount": 20,
+    "solvedCount": 15,
+    "solvePercent": 75,
+    "attemptTimeP50Ms": 243.39,
+    "attemptTimeP95Ms": 4360.4,
+    "solvedTimeP50Ms": 182.39,
+    "solvedTimeP95Ms": 1811.25
+  },
+  "byViaCount": {
+    "80": {
+      "caseCount": 20,
+      "solvedCount": 15,
+      "solvePercent": 75,
+      "attemptTimeP50Ms": 243.39,
+      "attemptTimeP95Ms": 4360.4,
+      "solvedTimeP50Ms": 182.39,
+      "solvedTimeP95Ms": 1811.25
+    }
+  },
+  "results": [
+    {
+      "caseId": "production-double-breakout-c01",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 73.67,
+      "ripCount": 0,
+      "expandedStateCount": 257,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c02",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 232.04,
+      "ripCount": 47,
+      "expandedStateCount": 1665,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c03",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 122.28,
+      "ripCount": 21,
+      "expandedStateCount": 825,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c04",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 872.8,
+      "ripCount": 283,
+      "expandedStateCount": 8360,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c05",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 68.65,
+      "ripCount": 6,
+      "expandedStateCount": 305,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c06",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 110.97,
+      "ripCount": 28,
+      "expandedStateCount": 758,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c07",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": false,
+      "durationMs": 8216.3,
+      "ripCount": 767,
+      "expandedStateCount": 91880,
+      "error": "nearest-tree: A* state limit (20000) reached for \"hard-net-149:9:hard-port-126->hard-port-102\"; root-star: No route found for \"hard-net-149:2:hard-port-005->hard-port-102\" with at most 4 ripped blockers; nearest-tree-shortest-first: A* state limit (20000) reached for \"hard-net-149:9:hard-port-126->hard-port-102\"; nearest-tree-shortest-first-via-penalty: No route found for \"hard-net-149:9:hard-port-126->hard-port-102\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "production-double-breakout-c08",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 254.74,
+      "ripCount": 78,
+      "expandedStateCount": 2449,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c09",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 697.93,
+      "ripCount": 210,
+      "expandedStateCount": 6179,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c10",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": false,
+      "durationMs": 1541.2,
+      "ripCount": 383,
+      "expandedStateCount": 14768,
+      "error": "nearest-tree: No route found for \"hard-net-089:0:hard-port-192->hard-port-223\" with at most 4 ripped blockers; root-star: No route found for \"hard-net-143:0:hard-port-187->hard-port-198\" with at most 4 ripped blockers; nearest-tree-shortest-first: No route found for \"hard-net-117:0:hard-port-007->hard-port-194\" with at most 4 ripped blockers; nearest-tree-shortest-first-via-penalty: No route found for \"hard-net-117:0:hard-port-007->hard-port-194\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "production-double-breakout-c11",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": false,
+      "durationMs": 2903.5,
+      "ripCount": 753,
+      "expandedStateCount": 36301,
+      "error": "nearest-tree: No route found for \"hard-net-095:10:hard-port-198->hard-port-013\" with at most 4 ripped blockers; root-star: No route found for \"hard-net-052:0:hard-port-074->hard-port-098\" with at most 4 ripped blockers; nearest-tree-shortest-first: No route found for \"hard-net-095:5:hard-port-001->hard-port-194\" with at most 4 ripped blockers; nearest-tree-shortest-first-via-penalty: Total rip limit (300) reached"
+    },
+    {
+      "caseId": "production-double-breakout-c12",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 230.96,
+      "ripCount": 36,
+      "expandedStateCount": 2057,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c13",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 112.95,
+      "ripCount": 21,
+      "expandedStateCount": 780,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c14",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 121.32,
+      "ripCount": 18,
+      "expandedStateCount": 907,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c15",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": false,
+      "durationMs": 4157.46,
+      "ripCount": 475,
+      "expandedStateCount": 64581,
+      "error": "nearest-tree: No route found for \"hard-net-187:2:hard-port-146->hard-port-115\" with at most 4 ripped blockers; root-star: No route found for \"hard-net-188:0:hard-port-179->hard-port-216\" with at most 4 ripped blockers; nearest-tree-shortest-first: No route found for \"hard-net-187:2:hard-port-146->hard-port-115\" with at most 4 ripped blockers; nearest-tree-shortest-first-via-penalty: A* state limit (20000) reached for \"hard-net-187:2:hard-port-146->hard-port-115\""
+    },
+    {
+      "caseId": "production-double-breakout-c16",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 103.89,
+      "ripCount": 25,
+      "expandedStateCount": 750,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c17",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 1026.98,
+      "ripCount": 191,
+      "expandedStateCount": 7156,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c18",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": false,
+      "durationMs": 2908.53,
+      "ripCount": 816,
+      "expandedStateCount": 36590,
+      "error": "nearest-tree: No route found for \"hard-net-155:3:hard-port-032->hard-port-104\" with at most 4 ripped blockers; root-star: No route found for \"hard-net-155:0:hard-port-014->hard-port-032\" with at most 4 ripped blockers; nearest-tree-shortest-first: No route found for \"hard-net-155:3:hard-port-032->hard-port-104\" with at most 4 ripped blockers; nearest-tree-shortest-first-via-penalty: No route found for \"hard-net-155:3:hard-port-032->hard-port-104\" with at most 4 ripped blockers"
+    },
+    {
+      "caseId": "production-double-breakout-c19",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 3641.23,
+      "ripCount": 558,
+      "expandedStateCount": 35574,
+      "error": null
+    },
+    {
+      "caseId": "production-double-breakout-c20",
+      "viaCount": 80,
+      "breakoutPortCount": 240,
+      "netCount": 200,
+      "solved": true,
+      "durationMs": 182.39,
+      "ripCount": 38,
+      "expandedStateCount": 1330,
+      "error": null
+    }
+  ]
+}
