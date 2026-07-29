@@ -60,6 +60,18 @@ test("routes 8 breakout points through 20 paired via points", async () => {
       .flatMap((route) => route.points)
       .some((point) => point.kind === "routing_point"),
   ).toBe(true)
+  const layerTransitions = solution!.routes
+    .flatMap((route) => route.segments)
+    .filter(
+      (segment) =>
+        segment.kind === "trace" &&
+        (segment.from.z ?? 0) !== (segment.to.z ?? 0),
+    )
+  expect(layerTransitions.length).toBeGreaterThan(0)
+  for (const segment of layerTransitions) {
+    expect(segment.from.x).toBeCloseTo(segment.to.x)
+    expect(segment.from.y).toBeCloseTo(segment.to.y)
+  }
   assertValidSolution(eightBreakoutTwentyViaProblem, solution!)
 
   const svg = getSvgFromGraphicsObject(solver.visualize(), {

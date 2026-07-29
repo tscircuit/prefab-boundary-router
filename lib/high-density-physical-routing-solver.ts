@@ -972,7 +972,14 @@ export class HighDensityPhysicalRoutingSolver extends BaseSolver {
         throw new Error(`Missing physical segment "${task.taskId}"`)
       }
       for (const point of physicalRoute.points) {
-        if (!points.at(-1) || !pointsEqual(points.at(-1)!, point)) {
+        const previous = points.at(-1)
+        // B01 encodes a via as colocated points on different z layers. Do not
+        // collapse that pair just because its x/y coordinates are equal.
+        if (
+          !previous ||
+          !pointsEqual(previous, point) ||
+          (previous.z ?? 0) !== (point.z ?? 0)
+        ) {
           points.push(point)
         }
       }
@@ -1005,6 +1012,11 @@ export class HighDensityPhysicalRoutingSolver extends BaseSolver {
               points: [segment.from, segment.to],
               strokeColor: netColor(route.netId),
               strokeWidth: TRACE_THICKNESS,
+              strokeDash:
+                (segment.from.z ?? 0) === 1 &&
+                (segment.to.z ?? segment.from.z ?? 0) === 1
+                  ? "4 2"
+                  : undefined,
             })),
         ),
       ],
