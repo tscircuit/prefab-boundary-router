@@ -23,6 +23,7 @@
   },
   "scripts": {
     "build": "bunx tsc --noEmit",
+    "build:site": "cosmos-export",
     "test": "bun run setup:test-deps && bun test",
     "setup:test-deps": "bun run --cwd node_modules/sharp install",
     "generate:stress-dataset": "bun benchmarks/generate-stress-dataset.ts",
