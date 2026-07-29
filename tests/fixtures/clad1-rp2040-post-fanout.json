@@ -9,8 +9,8 @@
         "portId": "fanout:source_trace_54::fanout:0",
         "netId": "connectivity_net263",
         "route_type": "wire",
-        "x": -40.8,
-        "y": 15,
+        "x": -50,
+        "y": 0.8000000000000007,
         "width": 0.1,
         "layer": "top"
       },
@@ -18,7 +18,7 @@
         "portId": "fanout:source_trace_54::fanout:1",
         "netId": "connectivity_net263",
         "route_type": "wire",
-        "x": -21.599999999999994,
+        "x": -21.599999999999998,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -27,8 +27,8 @@
         "portId": "fanout:source_trace_55::fanout:0",
         "netId": "connectivity_net268",
         "route_type": "wire",
-        "x": -40.8,
-        "y": -15,
+        "x": -50,
+        "y": -0.7999999999999989,
         "width": 0.1,
         "layer": "top"
       },
@@ -36,7 +36,7 @@
         "portId": "fanout:source_trace_55::fanout:1",
         "netId": "connectivity_net268",
         "route_type": "wire",
-        "x": -17.39999999999999,
+        "x": -17.4,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -45,7 +45,7 @@
         "portId": "fanout:source_trace_59::fanout:0",
         "netId": "connectivity_net167",
         "route_type": "wire",
-        "x": -17.39999999999999,
+        "x": -17.4,
         "y": -15,
         "width": 0.1,
         "layer": "top"
@@ -63,16 +63,7 @@
         "portId": "fanout:source_trace_68::fanout:0",
         "netId": "connectivity_net351",
         "route_type": "wire",
-        "x": 4.800000000000011,
-        "y": 15,
-        "width": 0.1,
-        "layer": "top"
-      },
-      {
-        "portId": "fanout:source_trace_68::fanout:1",
-        "netId": "connectivity_net351",
-        "route_type": "wire",
-        "x": 3.6000000000000085,
+        "x": 4.800000000000004,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -81,7 +72,7 @@
         "portId": "fanout:source_trace_81::fanout:0",
         "netId": "connectivity_net347",
         "route_type": "wire",
-        "x": -3.3999999999999915,
+        "x": -3.3999999999999986,
         "y": -15,
         "width": 0.1,
         "layer": "top"
@@ -90,7 +81,7 @@
         "portId": "fanout:source_trace_81::fanout:1",
         "netId": "connectivity_net347",
         "route_type": "wire",
-        "x": -8.399999999999991,
+        "x": -8.399999999999999,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -117,7 +108,7 @@
         "portId": "fanout:source_trace_83::fanout:0",
         "netId": "connectivity_net221",
         "route_type": "wire",
-        "x": -5.199999999999989,
+        "x": -5.199999999999996,
         "y": -15,
         "width": 0.1,
         "layer": "top"
@@ -126,7 +117,7 @@
         "portId": "fanout:source_trace_83::fanout:1",
         "netId": "connectivity_net221",
         "route_type": "wire",
-        "x": -9.199999999999989,
+        "x": -9.199999999999996,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -135,7 +126,7 @@
         "portId": "fanout:source_trace_84::fanout:0",
         "netId": "connectivity_net224",
         "route_type": "wire",
-        "x": -5.3999999999999915,
+        "x": -5.399999999999999,
         "y": -15,
         "width": 0.1,
         "layer": "top"
@@ -187,7 +178,7 @@
       },
       {
         "portId": "fanout:source_trace_99::fanout:0",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": -6.599999999999994,
         "y": 15,
@@ -196,7 +187,7 @@
       },
       {
         "portId": "fanout:source_trace_99::fanout:1",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": -6.799999999999997,
         "y": 15,
@@ -207,8 +198,8 @@
         "portId": "fanout:source_trace_102::fanout:0",
         "netId": "connectivity_net263",
         "route_type": "wire",
-        "x": -41,
-        "y": -15,
+        "x": -50,
+        "y": -0.1999999999999993,
         "width": 0.1,
         "layer": "top"
       },
@@ -225,7 +216,7 @@
         "portId": "fanout:source_trace_103::fanout:1",
         "netId": "connectivity_net265",
         "route_type": "wire",
-        "x": -6.199999999999989,
+        "x": -6.199999999999996,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -234,8 +225,8 @@
         "portId": "fanout:source_trace_104::fanout:0",
         "netId": "connectivity_net268",
         "route_type": "wire",
-        "x": -41,
-        "y": 15,
+        "x": -50,
+        "y": 0.20000000000000107,
         "width": 0.1,
         "layer": "top"
       },
@@ -252,7 +243,7 @@
         "portId": "fanout:source_trace_105::fanout:1",
         "netId": "connectivity_net270",
         "route_type": "wire",
-        "x": -6.3999999999999915,
+        "x": -6.399999999999999,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -261,8 +252,8 @@
         "portId": "fanout:source_trace_106::fanout:0",
         "netId": "connectivity_net273",
         "route_type": "wire",
-        "x": -40.599999999999994,
-        "y": 15,
+        "x": -50,
+        "y": 1.1999999999999993,
         "width": 0.1,
         "layer": "top"
       },
@@ -270,7 +261,7 @@
         "portId": "fanout:source_trace_106::fanout:1",
         "netId": "connectivity_net273",
         "route_type": "wire",
-        "x": -26.39999999999999,
+        "x": -26.4,
         "y": -15,
         "width": 0.1,
         "layer": "top"
@@ -279,8 +270,8 @@
         "portId": "fanout:source_trace_107::fanout:0",
         "netId": "connectivity_net276",
         "route_type": "wire",
-        "x": -40.599999999999994,
-        "y": -15,
+        "x": -50,
+        "y": -1.799999999999999,
         "width": 0.1,
         "layer": "top"
       },
@@ -288,7 +279,7 @@
         "portId": "fanout:source_trace_107::fanout:1",
         "netId": "connectivity_net276",
         "route_type": "wire",
-        "x": -27.200000000000003,
+        "x": -27.2,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -324,8 +315,8 @@
         "portId": "fanout:source_trace_134::fanout:1",
         "netId": "connectivity_net339",
         "route_type": "wire",
-        "x": 5,
-        "y": -15,
+        "x": 4.200000000000003,
+        "y": 15,
         "width": 0.1,
         "layer": "top"
       },
@@ -333,7 +324,7 @@
         "portId": "fanout:source_trace_135::fanout:0",
         "netId": "connectivity_net335",
         "route_type": "wire",
-        "x": 11.800000000000011,
+        "x": 11.800000000000004,
         "y": -15,
         "width": 0.1,
         "layer": "top"
@@ -351,7 +342,7 @@
         "portId": "fanout:source_trace_139::fanout:0",
         "netId": "connectivity_net347",
         "route_type": "wire",
-        "x": -23.39999999999999,
+        "x": -23.4,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -369,7 +360,16 @@
         "portId": "fanout:source_trace_143::fanout:0",
         "netId": "connectivity_net351",
         "route_type": "wire",
-        "x": 13.800000000000011,
+        "x": 13.800000000000004,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_143::fanout:1",
+        "netId": "connectivity_net351",
+        "route_type": "wire",
+        "x": 3.6000000000000014,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -387,7 +387,7 @@
         "portId": "fanout:source_trace_146::fanout:0",
         "netId": "connectivity_net358",
         "route_type": "wire",
-        "x": -2.3999999999999915,
+        "x": -2.3999999999999986,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -405,7 +405,7 @@
         "portId": "fanout:source_trace_149::fanout:0",
         "netId": "connectivity_net365",
         "route_type": "wire",
-        "x": -26.200000000000003,
+        "x": -26.2,
         "y": -15,
         "width": 0.1,
         "layer": "top"
@@ -420,62 +420,26 @@
         "layer": "top"
       },
       {
-        "portId": "fanout:source_trace_151::fanout:0",
-        "netId": "connectivity_net370",
-        "route_type": "wire",
-        "x": 4,
-        "y": 15,
-        "width": 0.1,
-        "layer": "top"
-      },
-      {
-        "portId": "fanout:source_trace_151::fanout:1",
-        "netId": "connectivity_net370",
-        "route_type": "wire",
-        "x": 28,
-        "y": -6.799999999999999,
-        "width": 0.1,
-        "layer": "top"
-      },
-      {
-        "portId": "fanout:source_trace_152::fanout:0",
-        "netId": "connectivity_net373",
-        "route_type": "wire",
-        "x": 3.8000000000000114,
-        "y": 15,
-        "width": 0.1,
-        "layer": "top"
-      },
-      {
-        "portId": "fanout:source_trace_152::fanout:1",
-        "netId": "connectivity_net373",
-        "route_type": "wire",
-        "x": 28,
-        "y": 1.1999999999999993,
-        "width": 0.1,
-        "layer": "top"
-      },
-      {
         "portId": "fanout:source_net_0::fanout:0",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": 6.6000000000000085,
+        "x": 6.600000000000001,
         "y": 15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:1",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": 5.400000000000006,
+        "x": 5,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:2",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": 10.200000000000003,
         "y": -15,
@@ -484,16 +448,16 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:3",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": -2.3999999999999915,
+        "x": -2.3999999999999986,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:4",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": 1.2000000000000028,
         "y": -15,
@@ -502,16 +466,16 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:5",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": 9.800000000000011,
+        "x": 9.800000000000004,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:6",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": 3,
         "y": -15,
@@ -520,7 +484,7 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:7",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": -10.799999999999997,
         "y": -15,
@@ -529,16 +493,16 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:8",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": 4.800000000000011,
+        "x": 4.800000000000004,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:9",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": -6.799999999999997,
         "y": -15,
@@ -547,7 +511,7 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:10",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": -14,
         "y": 15,
@@ -556,7 +520,7 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:11",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": 14.200000000000003,
         "y": 15,
@@ -565,61 +529,61 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:13",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": -38.599999999999994,
+        "x": -38.6,
         "y": 15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:14",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": -38.599999999999994,
+        "x": -38.6,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:15",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": -40.199999999999996,
+        "x": -40.2,
         "y": 15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:16",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": -44.4,
-        "y": 15,
+        "x": -50,
+        "y": 4.400000000000002,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:17",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": -40.199999999999996,
+        "x": -40.2,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:18",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": -44.4,
-        "y": -15,
+        "x": -50,
+        "y": -4.399999999999999,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:19",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": -24.799999999999997,
         "y": 15,
@@ -628,7 +592,7 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:20",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": -25.799999999999997,
         "y": 15,
@@ -637,7 +601,7 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:21",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": -27.799999999999997,
         "y": -15,
@@ -646,16 +610,16 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:22",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": -20.19999999999999,
+        "x": -20.2,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:23",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": -5,
         "y": -15,
@@ -664,7 +628,7 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:24",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": 6.400000000000006,
         "y": 15,
@@ -673,16 +637,16 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:25",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": -19.19999999999999,
+        "x": -19.2,
         "y": 15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:26",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": -10.599999999999994,
         "y": 15,
@@ -691,16 +655,16 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:27",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": -8.199999999999989,
+        "x": -8.199999999999996,
         "y": 15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:28",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": 11,
         "y": -15,
@@ -709,34 +673,34 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:29",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": 28,
-        "y": -3,
+        "y": -2.1999999999999993,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:30",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": -21.39999999999999,
+        "x": -21.4,
         "y": 15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:31",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": 9.600000000000009,
+        "x": 9.600000000000001,
         "y": 15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_0::fanout:32",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
         "x": -5.599999999999994,
         "y": 15,
@@ -745,19 +709,10 @@
       },
       {
         "portId": "fanout:source_net_0::fanout:33",
-        "netId": "connectivity_net376",
+        "netId": "connectivity_net368",
         "route_type": "wire",
-        "x": -25.599999999999994,
+        "x": -25.599999999999998,
         "y": -15,
-        "width": 0.1,
-        "layer": "top"
-      },
-      {
-        "portId": "fanout:source_net_0::fanout:34",
-        "netId": "connectivity_net376",
-        "route_type": "wire",
-        "x": 28,
-        "y": -2.799999999999999,
         "width": 0.1,
         "layer": "top"
       },
@@ -765,7 +720,7 @@
         "portId": "fanout:source_net_1::fanout:0",
         "netId": "connectivity_net295",
         "route_type": "wire",
-        "x": -22.799999999999997,
+        "x": -22.599999999999998,
         "y": -15,
         "width": 0.1,
         "layer": "top"
@@ -801,7 +756,7 @@
         "portId": "fanout:source_net_2::fanout:0",
         "netId": "connectivity_net299",
         "route_type": "wire",
-        "x": -18.599999999999994,
+        "x": -18.599999999999998,
         "y": -15,
         "width": 0.1,
         "layer": "top"
@@ -819,23 +774,23 @@
         "portId": "fanout:source_net_2::fanout:2",
         "netId": "connectivity_net299",
         "route_type": "wire",
-        "x": -21.599999999999994,
+        "x": -21.599999999999998,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_3::fanout:0",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
-        "x": 8.600000000000009,
+        "x": 8.600000000000001,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_3::fanout:1",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": -1.5999999999999943,
         "y": -15,
@@ -844,16 +799,16 @@
       },
       {
         "portId": "fanout:source_net_3::fanout:2",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
-        "x": -0.3999999999999915,
+        "x": -0.3999999999999986,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_3::fanout:3",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": 10,
         "y": -15,
@@ -862,7 +817,7 @@
       },
       {
         "portId": "fanout:source_net_3::fanout:4",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": 6.200000000000003,
         "y": 15,
@@ -871,7 +826,7 @@
       },
       {
         "portId": "fanout:source_net_3::fanout:5",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": -11.599999999999994,
         "y": -15,
@@ -880,7 +835,7 @@
       },
       {
         "portId": "fanout:source_net_3::fanout:6",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": 4,
         "y": -15,
@@ -889,7 +844,7 @@
       },
       {
         "portId": "fanout:source_net_3::fanout:7",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": -6,
         "y": -15,
@@ -898,16 +853,16 @@
       },
       {
         "portId": "fanout:source_net_3::fanout:8",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
-        "x": -15.599999999999994,
+        "x": -15.600000000000001,
         "y": 15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_3::fanout:10",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": -2.5999999999999943,
         "y": 15,
@@ -916,7 +871,7 @@
       },
       {
         "portId": "fanout:source_net_3::fanout:11",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": 2,
         "y": 15,
@@ -925,34 +880,34 @@
       },
       {
         "portId": "fanout:source_net_3::fanout:12",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
-        "x": 5.200000000000003,
-        "y": -15,
+        "x": 4,
+        "y": 15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_3::fanout:13",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
-        "x": 0.8000000000000114,
+        "x": 0.8000000000000043,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_3::fanout:14",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
-        "x": -3.1999999999999886,
+        "x": -3.1999999999999957,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_3::fanout:15",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": -5.799999999999997,
         "y": 15,
@@ -961,7 +916,7 @@
       },
       {
         "portId": "fanout:source_net_3::fanout:17",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": -21.799999999999997,
         "y": -15,
@@ -970,25 +925,25 @@
       },
       {
         "portId": "fanout:source_net_3::fanout:18",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
-        "x": -4.199999999999989,
+        "x": -4.199999999999996,
         "y": -15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_3::fanout:19",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
-        "x": -17.599999999999994,
+        "x": -17.6,
         "y": 15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_3::fanout:21",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
         "x": -8,
         "y": 15,
@@ -997,28 +952,19 @@
       },
       {
         "portId": "fanout:source_net_3::fanout:22",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
-        "x": -15.399999999999991,
+        "x": -15.399999999999999,
         "y": 15,
         "width": 0.1,
         "layer": "top"
       },
       {
         "portId": "fanout:source_net_3::fanout:23",
-        "netId": "connectivity_net378",
+        "netId": "connectivity_net363",
         "route_type": "wire",
-        "x": -23.39999999999999,
+        "x": -23.4,
         "y": -15,
-        "width": 0.1,
-        "layer": "top"
-      },
-      {
-        "portId": "fanout:source_net_3::fanout:24",
-        "netId": "connectivity_net378",
-        "route_type": "wire",
-        "x": 28,
-        "y": 5.200000000000003,
         "width": 0.1,
         "layer": "top"
       },
@@ -1026,7 +972,7 @@
         "portId": "fanout:source_net_4::fanout:0",
         "netId": "connectivity_net321",
         "route_type": "wire",
-        "x": 15.800000000000011,
+        "x": 15.799999999999997,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -1044,7 +990,7 @@
         "portId": "fanout:source_net_4::fanout:2",
         "netId": "connectivity_net321",
         "route_type": "wire",
-        "x": -4.199999999999989,
+        "x": -4.199999999999996,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -1053,7 +999,7 @@
         "portId": "fanout:source_net_5::fanout:0",
         "netId": "connectivity_net309",
         "route_type": "wire",
-        "x": -7.199999999999989,
+        "x": -7.199999999999996,
         "y": -15,
         "width": 0.1,
         "layer": "top"
@@ -1062,7 +1008,7 @@
         "portId": "fanout:source_net_5::fanout:1",
         "netId": "connectivity_net309",
         "route_type": "wire",
-        "x": 4.200000000000003,
+        "x": 3.8000000000000043,
         "y": 15,
         "width": 0.1,
         "layer": "top"
@@ -1080,7 +1026,7 @@
         "portId": "fanout:source_net_5::fanout:3",
         "netId": "connectivity_net309",
         "route_type": "wire",
-        "x": 4.6000000000000085,
+        "x": 4.600000000000001,
         "y": 15,
         "width": 0.1,
         "layer": "top"
