@@ -1,0 +1,1358 @@
+{
+  "breakoutBoundary": {
+    "minX": -50,
+    "maxX": 28,
+    "minY": -15,
+    "maxY": 15,
+    "ports": [
+      {
+        "portId": "fanout:source_trace_59::fanout:0",
+        "netId": "connectivity_net167",
+        "route_type": "wire",
+        "x": -17.4,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_59::fanout:1",
+        "netId": "connectivity_net167",
+        "route_type": "wire",
+        "x": -18.799999999999997,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_68::fanout:0",
+        "netId": "connectivity_net351",
+        "route_type": "wire",
+        "x": 6.400000000000006,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_68::fanout:1",
+        "netId": "connectivity_net351",
+        "route_type": "wire",
+        "x": 4.400000000000006,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_81::fanout:0",
+        "netId": "connectivity_net347",
+        "route_type": "wire",
+        "x": -4,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_81::fanout:1",
+        "netId": "connectivity_net347",
+        "route_type": "wire",
+        "x": -8.399999999999999,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_82::fanout:0",
+        "netId": "connectivity_net218",
+        "route_type": "wire",
+        "x": -5,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_82::fanout:1",
+        "netId": "connectivity_net218",
+        "route_type": "wire",
+        "x": -10.799999999999997,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_83::fanout:0",
+        "netId": "connectivity_net221",
+        "route_type": "wire",
+        "x": -4.599999999999994,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_83::fanout:1",
+        "netId": "connectivity_net221",
+        "route_type": "wire",
+        "x": -9.199999999999996,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_84::fanout:0",
+        "netId": "connectivity_net224",
+        "route_type": "wire",
+        "x": -4.799999999999997,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_84::fanout:1",
+        "netId": "connectivity_net224",
+        "route_type": "wire",
+        "x": -9.799999999999997,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_85::fanout:0",
+        "netId": "connectivity_net227",
+        "route_type": "wire",
+        "x": -5.399999999999999,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_85::fanout:1",
+        "netId": "connectivity_net227",
+        "route_type": "wire",
+        "x": -11.199999999999996,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_86::fanout:0",
+        "netId": "connectivity_net230",
+        "route_type": "wire",
+        "x": -5.199999999999996,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_86::fanout:1",
+        "netId": "connectivity_net230",
+        "route_type": "wire",
+        "x": -11,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_99::fanout:0",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": -6.199999999999996,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_103::fanout:0",
+        "netId": "connectivity_net265",
+        "route_type": "wire",
+        "x": -36.6,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_103::fanout:1",
+        "netId": "connectivity_net265",
+        "route_type": "wire",
+        "x": -6.199999999999996,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_105::fanout:0",
+        "netId": "connectivity_net270",
+        "route_type": "wire",
+        "x": -36.6,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_105::fanout:1",
+        "netId": "connectivity_net270",
+        "route_type": "wire",
+        "x": -6.399999999999999,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_133::fanout:0",
+        "netId": "connectivity_net335",
+        "route_type": "wire",
+        "x": 6,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_133::fanout:1",
+        "netId": "connectivity_net335",
+        "route_type": "wire",
+        "x": 3.8000000000000043,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_134::fanout:0",
+        "netId": "connectivity_net339",
+        "route_type": "wire",
+        "x": 7.200000000000003,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_134::fanout:1",
+        "netId": "connectivity_net339",
+        "route_type": "wire",
+        "x": 4,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_135::fanout:0",
+        "netId": "connectivity_net335",
+        "route_type": "wire",
+        "x": 6.200000000000003,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_137::fanout:0",
+        "netId": "connectivity_net339",
+        "route_type": "wire",
+        "x": 8,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_139::fanout:0",
+        "netId": "connectivity_net347",
+        "route_type": "wire",
+        "x": -23.4,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_141::fanout:0",
+        "netId": "connectivity_net347",
+        "route_type": "wire",
+        "x": -13.799999999999997,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_143::fanout:0",
+        "netId": "connectivity_net351",
+        "route_type": "wire",
+        "x": 13.800000000000004,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_145::fanout:0",
+        "netId": "connectivity_net355",
+        "route_type": "wire",
+        "x": -1,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_146::fanout:0",
+        "netId": "connectivity_net358",
+        "route_type": "wire",
+        "x": -2.1999999999999957,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_146::fanout:1",
+        "netId": "connectivity_net358",
+        "route_type": "wire",
+        "x": -2.799999999999997,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_149::fanout:0",
+        "netId": "connectivity_net365",
+        "route_type": "wire",
+        "x": -26.2,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_149::fanout:1",
+        "netId": "connectivity_net365",
+        "route_type": "wire",
+        "x": -24,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:0",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": 4.400000000000006,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:1",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": 0.6000000000000014,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:2",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -3.1999999999999957,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:3",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": 0.20000000000000284,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:4",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": 4.600000000000001,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:5",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": 3.6000000000000014,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:6",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -8.799999999999997,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:7",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -2.3999999999999986,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:8",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -7.799999999999997,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:9",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -7.399999999999999,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:11",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -40.2,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:12",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -50,
+        "y": 4.400000000000002,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:13",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -40.2,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:14",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -50,
+        "y": -4.399999999999999,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:15",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -36.4,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:16",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -36.4,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:17",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -26.4,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:18",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -20.2,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:19",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -22,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:20",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -7.199999999999996,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:21",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": 6.600000000000001,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:22",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -10.599999999999994,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:23",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": 6.800000000000004,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:24",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": 7.800000000000004,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:25",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -21.4,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:26",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": 9.600000000000001,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:27",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -5.599999999999994,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_0::fanout:28",
+        "netId": "connectivity_net368",
+        "route_type": "wire",
+        "x": -25.599999999999998,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_1::fanout:0",
+        "netId": "connectivity_net295",
+        "route_type": "wire",
+        "x": -22.599999999999998,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_1::fanout:1",
+        "netId": "connectivity_net295",
+        "route_type": "wire",
+        "x": -38,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_1::fanout:2",
+        "netId": "connectivity_net295",
+        "route_type": "wire",
+        "x": -38,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_2::fanout:0",
+        "netId": "connectivity_net299",
+        "route_type": "wire",
+        "x": -18.599999999999998,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_2::fanout:1",
+        "netId": "connectivity_net299",
+        "route_type": "wire",
+        "x": -15.799999999999997,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_2::fanout:2",
+        "netId": "connectivity_net299",
+        "route_type": "wire",
+        "x": -21.599999999999998,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:0",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": 1.2000000000000028,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:1",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": -3.799999999999997,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:2",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": 0,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:3",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": 6.800000000000004,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:4",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": 6.200000000000003,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:5",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": -2.5999999999999943,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:7",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": 4.200000000000003,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:8",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": -5.799999999999997,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:10",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": -21.799999999999997,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:11",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": 3.6000000000000014,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:12",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": -9.399999999999999,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:13",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": -15.399999999999999,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_3::fanout:14",
+        "netId": "connectivity_net363",
+        "route_type": "wire",
+        "x": -24.799999999999997,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_4::fanout:0",
+        "netId": "connectivity_net321",
+        "route_type": "wire",
+        "x": -7,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_4::fanout:1",
+        "netId": "connectivity_net321",
+        "route_type": "wire",
+        "x": 0.4000000000000057,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_4::fanout:2",
+        "netId": "connectivity_net321",
+        "route_type": "wire",
+        "x": -4.199999999999996,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_5::fanout:0",
+        "netId": "connectivity_net309",
+        "route_type": "wire",
+        "x": -5.599999999999994,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_5::fanout:1",
+        "netId": "connectivity_net309",
+        "route_type": "wire",
+        "x": 7,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_5::fanout:2",
+        "netId": "connectivity_net309",
+        "route_type": "wire",
+        "x": -6,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_net_5::fanout:3",
+        "netId": "connectivity_net309",
+        "route_type": "wire",
+        "x": -6.599999999999994,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_54::fanout:0",
+        "netId": "connectivity_net263",
+        "route_type": "wire",
+        "x": -40.8,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_55::fanout:0",
+        "netId": "connectivity_net268",
+        "route_type": "wire",
+        "x": -40.8,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_102::fanout:0",
+        "netId": "connectivity_net263",
+        "route_type": "wire",
+        "x": -41,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_104::fanout:0",
+        "netId": "connectivity_net268",
+        "route_type": "wire",
+        "x": -41,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_106::fanout:0",
+        "netId": "connectivity_net273",
+        "route_type": "wire",
+        "x": -40.599999999999994,
+        "y": 15,
+        "width": 0.1,
+        "layer": "top"
+      },
+      {
+        "portId": "fanout:source_trace_107::fanout:0",
+        "netId": "connectivity_net276",
+        "route_type": "wire",
+        "x": -40.599999999999994,
+        "y": -15,
+        "width": 0.1,
+        "layer": "top"
+      }
+    ]
+  },
+  "viaBoundary": {
+    "minX": -50.1,
+    "maxX": 40,
+    "minY": -25,
+    "maxY": 25,
+    "ports": [
+      {
+        "portId": "hole_top_r0_002",
+        "pairedPortId": "hole_top_r0_005",
+        "x": -30,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r0_005",
+        "pairedPortId": "hole_top_r0_002",
+        "x": -15,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r1_005",
+        "pairedPortId": "hole_right_r1_006",
+        "x": -12.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_right_r1_006",
+        "pairedPortId": "hole_top_r1_005",
+        "x": 40,
+        "y": 15.2
+      },
+      {
+        "portId": "hole_bottom_r1_007",
+        "pairedPortId": "hole_bottom_r0_004",
+        "x": -2.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r0_004",
+        "pairedPortId": "hole_bottom_r1_007",
+        "x": -20,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r0_015",
+        "pairedPortId": "hole_bottom_r1_013",
+        "x": 35,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r1_013",
+        "pairedPortId": "hole_bottom_r0_015",
+        "x": 27.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_top_r1_006",
+        "pairedPortId": "hole_top_r0_000",
+        "x": -7.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r0_000",
+        "pairedPortId": "hole_top_r1_006",
+        "x": -40,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r0_009",
+        "pairedPortId": "hole_top_r1_013",
+        "x": 5,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r1_013",
+        "pairedPortId": "hole_top_r0_009",
+        "x": 27.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_bottom_r1_009",
+        "pairedPortId": "hole_bottom_r0_010",
+        "x": 7.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r0_010",
+        "pairedPortId": "hole_bottom_r1_009",
+        "x": 10,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r1_003",
+        "pairedPortId": "hole_right_r0_001",
+        "x": -22.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_right_r0_001",
+        "pairedPortId": "hole_bottom_r1_003",
+        "x": 40,
+        "y": -15.2
+      },
+      {
+        "portId": "hole_right_r1_004",
+        "pairedPortId": "hole_right_r1_003",
+        "x": 40,
+        "y": 5.2
+      },
+      {
+        "portId": "hole_right_r1_003",
+        "pairedPortId": "hole_right_r1_004",
+        "x": 40,
+        "y": 0.2
+      },
+      {
+        "portId": "hole_right_r0_007",
+        "pairedPortId": "hole_top_r0_016",
+        "x": 40,
+        "y": 14.8
+      },
+      {
+        "portId": "hole_top_r0_016",
+        "pairedPortId": "hole_right_r0_007",
+        "x": 40,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r1_012",
+        "pairedPortId": "hole_top_r0_001",
+        "x": 22.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r0_001",
+        "pairedPortId": "hole_top_r1_012",
+        "x": -35,
+        "y": 25
+      },
+      {
+        "portId": "hole_bottom_r0_013",
+        "pairedPortId": "hole_bottom_r0_014",
+        "x": 25,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r0_014",
+        "pairedPortId": "hole_bottom_r0_013",
+        "x": 30,
+        "y": -25
+      },
+      {
+        "portId": "hole_right_r1_002",
+        "pairedPortId": "hole_right_r0_005",
+        "x": 40,
+        "y": -4.8
+      },
+      {
+        "portId": "hole_right_r0_005",
+        "pairedPortId": "hole_right_r1_002",
+        "x": 40,
+        "y": 4.8
+      },
+      {
+        "portId": "hole_top_r1_004",
+        "pairedPortId": "hole_top_r1_008",
+        "x": -17.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r1_008",
+        "pairedPortId": "hole_top_r1_004",
+        "x": 2.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_bottom_r0_011",
+        "pairedPortId": "hole_bottom_r1_014",
+        "x": 15,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r1_014",
+        "pairedPortId": "hole_bottom_r0_011",
+        "x": 32.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_top_r1_001",
+        "pairedPortId": "hole_top_r1_000",
+        "x": -32.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r1_000",
+        "pairedPortId": "hole_top_r1_001",
+        "x": -37.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_bottom_r0_007",
+        "pairedPortId": "hole_bottom_r1_011",
+        "x": -5,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r1_011",
+        "pairedPortId": "hole_bottom_r0_007",
+        "x": 17.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r1_005",
+        "pairedPortId": "hole_bottom_r0_001",
+        "x": -12.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r0_001",
+        "pairedPortId": "hole_bottom_r1_005",
+        "x": -35,
+        "y": -25
+      },
+      {
+        "portId": "hole_right_r0_004",
+        "pairedPortId": "hole_right_r0_002",
+        "x": 40,
+        "y": -0.2
+      },
+      {
+        "portId": "hole_right_r0_002",
+        "pairedPortId": "hole_right_r0_004",
+        "x": 40,
+        "y": -10.2
+      },
+      {
+        "portId": "hole_top_r0_015",
+        "pairedPortId": "hole_top_r0_014",
+        "x": 35,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r0_014",
+        "pairedPortId": "hole_top_r0_015",
+        "x": 30,
+        "y": 25
+      },
+      {
+        "portId": "hole_right_r1_005",
+        "pairedPortId": "hole_top_r0_012",
+        "x": 40,
+        "y": 10.2
+      },
+      {
+        "portId": "hole_top_r0_012",
+        "pairedPortId": "hole_right_r1_005",
+        "x": 20,
+        "y": 25
+      },
+      {
+        "portId": "hole_right_r0_003",
+        "pairedPortId": "hole_right_r1_001",
+        "x": 40,
+        "y": -5.2
+      },
+      {
+        "portId": "hole_right_r1_001",
+        "pairedPortId": "hole_right_r0_003",
+        "x": 40,
+        "y": -9.8
+      },
+      {
+        "portId": "hole_right_r0_006",
+        "pairedPortId": "hole_bottom_r0_016",
+        "x": 40,
+        "y": 9.8
+      },
+      {
+        "portId": "hole_bottom_r0_016",
+        "pairedPortId": "hole_right_r0_006",
+        "x": 40,
+        "y": -25
+      },
+      {
+        "portId": "hole_top_r0_011",
+        "pairedPortId": "hole_top_r1_014",
+        "x": 15,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r1_014",
+        "pairedPortId": "hole_top_r0_011",
+        "x": 32.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r1_003",
+        "pairedPortId": "hole_top_r1_002",
+        "x": -22.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r1_002",
+        "pairedPortId": "hole_top_r1_003",
+        "x": -27.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_bottom_r0_009",
+        "pairedPortId": "hole_bottom_r1_004",
+        "x": 5,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r1_004",
+        "pairedPortId": "hole_bottom_r0_009",
+        "x": -17.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_top_r1_009",
+        "pairedPortId": "hole_top_r0_004",
+        "x": 7.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r0_004",
+        "pairedPortId": "hole_top_r1_009",
+        "x": -20,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r1_011",
+        "pairedPortId": "hole_top_r1_010",
+        "x": 17.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r1_010",
+        "pairedPortId": "hole_top_r1_011",
+        "x": 12.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_bottom_r0_006",
+        "pairedPortId": "hole_bottom_r0_008",
+        "x": -10,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r0_008",
+        "pairedPortId": "hole_bottom_r0_006",
+        "x": 0,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r1_008",
+        "pairedPortId": "hole_right_r1_000",
+        "x": 2.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_right_r1_000",
+        "pairedPortId": "hole_bottom_r1_008",
+        "x": 40,
+        "y": -14.8
+      },
+      {
+        "portId": "hole_bottom_r1_006",
+        "pairedPortId": "hole_bottom_r0_002",
+        "x": -7.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r0_002",
+        "pairedPortId": "hole_bottom_r1_006",
+        "x": -30,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r1_002",
+        "pairedPortId": "hole_bottom_r0_000",
+        "x": -27.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r0_000",
+        "pairedPortId": "hole_bottom_r1_002",
+        "x": -40,
+        "y": -25
+      },
+      {
+        "portId": "hole_top_r0_013",
+        "pairedPortId": "hole_right_r0_008",
+        "x": 25,
+        "y": 25
+      },
+      {
+        "portId": "hole_right_r0_008",
+        "pairedPortId": "hole_top_r0_013",
+        "x": 40,
+        "y": 19.8
+      },
+      {
+        "portId": "hole_right_r0_000",
+        "pairedPortId": "hole_bottom_r0_012",
+        "x": 40,
+        "y": -20.2
+      },
+      {
+        "portId": "hole_bottom_r0_012",
+        "pairedPortId": "hole_right_r0_000",
+        "x": 20,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r1_001",
+        "pairedPortId": "hole_bottom_r0_005",
+        "x": -32.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r0_005",
+        "pairedPortId": "hole_bottom_r1_001",
+        "x": -15,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r0_003",
+        "pairedPortId": "hole_bottom_r1_000",
+        "x": -25,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r1_000",
+        "pairedPortId": "hole_bottom_r0_003",
+        "x": -37.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_top_r0_008",
+        "pairedPortId": "hole_top_r0_010",
+        "x": 0,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r0_010",
+        "pairedPortId": "hole_top_r0_008",
+        "x": 10,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r1_007",
+        "pairedPortId": "hole_top_r0_003",
+        "x": -2.5,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r0_003",
+        "pairedPortId": "hole_top_r1_007",
+        "x": -25,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r0_007",
+        "pairedPortId": "hole_top_r0_006",
+        "x": -5,
+        "y": 25
+      },
+      {
+        "portId": "hole_top_r0_006",
+        "pairedPortId": "hole_top_r0_007",
+        "x": -10,
+        "y": 25
+      },
+      {
+        "portId": "hole_bottom_r1_010",
+        "pairedPortId": "hole_bottom_r1_012",
+        "x": 12.5,
+        "y": -25
+      },
+      {
+        "portId": "hole_bottom_r1_012",
+        "pairedPortId": "hole_bottom_r1_010",
+        "x": 22.5,
+        "y": -25
+      }
+    ]
+  },
+  "options": {
+    "ripCost": 60,
+    "maxRipsPerRoute": 24,
+    "maxTotalRips": 300
+  }
+}
