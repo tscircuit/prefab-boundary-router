@@ -28,7 +28,8 @@ All identifier fields are role-prefixed: `portId`, `pairedPortId`, `netId`,
    tree of two-terminal demands.
 2. `RipUpAStarBoundarySolver` routes those demands incrementally with A*. If
    the nearest-tree attempt exhausts its bounded search, it retries with a
-   root-star decomposition for multi-terminal nets. Both attempts use the same
+   root-star decomposition for multi-terminal nets, followed by a deterministic
+   seeded ordering of the nearest-tree demands. All attempts use the same
    vector graph, negotiated rip-up rules, and caller-supplied limits.
 
 There is no raster or routing grid. Trace edges are direct Euclidean vectors
@@ -194,7 +195,7 @@ curve outside the via boundary. Its test converts
   introduce optimized free-space bend points or physical trace clearance.
 - Via jumps are topological escape edges. Their outside-boundary curves explain
   pairing but do not represent copper and are excluded from intersection tests.
-- Net decomposition retries deterministic nearest-tree and root-star shapes; it
-  is not a Steiner optimizer.
+- Net decomposition retries deterministic nearest-tree and root-star shapes,
+  plus a fixed seeded demand order; it is not a Steiner optimizer.
 - Rip-up is negotiated and bounded, not a completeness proof; hard instances
   can still exhaust the configured search or rip limits.

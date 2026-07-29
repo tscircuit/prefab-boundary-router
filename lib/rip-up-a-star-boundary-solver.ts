@@ -627,6 +627,28 @@ const demandsAreEqual = (
       demand.targetNode === right[index]?.targetNode,
   )
 
+const createSeededDemandOrder = (
+  demands: readonly RouteDemand[],
+  seed: number,
+) => {
+  // Keep retries reproducible while changing which nets claim scarce via and
+  // boundary resources first. Seed 3 is a fixed fallback, not runtime entropy.
+  const shuffled = [...demands]
+  let state = seed >>> 0
+  const random = () => {
+    state = (Math.imul(state, 1_664_525) + 1_013_904_223) >>> 0
+    return state / 2 ** 32
+  }
+  for (let index = shuffled.length - 1; index > 0; index--) {
+    const swapIndex = Math.floor(random() * (index + 1))
+    ;[shuffled[index], shuffled[swapIndex]] = [
+      shuffled[swapIndex]!,
+      shuffled[index]!,
+    ]
+  }
+  return shuffled
+}
+
 const createRoutingAttempts = (
   preparedProblem: PreparedBoundaryRoutingProblem,
 ): RoutingAttempt[] => {
@@ -644,6 +666,19 @@ const createRoutingAttempts = (
         demands: rootStarDemands,
         demandById: new Map(
           rootStarDemands.map((demand) => [demand.routeId, demand]),
+        ),
+      },
+    })
+  }
+  const seededDemands = createSeededDemandOrder(preparedProblem.demands, 3)
+  if (!demandsAreEqual(preparedProblem.demands, seededDemands)) {
+    attempts.push({
+      name: "nearest-tree-seeded-order-3",
+      preparedProblem: {
+        ...preparedProblem,
+        demands: seededDemands,
+        demandById: new Map(
+          seededDemands.map((demand) => [demand.routeId, demand]),
         ),
       },
     })
