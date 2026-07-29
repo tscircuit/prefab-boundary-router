@@ -1,6 +1,9 @@
 import { expect } from "bun:test"
-import type { BoundaryRoutingProblem, BoundaryRoutingSolution } from "../../lib"
-import { segmentsIntersect } from "../../lib/geometry"
+import {
+  type BoundaryRoutingProblem,
+  type BoundaryRoutingSolution,
+  validateBoundaryRoutingSolutionGeometry,
+} from "../../lib"
 
 export const assertValidSolution = (
   problem: BoundaryRoutingProblem,
@@ -10,6 +13,8 @@ export const assertValidSolution = (
     problem.breakoutBoundary.ports.map((port) => [port.portId, port.netId]),
   )
   const adjacencyByNet = new Map<string, Map<string, Set<string>>>()
+
+  expect(() => validateBoundaryRoutingSolutionGeometry(solution)).not.toThrow()
 
   for (const route of solution.routes) {
     expect(netByPortId.get(route.sourcePortId)).toBe(route.netId)
@@ -40,29 +45,6 @@ export const assertValidSolution = (
       const firstRoute = solution.routes[firstRouteIndex]!
       const secondRoute = solution.routes[secondRouteIndex]!
       if (firstRoute.netId === secondRoute.netId) continue
-      for (const firstSegment of firstRoute.segments) {
-        if (firstSegment.kind !== "trace") continue
-        for (const secondSegment of secondRoute.segments) {
-          if (secondSegment.kind !== "trace") continue
-          const firstLayer = firstSegment.from.z ?? 0
-          const secondLayer = secondSegment.from.z ?? 0
-          if (
-            firstLayer === (firstSegment.to.z ?? firstLayer) &&
-            secondLayer === (secondSegment.to.z ?? secondLayer) &&
-            firstLayer !== secondLayer
-          ) {
-            continue
-          }
-          expect(
-            segmentsIntersect(
-              firstSegment.from,
-              firstSegment.to,
-              secondSegment.from,
-              secondSegment.to,
-            ),
-          ).toBe(false)
-        }
-      }
       const sharedViaPortIds = firstRoute.usedViaPortIds.filter((portId) =>
         secondRoute.usedViaPortIds.includes(portId),
       )

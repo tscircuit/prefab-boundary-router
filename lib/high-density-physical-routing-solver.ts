@@ -10,7 +10,6 @@ import {
   netColor,
   pointDistance,
   pointsEqual,
-  segmentsIntersect,
   visualizeProblem,
 } from "./geometry"
 import { RipUpAStarBoundarySolver } from "./rip-up-a-star-boundary-solver"
@@ -24,6 +23,7 @@ import type {
   RoutedSegment,
   RoutePoint,
 } from "./types"
+import { getDifferentNetGeometryViolationError } from "./validate-boundary-routing-solution"
 
 const TRACE_THICKNESS = 0.1
 const TRACE_MARGIN = 0.15
@@ -628,38 +628,11 @@ const traceSegmentsFromPoints = (
 
 const reversePoints = (points: RoutePoint[]) => [...points].reverse()
 
-const solutionHasForeignIntersections = (solution: BoundaryRoutingSolution) => {
-  for (let firstIndex = 0; firstIndex < solution.routes.length; firstIndex++) {
-    const firstRoute = solution.routes[firstIndex]!
-    for (
-      let secondIndex = firstIndex + 1;
-      secondIndex < solution.routes.length;
-      secondIndex++
-    ) {
-      const secondRoute = solution.routes[secondIndex]!
-      if (firstRoute.netId === secondRoute.netId) continue
-      for (const first of firstRoute.segments) {
-        if (first.kind !== "trace") continue
-        for (const second of secondRoute.segments) {
-          if (second.kind !== "trace") continue
-          const firstZ = first.from.z ?? 0
-          const secondZ = second.from.z ?? 0
-          if (
-            firstZ === (first.to.z ?? firstZ) &&
-            secondZ === (second.to.z ?? secondZ) &&
-            firstZ !== secondZ
-          ) {
-            continue
-          }
-          if (segmentsIntersect(first.from, first.to, second.from, second.to)) {
-            return true
-          }
-        }
-      }
-    }
-  }
-  return false
-}
+const getSolutionGeometryError = (solution: BoundaryRoutingSolution) =>
+  getDifferentNetGeometryViolationError(solution, {
+    traceThickness: TRACE_THICKNESS,
+    viaDiameter: VIA_DIAMETER,
+  })
 
 export class HighDensityPhysicalRoutingSolver extends BaseSolver {
   private readonly tasks: PhysicalRoutingTask[]
@@ -694,21 +667,26 @@ export class HighDensityPhysicalRoutingSolver extends BaseSolver {
     const batch = this.batches[this.batchIndex]
     if (!batch) {
       const candidate = this.buildSolution()
-      if (solutionHasForeignIntersections(candidate)) {
+      const geometryError = getSolutionGeometryError(candidate)
+      if (geometryError) {
         const fallback = new RipUpAStarBoundarySolver(
           this.assignedProblem.preparedProblem,
         )
         this.activeSubSolver = fallback
         fallback.solve()
-        if (fallback.solved) {
-          this.output = fallback.getOutput()
+        const fallbackOutput = fallback.getOutput()
+        const fallbackGeometryError = fallbackOutput
+          ? getSolutionGeometryError(fallbackOutput)
+          : null
+        if (fallback.solved && fallbackOutput && !fallbackGeometryError) {
+          this.output = fallbackOutput
           this.solved = true
           this.progress = 1
           return
         }
         this.failed = true
-        this.error = `high-density-b01 produced intersecting foreign-net geometry; legacy fallback: ${
-          fallback.error ?? "no route found"
+        this.error = `high-density-b01 produced invalid different-net geometry: ${geometryError}; legacy fallback: ${
+          fallbackGeometryError ?? fallback.error ?? "no route found"
         }`
         return
       }
@@ -867,15 +845,19 @@ export class HighDensityPhysicalRoutingSolver extends BaseSolver {
       )
       this.activeSubSolver = fallback
       fallback.solve()
-      if (fallback.solved) {
-        this.output = fallback.getOutput()
+      const fallbackOutput = fallback.getOutput()
+      const fallbackGeometryError = fallbackOutput
+        ? getSolutionGeometryError(fallbackOutput)
+        : null
+      if (fallback.solved && fallbackOutput && !fallbackGeometryError) {
+        this.output = fallbackOutput
         this.solved = true
         this.progress = 1
         return
       }
       this.failed = true
       this.error = `${physicalError}; legacy fallback: ${
-        fallback.error ?? "no route found"
+        fallbackGeometryError ?? fallback.error ?? "no route found"
       }`
       return
     }

@@ -32,6 +32,15 @@ export type {
   ViaBoundary,
   ViaPort,
 } from "./types"
+export type {
+  BoundaryRoutingGeometryValidationOptions,
+  BoundaryRoutingGeometryViolation,
+} from "./validate-boundary-routing-solution"
+export {
+  findDifferentNetGeometryViolations,
+  getDifferentNetGeometryViolationError,
+  validateBoundaryRoutingSolutionGeometry,
+} from "./validate-boundary-routing-solution"
 export {
   assignViaBoundaryPoints,
   ViaBoundaryAssignmentSolver,

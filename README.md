@@ -89,6 +89,29 @@ if (solver.failed) throw new Error(solver.error ?? "routing failed")
 console.log(solver.getOutput())
 ```
 
+## Geometry validation
+
+Every pipeline result is validated before it is marked solved, including
+results produced by the legacy fallback. Different-net copper is checked for
+same-layer trace crossings and clearance violations, trace-to-via conflicts,
+and via-to-via conflicts.
+
+The validator is also available for callers that load or transform a solution:
+
+```ts
+import {
+  findDifferentNetGeometryViolations,
+  validateBoundaryRoutingSolutionGeometry,
+} from "@tscircuit/prefab-boundary-router"
+
+const violations = findDifferentNetGeometryViolations(solution)
+validateBoundaryRoutingSolutionGeometry(solution) // throws when invalid
+```
+
+Crossings between different layers and intersections between branches of the
+same net are allowed. Pass `{ clearance: 0.15 }` to require additional spacing
+beyond the physical trace and via dimensions.
+
 Run the project with:
 
 ```sh
