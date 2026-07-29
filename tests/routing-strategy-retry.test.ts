@@ -6,7 +6,7 @@ import { assertValidSolution } from "./fixtures/assert-valid-solution"
 
 const dataset = productionDatasetJson as ProductionStressProblemDataset
 
-test("retries a failed nearest-tree route with a root-star decomposition", () => {
+test("routes the former strategy-retry case through the assignment pipeline", () => {
   const problemCase = dataset.cases.find(
     (candidate) => candidate.caseId === "production-c02",
   )!
@@ -16,8 +16,8 @@ test("retries a failed nearest-tree route with a root-star decomposition", () =>
 
   expect(solver.solved).toBe(true)
   expect(solver.failed).toBe(false)
-  expect(solver.routingSolver?.stats.attempt).toBe(2)
-  expect(solver.routingSolver?.stats.attemptStrategy).toBe("root-star")
+  expect(solver.hasStageOutput("assign")).toBe(true)
+  expect(solver.hasStageOutput("route")).toBe(true)
   const solution = solver.getOutput()!
   expect(solution.routes).toHaveLength(40)
   assertValidSolution(problemCase.problem, solution)

@@ -57,8 +57,8 @@ test("routes 8 breakout points through 20 paired via points", async () => {
   expect(solution!.stats.viaJumpCount).toBeGreaterThanOrEqual(3)
   expect(
     solution!.routes
-      .flatMap((route) => route.points.slice(1, -1))
-      .every((point) => point.kind === "via_port"),
+      .flatMap((route) => route.points)
+      .some((point) => point.kind === "routing_point"),
   ).toBe(true)
   assertValidSolution(eightBreakoutTwentyViaProblem, solution!)
 

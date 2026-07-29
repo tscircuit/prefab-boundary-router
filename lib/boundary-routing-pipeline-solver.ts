@@ -5,17 +5,20 @@ import {
 } from "@tscircuit/solver-utils"
 import type { GraphicsObject } from "graphics-debug"
 import { visualizeProblem } from "./geometry"
+import { HighDensityPhysicalRoutingSolver } from "./high-density-physical-routing-solver"
 import { PrepareBoundaryRoutingProblemSolver } from "./prepare-boundary-routing-problem-solver"
-import { RipUpAStarBoundarySolver } from "./rip-up-a-star-boundary-solver"
 import type {
+  AssignedBoundaryRoutingProblem,
   BoundaryRoutingProblem,
   BoundaryRoutingSolution,
   PreparedBoundaryRoutingProblem,
 } from "./types"
+import { ViaBoundaryAssignmentSolver } from "./via-boundary-assignment-solver"
 
 export class BoundaryRoutingPipelineSolver extends BasePipelineSolver<BoundaryRoutingProblem> {
   prepare?: PrepareBoundaryRoutingProblemSolver
-  route?: RipUpAStarBoundarySolver
+  assign?: ViaBoundaryAssignmentSolver
+  route?: HighDensityPhysicalRoutingSolver
 
   override pipelineDef: PipelineStep<any>[] = [
     definePipelineStep(
@@ -24,8 +27,8 @@ export class BoundaryRoutingPipelineSolver extends BasePipelineSolver<BoundaryRo
       (instance: BoundaryRoutingPipelineSolver) => [instance.inputProblem],
     ),
     definePipelineStep(
-      "route",
-      RipUpAStarBoundarySolver,
+      "assign",
+      ViaBoundaryAssignmentSolver,
       (instance: BoundaryRoutingPipelineSolver) => {
         const prepared =
           instance.getStageOutput<PreparedBoundaryRoutingProblem>("prepare")
@@ -33,6 +36,18 @@ export class BoundaryRoutingPipelineSolver extends BasePipelineSolver<BoundaryRo
           throw new Error("prepare stage did not produce a routing problem")
         }
         return [prepared]
+      },
+    ),
+    definePipelineStep(
+      "route",
+      HighDensityPhysicalRoutingSolver,
+      (instance: BoundaryRoutingPipelineSolver) => {
+        const assigned =
+          instance.getStageOutput<AssignedBoundaryRoutingProblem>("assign")
+        if (!assigned) {
+          throw new Error("assign stage did not produce boundary assignments")
+        }
+        return [assigned]
       },
     ),
   ]
@@ -51,7 +66,7 @@ export class BoundaryRoutingPipelineSolver extends BasePipelineSolver<BoundaryRo
   }
 
   get routingSolver() {
-    return this.getSolver<RipUpAStarBoundarySolver>("route") ?? null
+    return this.getSolver<HighDensityPhysicalRoutingSolver>("route") ?? null
   }
 
   override initialVisualize(): GraphicsObject {

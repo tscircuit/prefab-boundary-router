@@ -22,6 +22,7 @@ import type {
 } from "./types"
 
 const DEFAULT_OPTIONS: NormalizedBoundaryRoutingOptions = {
+  highDensityRoutingMargin: 3,
   viaJumpCost: 0.25,
   ripCost: 8,
   crossingCost: 0.25,
@@ -49,6 +50,12 @@ const normalizeOptions = (
   problem: BoundaryRoutingProblem,
 ): NormalizedBoundaryRoutingOptions => {
   const options = { ...DEFAULT_OPTIONS, ...problem.options }
+  if (
+    !Number.isFinite(options.highDensityRoutingMargin) ||
+    options.highDensityRoutingMargin < 0
+  ) {
+    throw new Error("options.highDensityRoutingMargin must be non-negative")
+  }
   for (const key of [
     "viaJumpCost",
     "ripCost",

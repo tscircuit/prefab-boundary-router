@@ -44,6 +44,15 @@ export const assertValidSolution = (
         if (firstSegment.kind !== "trace") continue
         for (const secondSegment of secondRoute.segments) {
           if (secondSegment.kind !== "trace") continue
+          const firstLayer = firstSegment.from.z ?? 0
+          const secondLayer = secondSegment.from.z ?? 0
+          if (
+            firstLayer === (firstSegment.to.z ?? firstLayer) &&
+            secondLayer === (secondSegment.to.z ?? secondLayer) &&
+            firstLayer !== secondLayer
+          ) {
+            continue
+          }
           expect(
             segmentsIntersect(
               firstSegment.from,
