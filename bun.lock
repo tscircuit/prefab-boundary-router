@@ -5,6 +5,7 @@
     "": {
       "name": "@tscircuit/prefab-boundary-router",
       "dependencies": {
+        "@tscircuit/hypergraph": "^0.0.71",
         "@tscircuit/solver-utils": "^0.0.16",
         "graphics-debug": "^0.0.86",
       },
@@ -165,6 +166,8 @@
     "@rollup/rollup-win32-x64-msvc": ["@rollup/rollup-win32-x64-msvc@4.62.3", "", { "os": "win32", "cpu": "x64" }, "sha512-MOG/3gTOn4Fwf574RVOaY61I5o6P90legkFADiTyn1hyjNydT+cerU2rLUwPdZkKKyJ+iT+K9p7WXK4LM1Ka6g=="],
 
     "@skidding/launch-editor": ["@skidding/launch-editor@2.13.2", "", { "dependencies": { "shell-quote": "^1.8.3" } }, "sha512-BphfE/1Prmsjj5K7mZzKU5wHf360pu7CdylfR6UqRHrzw/qMgqnQA/0yTDHDe1VsPuGpQt2QeSbbu48WY4bj0g=="],
+
+    "@tscircuit/hypergraph": ["@tscircuit/hypergraph@0.0.71", "", { "dependencies": { "@tscircuit/solver-utils": "^0.0.16" }, "peerDependencies": { "typescript": "^5" } }, "sha512-pTMosHibUiN8Ue14DHHzqLBkXFVECN3qqSwBc+OZufhRDxIczADQ4J2qHoVcgqr4yXNQs3v9qzC+Dzgo/N7RlA=="],
 
     "@tscircuit/solver-utils": ["@tscircuit/solver-utils@0.0.16", "", { "peerDependencies": { "graphics-debug": "*", "typescript": "^5" } }, "sha512-paeEsPt+NOrIdeEb1PQpoNGjl9bD5MfcDaBuhFkn7Hdsxez4cXhKUyxWj3WbJsZzq9nUDW3Utr/Dl3GD4UURZQ=="],
 

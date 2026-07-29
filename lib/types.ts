@@ -58,7 +58,7 @@ export interface NormalizedBoundaryRoutingOptions {
   expansionsPerStep: number
 }
 
-export type VectorGraphNodeKind = "breakout_port" | "via_port"
+export type VectorGraphNodeKind = "breakout_port" | "via_port" | "routing_point"
 
 export interface VectorGraphNode extends Point {
   nodeId: string
