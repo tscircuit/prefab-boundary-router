@@ -3,7 +3,7 @@ import {
   BoundaryRoutingPipelineSolver,
   type BoundaryRoutingProblem,
 } from "../lib"
-import postFanoutProblemJson from "../tests/fixtures/clad1-rp2040-post-fanout.json"
+import postFanoutProblemJson from "../tests/fixtures/clad1-rp2040-no-testpoints-post-fanout.json"
 
 const postFanoutProblem =
   postFanoutProblemJson as unknown as BoundaryRoutingProblem
