@@ -27,7 +27,7 @@ describe("production-shaped stress dataset", () => {
 
   test("models the production port and net distribution", () => {
     expect(dataset.cases).toHaveLength(PRODUCTION_SAMPLE_COUNT)
-    expect(dataset.minimumSolvePercent).toBe(50)
+    expect(dataset.minimumSolvePercent).toBe(100)
     expect(
       new Set(dataset.cases.map((problemCase) => problemCase.seed)).size,
     ).toBe(PRODUCTION_SAMPLE_COUNT)

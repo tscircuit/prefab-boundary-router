@@ -2,3 +2,5 @@ node_modules
 dist
 cosmos-export
 .cursor
+.vercel
+.env*

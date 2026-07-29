@@ -82,9 +82,12 @@ const normalizeOptions = (
   return options
 }
 
-const buildNetDemands = (
+export type NetDemandStrategy = "nearest_tree" | "root_star"
+
+export const buildNetDemands = (
   ports: BreakoutPort[],
   portNodeById: Map<string, number>,
+  strategy: NetDemandStrategy = "nearest_tree",
 ) => {
   const portsByNet = new Map<string, BreakoutPort[]>()
   for (const port of ports) {
@@ -104,6 +107,21 @@ const buildNetDemands = (
       a.portId.localeCompare(b.portId),
     )
     if (netPorts.length < 2) continue
+    if (strategy === "root_star") {
+      const sourcePort = netPorts[0]!
+      for (const [edgeIndex, targetPort] of netPorts.slice(1).entries()) {
+        demands.push({
+          routeId: `${netId}:${edgeIndex}:${sourcePort.portId}->${targetPort.portId}`,
+          netId,
+          sourcePortId: sourcePort.portId,
+          targetPortId: targetPort.portId,
+          sourceNode: portNodeById.get(sourcePort.portId)!,
+          targetNode: portNodeById.get(targetPort.portId)!,
+        })
+      }
+      continue
+    }
+
     const connected = [netPorts[0]!]
     const remaining = netPorts.slice(1)
     let edgeIndex = 0

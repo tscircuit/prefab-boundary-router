@@ -2,7 +2,7 @@
   "datasetId": "production-boundary-problems-v2",
   "description": "Deterministic known-feasible production-shaped boundary-routing problems with 120 breakout ports across 80 nets and 80 paired via ports.",
   "seed": 20260729,
-  "minimumSolvePercent": 50,
+  "minimumSolvePercent": 100,
   "profile": {
     "viaCount": 80,
     "breakoutPortCount": 120,

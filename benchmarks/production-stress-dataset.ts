@@ -329,7 +329,7 @@ export const generateProductionStressDataset =
       description:
         "Deterministic known-feasible production-shaped boundary-routing problems with 120 breakout ports across 80 nets and 80 paired via ports.",
       seed: PRODUCTION_DATASET_SEED,
-      minimumSolvePercent: 50,
+      minimumSolvePercent: 100,
       profile: {
         viaCount: PRODUCTION_VIA_COUNT,
         breakoutPortCount: PRODUCTION_BREAKOUT_PORT_COUNT,
