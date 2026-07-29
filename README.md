@@ -201,7 +201,9 @@ ports on the same three sides of the outer boundary. Each via pair gets a
 unique color and is drawn as a slightly irregular, line-segmented parabolic
 curve outside the via boundary. Its test converts
 `solver.visualize()` with `getSvgFromGraphicsObject` and checks the result with
-`bun-match-svg`'s `toMatchSvgSnapshot`.
+`bun-match-svg`'s `toMatchSvgSnapshot`. A second named `layered-routing`
+snapshot isolates physical copper, draws bottom-layer traces dashed, and marks
+B01 layer-transition vias.
 
 ## Prototype limits
 
