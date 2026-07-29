@@ -627,26 +627,65 @@ const demandsAreEqual = (
       demand.targetNode === right[index]?.targetNode,
   )
 
+const orderDemandsShortestFirst = (
+  preparedProblem: PreparedBoundaryRoutingProblem,
+  demands: readonly RouteDemand[],
+) =>
+  [...demands].sort((left, right) => {
+    const leftSource = preparedProblem.nodes[left.sourceNode]!
+    const leftTarget = preparedProblem.nodes[left.targetNode]!
+    const rightSource = preparedProblem.nodes[right.sourceNode]!
+    const rightTarget = preparedProblem.nodes[right.targetNode]!
+    const leftDistance = Math.hypot(
+      leftSource.x - leftTarget.x,
+      leftSource.y - leftTarget.y,
+    )
+    const rightDistance = Math.hypot(
+      rightSource.x - rightTarget.x,
+      rightSource.y - rightTarget.y,
+    )
+    return (
+      leftDistance - rightDistance || left.routeId.localeCompare(right.routeId)
+    )
+  })
+
+const createAttempt = (
+  name: string,
+  preparedProblem: PreparedBoundaryRoutingProblem,
+  demands: RouteDemand[],
+): RoutingAttempt => ({
+  name,
+  preparedProblem: {
+    ...preparedProblem,
+    demands,
+    demandById: new Map(demands.map((demand) => [demand.routeId, demand])),
+  },
+})
+
 const createRoutingAttempts = (
   preparedProblem: PreparedBoundaryRoutingProblem,
 ): RoutingAttempt[] => {
   const attempts: RoutingAttempt[] = [{ name: "nearest-tree", preparedProblem }]
+  const shortestFirstDemands = orderDemandsShortestFirst(
+    preparedProblem,
+    preparedProblem.demands,
+  )
+  if (!demandsAreEqual(preparedProblem.demands, shortestFirstDemands)) {
+    attempts.push(
+      createAttempt(
+        "nearest-tree-shortest-first",
+        preparedProblem,
+        shortestFirstDemands,
+      ),
+    )
+  }
   const rootStarDemands = buildNetDemands(
     preparedProblem.problem.breakoutBoundary.ports,
     preparedProblem.breakoutPortNodeById,
     "root_star",
   )
   if (!demandsAreEqual(preparedProblem.demands, rootStarDemands)) {
-    attempts.push({
-      name: "root-star",
-      preparedProblem: {
-        ...preparedProblem,
-        demands: rootStarDemands,
-        demandById: new Map(
-          rootStarDemands.map((demand) => [demand.routeId, demand]),
-        ),
-      },
-    })
+    attempts.push(createAttempt("root-star", preparedProblem, rootStarDemands))
   }
   return attempts
 }

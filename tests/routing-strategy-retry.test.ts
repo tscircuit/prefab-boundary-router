@@ -16,7 +16,7 @@ test("retries a failed nearest-tree route with a root-star decomposition", () =>
 
   expect(solver.solved).toBe(true)
   expect(solver.failed).toBe(false)
-  expect(solver.routingSolver?.stats.attempt).toBe(2)
+  expect(solver.routingSolver?.stats.attempt).toBe(3)
   expect(solver.routingSolver?.stats.attemptStrategy).toBe("root-star")
   const solution = solver.getOutput()!
   expect(solution.routes).toHaveLength(40)
