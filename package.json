@@ -38,6 +38,7 @@
     "dev": "cosmos"
   },
   "dependencies": {
+    "@tscircuit/hypergraph": "^0.0.71",
     "@tscircuit/solver-utils": "^0.0.16",
     "graphics-debug": "^0.0.86"
   },
