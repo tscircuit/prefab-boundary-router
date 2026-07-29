@@ -1,6 +1,10 @@
 import { expect } from "bun:test"
-import type { BoundaryRoutingProblem, BoundaryRoutingSolution } from "../../lib"
-import { segmentsIntersect } from "../../lib/geometry"
+import {
+  type BoundaryRoutingProblem,
+  type BoundaryRoutingSolution,
+  findDifferentNetGeometryViolations,
+  validateBoundaryRoutingSolutionGeometry,
+} from "../../lib"
 
 export const assertValidSolution = (
   problem: BoundaryRoutingProblem,
@@ -11,19 +15,47 @@ export const assertValidSolution = (
   )
   const adjacencyByNet = new Map<string, Map<string, Set<string>>>()
 
+  expect(() => validateBoundaryRoutingSolutionGeometry(solution)).not.toThrow()
+  const traceClearanceViolations = findDifferentNetGeometryViolations(
+    solution,
+    { clearance: 0.05 },
+  ).filter(
+    (violation) =>
+      violation.type !== "via_trace_clearance" &&
+      violation.type !== "via_via_clearance",
+  )
+  expect(traceClearanceViolations).toHaveLength(0)
+
   for (const route of solution.routes) {
-    expect(netByPortId.get(route.sourcePortId)).toBe(route.netId)
-    expect(netByPortId.get(route.targetPortId)).toBe(route.netId)
+    const actualBreakoutPortIds = [
+      ...new Set(
+        route.segments.flatMap((segment) => [
+          ...(segment.from.kind === "breakout_port"
+            ? [segment.from.nodeId.replace(/^breakout:/, "")]
+            : []),
+          ...(segment.to.kind === "breakout_port"
+            ? [segment.to.nodeId.replace(/^breakout:/, "")]
+            : []),
+        ]),
+      ),
+    ]
+    expect(actualBreakoutPortIds).toHaveLength(2)
+    expect([...actualBreakoutPortIds].sort()).toEqual(
+      [route.sourcePortId, route.targetPortId].sort(),
+    )
+    const [actualSourcePortId, actualTargetPortId] = actualBreakoutPortIds
+    expect(netByPortId.get(actualSourcePortId!)).toBe(route.netId)
+    expect(netByPortId.get(actualTargetPortId!)).toBe(route.netId)
     const netAdjacency =
       adjacencyByNet.get(route.netId) ?? new Map<string, Set<string>>()
     const sourceNeighbors =
-      netAdjacency.get(route.sourcePortId) ?? new Set<string>()
+      netAdjacency.get(actualSourcePortId!) ?? new Set<string>()
     const targetNeighbors =
-      netAdjacency.get(route.targetPortId) ?? new Set<string>()
-    sourceNeighbors.add(route.targetPortId)
-    targetNeighbors.add(route.sourcePortId)
-    netAdjacency.set(route.sourcePortId, sourceNeighbors)
-    netAdjacency.set(route.targetPortId, targetNeighbors)
+      netAdjacency.get(actualTargetPortId!) ?? new Set<string>()
+    sourceNeighbors.add(actualTargetPortId!)
+    targetNeighbors.add(actualSourcePortId!)
+    netAdjacency.set(actualSourcePortId!, sourceNeighbors)
+    netAdjacency.set(actualTargetPortId!, targetNeighbors)
     adjacencyByNet.set(route.netId, netAdjacency)
   }
 
@@ -40,20 +72,6 @@ export const assertValidSolution = (
       const firstRoute = solution.routes[firstRouteIndex]!
       const secondRoute = solution.routes[secondRouteIndex]!
       if (firstRoute.netId === secondRoute.netId) continue
-      for (const firstSegment of firstRoute.segments) {
-        if (firstSegment.kind !== "trace") continue
-        for (const secondSegment of secondRoute.segments) {
-          if (secondSegment.kind !== "trace") continue
-          expect(
-            segmentsIntersect(
-              firstSegment.from,
-              firstSegment.to,
-              secondSegment.from,
-              secondSegment.to,
-            ),
-          ).toBe(false)
-        }
-      }
       const sharedViaPortIds = firstRoute.usedViaPortIds.filter((portId) =>
         secondRoute.usedViaPortIds.includes(portId),
       )

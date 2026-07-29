@@ -29,6 +29,11 @@ export interface ViaBoundary extends RectBounds {
 }
 
 export interface BoundaryRoutingOptions {
+  /**
+   * Extra space around each assigned physical connection passed to
+   * high-density-b01. The resulting window is clamped to viaBoundary.
+   */
+  highDensityRoutingMargin?: number
   viaJumpCost?: number
   ripCost?: number
   crossingCost?: number
@@ -47,6 +52,7 @@ export interface BoundaryRoutingProblem {
 }
 
 export interface NormalizedBoundaryRoutingOptions {
+  highDensityRoutingMargin: number
   viaJumpCost: number
   ripCost: number
   crossingCost: number
@@ -105,9 +111,38 @@ export interface PreparedBoundaryRoutingProblem {
   viaPortNodeById: Map<string, number>
 }
 
+export interface AssignedViaPair {
+  firstPortId: string
+  secondPortId: string
+}
+
+export interface NetBoundaryAssignment {
+  netId: string
+  viaPair: AssignedViaPair | null
+  viaPortIdByBreakoutPortId: Map<string, string>
+}
+
+export interface DemandBoundaryAssignment {
+  routeId: string
+  netId: string
+  viaPair: AssignedViaPair | null
+  sourceViaPortId?: string
+  targetViaPortId?: string
+}
+
+export interface AssignedBoundaryRoutingProblem {
+  preparedProblem: PreparedBoundaryRoutingProblem
+  netAssignments: NetBoundaryAssignment[]
+  netAssignmentById: Map<string, NetBoundaryAssignment>
+  demandAssignments: DemandBoundaryAssignment[]
+  demandAssignmentByRouteId: Map<string, DemandBoundaryAssignment>
+}
+
 export interface RoutePoint extends Point {
   nodeId: string
-  kind: VectorGraphNodeKind
+  kind: VectorGraphNodeKind | "routing_point"
+  /** PCB layer index used by the physical high-density solver. */
+  z?: number
 }
 
 export type RoutedSegment =
