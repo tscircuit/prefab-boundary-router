@@ -26,7 +26,8 @@ import type {
 import { getDifferentNetGeometryViolationError } from "./validate-boundary-routing-solution"
 
 const TRACE_THICKNESS = 0.1
-const TRACE_MARGIN = 0.15
+const B01_TRACE_MARGIN = 0.15
+const POST_PROCESS_TRACE_MARGIN = 0.05
 const VIA_DIAMETER = 0.3
 const HIGH_RESOLUTION_CELL_SIZE = 0.1
 const MIN_WINDOW_SIZE = 0.5
@@ -42,6 +43,9 @@ interface PhysicalRoutingTask {
   toKind: RoutePoint["kind"]
   from: Point
   to: Point
+  fromZ: number
+  toZ: number
+  fixed?: boolean
   logicalRouteId?: string
 }
 
@@ -161,7 +165,169 @@ const pointAtOuterBoundaryStation = (
   }
 }
 
+const getBoundaryArcCost = (
+  startStation: number,
+  delta: number,
+  breakoutBoundary: RectBounds,
+  viaBoundary: RectBounds,
+) => {
+  const width = viaBoundary.maxX - viaBoundary.minX
+  const height = viaBoundary.maxY - viaBoundary.minY
+  const perimeter = 2 * (width + height)
+  const arcMin = Math.min(startStation, startStation + delta)
+  const arcMax = Math.max(startStation, startStation + delta)
+  let cost = Math.abs(delta)
+  const addNarrowSidePenalty = (
+    sideStart: number,
+    sideEnd: number,
+    corridorWidth: number,
+  ) => {
+    if (corridorWidth + 1e-7 >= TRACE_THICKNESS + POST_PROCESS_TRACE_MARGIN)
+      return
+    for (let wrap = -1; wrap <= 1; wrap++) {
+      const overlap = Math.max(
+        0,
+        Math.min(arcMax, sideEnd + wrap * perimeter) -
+          Math.max(arcMin, sideStart + wrap * perimeter),
+      )
+      cost += overlap * 1_000
+    }
+  }
+  addNarrowSidePenalty(0, width, viaBoundary.maxY - breakoutBoundary.maxY)
+  addNarrowSidePenalty(
+    width,
+    width + height,
+    viaBoundary.maxX - breakoutBoundary.maxX,
+  )
+  addNarrowSidePenalty(
+    width + height,
+    width * 2 + height,
+    breakoutBoundary.minY - viaBoundary.minY,
+  )
+  addNarrowSidePenalty(
+    width * 2 + height,
+    perimeter,
+    breakoutBoundary.minX - viaBoundary.minX,
+  )
+  return cost
+}
+
 const getBreakoutToViaPath = (
+  breakoutPoint: Point,
+  viaPoint: Point,
+  breakoutBoundary: RectBounds,
+  viaBoundary: RectBounds,
+  requestedLaneInset: number,
+) => {
+  const outerProjection = projectToViaBoundary(
+    breakoutPoint,
+    breakoutBoundary,
+    viaBoundary,
+  )
+  const insetOuterPoint = (point: Point): Point => {
+    let x = point.x
+    let y = point.y
+    if (Math.abs(point.y - viaBoundary.maxY) <= 1e-7) {
+      y -= Math.min(
+        requestedLaneInset,
+        (viaBoundary.maxY - breakoutBoundary.maxY) * 0.8,
+      )
+    }
+    if (Math.abs(point.x - viaBoundary.maxX) <= 1e-7) {
+      x -= Math.min(
+        requestedLaneInset,
+        (viaBoundary.maxX - breakoutBoundary.maxX) * 0.8,
+      )
+    }
+    if (Math.abs(point.y - viaBoundary.minY) <= 1e-7) {
+      y += Math.min(
+        requestedLaneInset,
+        (breakoutBoundary.minY - viaBoundary.minY) * 0.8,
+      )
+    }
+    if (Math.abs(point.x - viaBoundary.minX) <= 1e-7) {
+      x += Math.min(
+        requestedLaneInset,
+        (breakoutBoundary.minX - viaBoundary.minX) * 0.8,
+      )
+    }
+    return { x, y }
+  }
+  const projectionStation = outerBoundaryStation(outerProjection, viaBoundary)
+  const viaStation = outerBoundaryStation(viaPoint, viaBoundary)
+  const perimeter =
+    2 *
+    (viaBoundary.maxX - viaBoundary.minX + viaBoundary.maxY - viaBoundary.minY)
+  const forwardDelta =
+    (((viaStation - projectionStation) % perimeter) + perimeter) % perimeter
+  const backwardDelta = forwardDelta - perimeter
+  const delta =
+    getBoundaryArcCost(
+      projectionStation,
+      forwardDelta,
+      breakoutBoundary,
+      viaBoundary,
+    ) <=
+    getBoundaryArcCost(
+      projectionStation,
+      backwardDelta,
+      breakoutBoundary,
+      viaBoundary,
+    )
+      ? forwardDelta
+      : backwardDelta
+  const path = [breakoutPoint, insetOuterPoint(outerProjection)]
+  const width = viaBoundary.maxX - viaBoundary.minX
+  const height = viaBoundary.maxY - viaBoundary.minY
+  const endStation = projectionStation + delta
+  const direction = Math.sign(delta)
+  const cornerStations: number[] = []
+  for (let wrap = -1; wrap <= 1; wrap++) {
+    for (const station of [
+      0,
+      width,
+      width + height,
+      width * 2 + height,
+      perimeter,
+    ]) {
+      const unwrapped = station + wrap * perimeter
+      if (
+        direction > 0
+          ? unwrapped > projectionStation + 1e-7 &&
+            unwrapped < endStation - 1e-7
+          : unwrapped < projectionStation - 1e-7 &&
+            unwrapped > endStation + 1e-7
+      ) {
+        cornerStations.push(unwrapped)
+      }
+    }
+  }
+  cornerStations.sort((left, right) => direction * (left - right))
+  let currentStation = projectionStation
+  for (const targetStation of [...cornerStations, endStation]) {
+    const stepCount = Math.max(
+      1,
+      Math.ceil(Math.abs(targetStation - currentStation) / 8),
+    )
+    for (let step = 1; step <= stepCount; step++) {
+      pushDistinct(
+        path,
+        insetOuterPoint(
+          pointAtOuterBoundaryStation(
+            currentStation +
+              ((targetStation - currentStation) * step) / stepCount,
+            viaBoundary,
+          ),
+        ),
+      )
+    }
+    currentStation = targetStation
+  }
+  pushDistinct(path, viaPoint)
+  return subdividePolyline(path)
+}
+
+const getLegacyBreakoutToViaPath = (
   breakoutPoint: Point,
   viaPoint: Point,
   breakoutBoundary: RectBounds,
@@ -227,6 +393,41 @@ const getBreakoutToViaPath = (
   return subdividePolyline(path)
 }
 
+const getDirectBoundaryPath = (
+  source: Point,
+  target: Point,
+  breakoutBoundary: RectBounds,
+  requestedLaneOffset: number,
+) => {
+  const lanePoint = (point: Point): Point => {
+    if (Math.abs(point.y - breakoutBoundary.maxY) <= 1e-7) {
+      return {
+        x: point.x,
+        y: breakoutBoundary.maxY + requestedLaneOffset,
+      }
+    }
+    if (Math.abs(point.y - breakoutBoundary.minY) <= 1e-7) {
+      return {
+        x: point.x,
+        y: breakoutBoundary.minY - requestedLaneOffset,
+      }
+    }
+    if (Math.abs(point.x - breakoutBoundary.maxX) <= 1e-7) {
+      return {
+        x: breakoutBoundary.maxX + requestedLaneOffset,
+        y: point.y,
+      }
+    }
+    return {
+      x: breakoutBoundary.minX - requestedLaneOffset,
+      y: point.y,
+    }
+  }
+  const sourceLane = lanePoint(source)
+  const targetLane = lanePoint(target)
+  return subdividePolyline([source, sourceLane, targetLane, target])
+}
+
 const appendConnectionTasks = ({
   tasks,
   connectionId,
@@ -263,11 +464,222 @@ const appendConnectionTasks = ({
       toKind: isLast ? toKind : "routing_point",
       from: points[index]!,
       to: points[index + 1]!,
+      fromZ: 0,
+      toZ: 0,
     })
   }
 }
 
+const assignRadialThenTangentialLayers = (
+  tasks: PhysicalRoutingTask[],
+  connectionId: string,
+  breakoutPoint: Point,
+  breakoutBoundary: RectBounds,
+  viaBoundary: RectBounds,
+  tangentialLayer: number,
+) => {
+  const connectionTasks = tasks
+    .filter((task) => task.connectionId === connectionId)
+    .sort((left, right) => left.segmentIndex - right.segmentIndex)
+  const radialIsVertical =
+    Math.abs(breakoutPoint.y - breakoutBoundary.minY) <= 1e-7 ||
+    Math.abs(breakoutPoint.y - breakoutBoundary.maxY) <= 1e-7
+  let inRadialPrefix = true
+  for (const task of connectionTasks) {
+    const radial = radialIsVertical
+      ? Math.abs(task.from.x - task.to.x) <= 1e-7
+      : Math.abs(task.from.y - task.to.y) <= 1e-7
+    if (!radial) inRadialPrefix = false
+    const layer = inRadialPrefix ? 0 : tangentialLayer
+    task.fromZ = layer
+    task.toZ = layer
+    task.fixed = inRadialPrefix
+  }
+  const viaPoint = connectionTasks.at(-1)!.to
+  const suffixRadialIsVertical =
+    Math.abs(viaPoint.y - viaBoundary.minY) <= 1e-7 ||
+    Math.abs(viaPoint.y - viaBoundary.maxY) <= 1e-7
+  for (let index = connectionTasks.length - 1; index >= 0; index--) {
+    const task = connectionTasks[index]!
+    const radial = suffixRadialIsVertical
+      ? Math.abs(task.from.x - task.to.x) <= 1e-7
+      : Math.abs(task.from.y - task.to.y) <= 1e-7
+    if (!radial) break
+    task.fromZ = 0
+    task.toZ = 0
+    task.fixed = true
+  }
+  for (const task of connectionTasks) task.fixed = true
+}
+
+const assignDirectBoundaryLayers = (
+  tasks: PhysicalRoutingTask[],
+  connectionId: string,
+) => {
+  const connectionTasks = tasks
+    .filter((task) => task.connectionId === connectionId)
+    .sort((left, right) => left.segmentIndex - right.segmentIndex)
+  for (const task of connectionTasks) {
+    task.fromZ = 1
+    task.toZ = 1
+  }
+  const setRadial = (task: PhysicalRoutingTask) => {
+    task.fromZ = 0
+    task.toZ = 0
+    task.fixed = true
+  }
+  const prefixIsVertical =
+    Math.abs(connectionTasks[0]!.from.x - connectionTasks[0]!.to.x) <= 1e-7
+  for (const task of connectionTasks) {
+    const isVertical = Math.abs(task.from.x - task.to.x) <= 1e-7
+    if (isVertical !== prefixIsVertical) break
+    setRadial(task)
+  }
+  const lastTask = connectionTasks.at(-1)!
+  const suffixIsVertical = Math.abs(lastTask.from.x - lastTask.to.x) <= 1e-7
+  for (let index = connectionTasks.length - 1; index >= 0; index--) {
+    const task = connectionTasks[index]!
+    const isVertical = Math.abs(task.from.x - task.to.x) <= 1e-7
+    if (isVertical !== suffixIsVertical) break
+    setRadial(task)
+  }
+  for (const task of connectionTasks) task.fixed = true
+}
+
 const buildPhysicalTasks = (
+  assignedProblem: AssignedBoundaryRoutingProblem,
+) => {
+  const { preparedProblem } = assignedProblem
+  const tasks: PhysicalRoutingTask[] = []
+  const routedLegIds = new Set<string>()
+  const routedNetIds = [
+    ...new Set(preparedProblem.demands.map((demand) => demand.netId)),
+  ].sort()
+  const laneIndexByNetId = new Map(
+    routedNetIds.map((netId, index) => [netId, index + 1]),
+  )
+  const directRecords = preparedProblem.demands
+    .filter(
+      (demand) =>
+        !assignedProblem.demandAssignmentByRouteId.get(demand.routeId)!.viaPair,
+    )
+    .map((demand) => {
+      const source = getPortPoint(assignedProblem, demand.sourcePortId)
+      const target = getPortPoint(assignedProblem, demand.targetPortId)
+      const horizontal = Math.abs(source.y - target.y) <= 1e-7
+      const side = horizontal
+        ? source.y === preparedProblem.problem.breakoutBoundary.minY
+          ? "bottom"
+          : "top"
+        : source.x === preparedProblem.problem.breakoutBoundary.minX
+          ? "left"
+          : "right"
+      const first = horizontal ? source.x : source.y
+      const second = horizontal ? target.x : target.y
+      return {
+        demand,
+        side,
+        min: Math.min(first, second),
+        max: Math.max(first, second),
+      }
+    })
+    .sort(
+      (left, right) =>
+        left.side.localeCompare(right.side) ||
+        left.min - right.min ||
+        left.max - right.max ||
+        left.demand.routeId.localeCompare(right.demand.routeId),
+    )
+  const directLaneByRouteId = new Map<string, number>()
+  const recordsByLane: (typeof directRecords)[] = []
+  // Direct traces on one side form an interval-conflict graph. Deterministic
+  // greedy coloring assigns different-net overlaps to separate physical lanes.
+  for (const record of directRecords) {
+    let lane = 0
+    while (
+      recordsByLane[lane]?.some(
+        (other) =>
+          other.side === record.side &&
+          other.demand.netId !== record.demand.netId &&
+          record.min < other.max + VIA_DIAMETER &&
+          record.max > other.min - VIA_DIAMETER,
+      )
+    ) {
+      lane++
+    }
+    const laneRecords = recordsByLane[lane] ?? []
+    laneRecords.push(record)
+    recordsByLane[lane] = laneRecords
+    directLaneByRouteId.set(record.demand.routeId, 0.4 + lane * 0.4)
+  }
+
+  for (const demand of preparedProblem.demands) {
+    const assignment = assignedProblem.demandAssignmentByRouteId.get(
+      demand.routeId,
+    )!
+    if (!assignment.viaPair) {
+      const connectionId = `direct:${demand.routeId}`
+      appendConnectionTasks({
+        tasks,
+        connectionId,
+        logicalRouteId: demand.routeId,
+        netId: demand.netId,
+        fromPortId: demand.sourcePortId,
+        toPortId: demand.targetPortId,
+        fromKind: "breakout_port",
+        toKind: "breakout_port",
+        points: getDirectBoundaryPath(
+          getPortPoint(assignedProblem, demand.sourcePortId),
+          getPortPoint(assignedProblem, demand.targetPortId),
+          preparedProblem.problem.breakoutBoundary,
+          directLaneByRouteId.get(demand.routeId)!,
+        ),
+      })
+      assignDirectBoundaryLayers(tasks, connectionId)
+      continue
+    }
+
+    for (const breakoutPortId of [demand.sourcePortId, demand.targetPortId]) {
+      const viaPortId =
+        breakoutPortId === demand.sourcePortId
+          ? assignment.sourceViaPortId!
+          : assignment.targetViaPortId!
+      const taskId = `leg:${breakoutPortId}->${viaPortId}`
+      if (routedLegIds.has(taskId)) continue
+      routedLegIds.add(taskId)
+      const breakoutPoint = getPortPoint(assignedProblem, breakoutPortId)
+      const viaPoint = getPortPoint(assignedProblem, viaPortId)
+      appendConnectionTasks({
+        tasks,
+        connectionId: taskId,
+        netId: demand.netId,
+        fromPortId: breakoutPortId,
+        toPortId: viaPortId,
+        fromKind: "breakout_port",
+        toKind: "via_port",
+        points: getBreakoutToViaPath(
+          breakoutPoint,
+          viaPoint,
+          preparedProblem.problem.breakoutBoundary,
+          preparedProblem.problem.viaBoundary,
+          (laneIndexByNetId.get(demand.netId) ?? 1) * 0.35,
+        ),
+      })
+      assignRadialThenTangentialLayers(
+        tasks,
+        taskId,
+        breakoutPoint,
+        preparedProblem.problem.breakoutBoundary,
+        preparedProblem.problem.viaBoundary,
+        1,
+      )
+    }
+  }
+
+  return tasks
+}
+
+const buildLegacyPhysicalTasks = (
   assignedProblem: AssignedBoundaryRoutingProblem,
 ) => {
   const { preparedProblem } = assignedProblem
@@ -311,8 +723,6 @@ const buildPhysicalTasks = (
       const taskId = `leg:${breakoutPortId}->${viaPortId}`
       if (routedLegIds.has(taskId)) continue
       routedLegIds.add(taskId)
-      const breakoutPoint = getPortPoint(assignedProblem, breakoutPortId)
-      const viaPoint = getPortPoint(assignedProblem, viaPortId)
       appendConnectionTasks({
         tasks,
         connectionId: taskId,
@@ -321,9 +731,9 @@ const buildPhysicalTasks = (
         toPortId: viaPortId,
         fromKind: "breakout_port",
         toKind: "via_port",
-        points: getBreakoutToViaPath(
-          breakoutPoint,
-          viaPoint,
+        points: getLegacyBreakoutToViaPath(
+          getPortPoint(assignedProblem, breakoutPortId),
+          getPortPoint(assignedProblem, viaPortId),
           preparedProblem.problem.breakoutBoundary,
           preparedProblem.problem.viaBoundary,
           (laneIndexByNetId.get(demand.netId) ?? 1) * 0.35,
@@ -331,7 +741,6 @@ const buildPhysicalTasks = (
       })
     }
   }
-
   return tasks
 }
 
@@ -505,8 +914,8 @@ const approximateRouteWithRects = (
       addRect(
         {
           center: { x: (from.x + to.x) / 2, y: (from.y + to.y) / 2 },
-          width: route.viaDiameter + TRACE_MARGIN * 2,
-          height: route.viaDiameter + TRACE_MARGIN * 2,
+          width: route.viaDiameter + B01_TRACE_MARGIN * 2,
+          height: route.viaDiameter + B01_TRACE_MARGIN * 2,
           zLayers: [0, 1],
         },
         `transition:${index}`,
@@ -520,8 +929,8 @@ const approximateRouteWithRects = (
     addRect(
       {
         center: { x: (from.x + to.x) / 2, y: (from.y + to.y) / 2 },
-        width: length + TRACE_MARGIN * 2,
-        height: route.traceThickness + TRACE_MARGIN * 2,
+        width: length + B01_TRACE_MARGIN * 2,
+        height: route.traceThickness + B01_TRACE_MARGIN * 2,
         ccwRotationDegrees: (Math.atan2(dy, dx) * 180) / Math.PI,
         zLayers: [from.z],
       },
@@ -533,8 +942,8 @@ const approximateRouteWithRects = (
     addRect(
       {
         center: via,
-        width: route.viaDiameter + TRACE_MARGIN * 2,
-        height: route.viaDiameter + TRACE_MARGIN * 2,
+        width: route.viaDiameter + B01_TRACE_MARGIN * 2,
+        height: route.viaDiameter + B01_TRACE_MARGIN * 2,
         zLayers: [0, 1],
       },
       `via:${index}`,
@@ -634,6 +1043,20 @@ const getSolutionGeometryError = (solution: BoundaryRoutingSolution) =>
     viaDiameter: VIA_DIAMETER,
   })
 
+const getNominalTaskRoute = (
+  task: PhysicalRoutingTask,
+): HighDensityIntraNodeRoute => ({
+  connectionName: task.taskId,
+  rootConnectionName: task.netId,
+  traceThickness: TRACE_THICKNESS,
+  viaDiameter: VIA_DIAMETER,
+  route: [
+    { x: task.from.x, y: task.from.y, z: task.fromZ },
+    { x: task.to.x, y: task.to.y, z: task.toZ },
+  ],
+  vias: [],
+})
+
 export class HighDensityPhysicalRoutingSolver extends BaseSolver {
   private readonly tasks: PhysicalRoutingTask[]
   private readonly batches: PhysicalRoutingBatch[]
@@ -651,8 +1074,18 @@ export class HighDensityPhysicalRoutingSolver extends BaseSolver {
     super()
     this.tasks = buildPhysicalTasks(assignedProblem)
     const { problem, options } = assignedProblem.preparedProblem
+    for (const task of this.tasks.filter((task) => task.fixed)) {
+      const route = getNominalTaskRoute(task)
+      this.completedHighDensityRoutes.push(route)
+      this.physicalRouteByTaskId.set(task.taskId, toPhysicalRoute(task, route))
+    }
+    if (getSolutionGeometryError(this.buildSolution())) {
+      this.completedHighDensityRoutes.length = 0
+      this.physicalRouteByTaskId.clear()
+      this.tasks = buildLegacyPhysicalTasks(assignedProblem)
+    }
     this.batches = buildPhysicalBatches(
-      this.tasks,
+      this.tasks.filter((task) => !task.fixed),
       problem.viaBoundary,
       options.highDensityRoutingMargin,
     )
@@ -731,7 +1164,7 @@ export class HighDensityPhysicalRoutingSolver extends BaseSolver {
             portPointId: `${task.taskId}:from:${task.fromPortId}`,
             x: task.from.x,
             y: task.from.y,
-            z: 0,
+            z: task.fromZ,
           },
           {
             connectionName: task.taskId,
@@ -739,7 +1172,7 @@ export class HighDensityPhysicalRoutingSolver extends BaseSolver {
             portPointId: `${task.taskId}:to:${task.toPortId}`,
             x: task.to.x,
             y: task.to.y,
-            z: 0,
+            z: task.toZ,
           },
         ]),
       },
@@ -748,13 +1181,14 @@ export class HighDensityPhysicalRoutingSolver extends BaseSolver {
       highResolutionCellThickness: 8,
       lowResolutionCellSize: 0.4,
       traceThickness: TRACE_THICKNESS,
-      traceMargin: TRACE_MARGIN,
+      traceMargin: B01_TRACE_MARGIN,
       obstacleClearanceMargin: 0,
       viaDiameter: VIA_DIAMETER,
       viaMinDistFromBorder: 0,
       maxCellCount: 500_000,
       effort: 2,
     })
+    solver.MAX_RIPS = 200
     this.activeSubSolver = solver
     solver.solve()
     this.totalExpandedStateCount += solver.iterations
@@ -768,7 +1202,10 @@ export class HighDensityPhysicalRoutingSolver extends BaseSolver {
             })
             .map(({ route }) => route.connectionName),
         ),
-      ].filter((taskId) => (this.ripCountByTaskId.get(taskId) ?? 0) < 4)
+      ].filter((taskId) => {
+        const task = this.tasks.find((candidate) => candidate.taskId === taskId)
+        return !task?.fixed && (this.ripCountByTaskId.get(taskId) ?? 0) < 4
+      })
       if (blockerTaskIds.length > 0) {
         const blockerTaskIdSet = new Set(blockerTaskIds)
         const blockerTasks = blockerTaskIds

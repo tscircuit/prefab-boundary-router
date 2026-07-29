@@ -37,7 +37,7 @@ test("captures the no-testpoint Clad1 RP2040 fanout problem", () => {
   expect(preparedProblem.demands).toHaveLength(81)
 })
 
-test.failing("routes the no-testpoint Clad1 RP2040 board after fanout", () => {
+test("routes the no-testpoint Clad1 RP2040 board after fanout", () => {
   const solver = new BoundaryRoutingPipelineSolver(postFanoutProblem)
   solver.solve()
 

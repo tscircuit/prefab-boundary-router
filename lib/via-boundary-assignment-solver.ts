@@ -101,6 +101,38 @@ const directAssignmentCost = (
   return cost
 }
 
+const exactRadialCollisionPenalty = (
+  via: ViaPort,
+  netId: string,
+  preparedProblem: PreparedBoundaryRoutingProblem,
+) => {
+  // Exclude assignments whose forced radial spoke is collinear with a
+  // different-net breakout. This is a local conflict edge in the assignment
+  // graph, penalized before the global greedy matching commits the pair.
+  const { breakoutBoundary, viaBoundary } = preparedProblem.problem
+  const horizontal =
+    Math.abs(via.y - viaBoundary.minY) <= EPSILON ||
+    Math.abs(via.y - viaBoundary.maxY) <= EPSILON
+  return breakoutBoundary.ports.some((port) => {
+    if (port.netId === netId) return false
+    const onSameSide =
+      Math.abs(via.y - viaBoundary.minY) <= EPSILON
+        ? Math.abs(port.y - breakoutBoundary.minY) <= EPSILON
+        : Math.abs(via.y - viaBoundary.maxY) <= EPSILON
+          ? Math.abs(port.y - breakoutBoundary.maxY) <= EPSILON
+          : Math.abs(via.x - viaBoundary.minX) <= EPSILON
+            ? Math.abs(port.x - breakoutBoundary.minX) <= EPSILON
+            : Math.abs(port.x - breakoutBoundary.maxX) <= EPSILON
+    return (
+      onSameSide &&
+      Math.abs((horizontal ? port.x : port.y) - (horizontal ? via.x : via.y)) <=
+        EPSILON
+    )
+  })
+    ? 3
+    : 0
+}
+
 export const assignViaBoundaryPoints = (
   preparedProblem: PreparedBoundaryRoutingProblem,
 ): AssignedBoundaryRoutingProblem => {
@@ -134,10 +166,25 @@ export const assignViaBoundaryPoints = (
         return !owner || owner === demand.netId
       })
       .flatMap((pair) => {
+        const collisionPenalty =
+          exactRadialCollisionPenalty(
+            pair.first,
+            demand.netId,
+            preparedProblem,
+          ) +
+          exactRadialCollisionPenalty(
+            pair.second,
+            demand.netId,
+            preparedProblem,
+          )
         const normalCost =
-          pointDistance(source, pair.first) + pointDistance(target, pair.second)
+          pointDistance(source, pair.first) +
+          pointDistance(target, pair.second) +
+          collisionPenalty
         const reverseCost =
-          pointDistance(source, pair.second) + pointDistance(target, pair.first)
+          pointDistance(source, pair.second) +
+          pointDistance(target, pair.first) +
+          collisionPenalty
         return [
           {
             pair,
