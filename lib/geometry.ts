@@ -18,6 +18,37 @@ export const pointsEqual = (a: Point, b: Point) =>
 export const pointDistance = (a: Point, b: Point) =>
   Math.hypot(a.x - b.x, a.y - b.y)
 
+export const closestPointOnSegment = (
+  point: Point,
+  start: Point,
+  end: Point,
+) => {
+  const deltaX = end.x - start.x
+  const deltaY = end.y - start.y
+  const lengthSquared = deltaX * deltaX + deltaY * deltaY
+  const interpolation =
+    lengthSquared === 0
+      ? 0
+      : Math.max(
+          0,
+          Math.min(
+            1,
+            ((point.x - start.x) * deltaX + (point.y - start.y) * deltaY) /
+              lengthSquared,
+          ),
+        )
+  return {
+    x: start.x + interpolation * deltaX,
+    y: start.y + interpolation * deltaY,
+  }
+}
+
+export const pointToSegmentDistance = (
+  point: Point,
+  start: Point,
+  end: Point,
+) => pointDistance(point, closestPointOnSegment(point, start, end))
+
 export const isPointOnRectBoundary = (point: Point, rect: RectBounds) => {
   const withinX =
     point.x >= rect.minX - GEOMETRY_EPSILON &&
@@ -79,6 +110,21 @@ export const segmentsIntersect = (
       pointOnSegment(firstA, secondA, secondB)) ||
     (Math.abs(o4) <= GEOMETRY_EPSILON &&
       pointOnSegment(firstB, secondA, secondB))
+  )
+}
+
+export const segmentToSegmentDistance = (
+  firstStart: Point,
+  firstEnd: Point,
+  secondStart: Point,
+  secondEnd: Point,
+) => {
+  if (segmentsIntersect(firstStart, firstEnd, secondStart, secondEnd)) return 0
+  return Math.min(
+    pointToSegmentDistance(firstStart, secondStart, secondEnd),
+    pointToSegmentDistance(firstEnd, secondStart, secondEnd),
+    pointToSegmentDistance(secondStart, firstStart, firstEnd),
+    pointToSegmentDistance(secondEnd, firstStart, firstEnd),
   )
 }
 

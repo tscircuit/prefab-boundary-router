@@ -1,4 +1,10 @@
 export { BoundaryRoutingPipelineSolver } from "./boundary-routing-pipeline-solver"
+export { HypergraphBoundarySolver } from "./hypergraph-boundary-solver"
+export {
+  DEFAULT_TRACE_CLEARANCE_MARGIN,
+  getMinimumDifferentNetTraceClearance,
+  postProcessBoundaryRoutes,
+} from "./post-process-boundary-routes"
 export {
   PrepareBoundaryRoutingProblemSolver,
   prepareBoundaryRoutingProblem,

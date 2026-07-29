@@ -26,10 +26,15 @@ All identifier fields are role-prefixed: `portId`, `pairedPortId`, `netId`,
    continuous visibility graph whose nodes are breakout and via ports, adds
    paired-via jump edges, and reduces each multi-terminal net to a deterministic
    tree of two-terminal demands.
-2. `RipUpAStarBoundarySolver` routes those demands incrementally with A*. If
+2. `RipUpAStarBoundarySolver` routes smaller problems incrementally with A*. If
    the nearest-tree attempt exhausts its bounded search, it retries with a
-   root-star decomposition for multi-terminal nets. Both attempts use the same
-   vector graph, negotiated rip-up rules, and caller-supplied limits.
+   root-star decomposition for multi-terminal nets. Dense production-sized
+   problems use a global hypergraph fallback instead. The fallback partitions
+   the annulus into convex wedges connected by exclusive routing lanes and
+   models each paired prefab via as an exclusive jump region, so crossings are
+   negotiated with a board-wide view. Its physical post-processing pass moves
+   free routing points apart, then shortcuts unnecessary bends while preserving
+   a 0.15 mm centerline margin from different-net traces.
 
 There is no raster or routing grid. Trace edges are direct Euclidean vectors
 between mutually visible graph nodes, so solutions naturally contain arbitrary
@@ -190,8 +195,11 @@ curve outside the via boundary. Its test converts
 
 ## Prototype limits
 
-- Visibility nodes are breakout and via ports; the prototype does not yet
-  introduce optimized free-space bend points or physical trace clearance.
+- Visibility nodes are breakout and via ports. The local A* path does not yet
+  introduce optimized free-space bend points or physical trace clearance; the
+  global hypergraph path adds both in its post-processing stage.
+- The global hypergraph fallback uses eight topological routing lanes. They
+  represent ordering and exclusivity, not a physical trace grid.
 - Via jumps are topological escape edges. Their outside-boundary curves explain
   pairing but do not represent copper and are excluded from intersection tests.
 - Net decomposition retries deterministic nearest-tree and root-star shapes; it
