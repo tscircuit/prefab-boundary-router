@@ -432,11 +432,7 @@ class SingleAttemptRipUpAStarBoundarySolver extends BaseSolver {
     if (!route) throw new Error(`Cannot rip uncommitted route "${routeId}"`)
 
     for (const segment of route.segments) {
-      this.historyCostByEdge.set(
-        segment.edgeKey,
-        (this.historyCostByEdge.get(segment.edgeKey) ?? 0) +
-          this.preparedProblem.options.historyIncrement,
-      )
+      this.incrementHistoryForSegment(segment)
     }
     for (const viaPortId of route.usedViaPortIds) {
       const owners = this.viaOwners.get(viaPortId)
@@ -453,6 +449,32 @@ class SingleAttemptRipUpAStarBoundarySolver extends BaseSolver {
     if (!demand) throw new Error(`Cannot requeue unknown route "${routeId}"`)
     if (!this.pending.some((candidate) => candidate.routeId === routeId)) {
       this.pending.push(demand)
+    }
+  }
+
+  private incrementHistoryForSegment(segment: RoutedSegment) {
+    const intersectingEdgeKeys = new Set<string>()
+    for (const edges of this.preparedProblem.adjacency) {
+      for (const edge of edges) {
+        if (intersectingEdgeKeys.has(edge.key)) continue
+        if (segment.kind === "via_jump") {
+          if (edge.key === segment.edgeKey) intersectingEdgeKeys.add(edge.key)
+          continue
+        }
+        if (edge.kind !== "trace") continue
+        const from = this.preparedProblem.nodes[edge.fromNode]!
+        const to = this.preparedProblem.nodes[edge.toNode]!
+        if (segmentsIntersect(from, to, segment.from, segment.to)) {
+          intersectingEdgeKeys.add(edge.key)
+        }
+      }
+    }
+    for (const edgeKey of intersectingEdgeKeys) {
+      this.historyCostByEdge.set(
+        edgeKey,
+        (this.historyCostByEdge.get(edgeKey) ?? 0) +
+          this.preparedProblem.options.historyIncrement,
+      )
     }
   }
 
